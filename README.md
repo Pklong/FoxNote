@@ -1,6 +1,6 @@
 # MyScribe
 
-[Heroku link][heroku]
+[Live][heroku]
 
 [heroku]: http://www.herokuapp.com
 
@@ -19,12 +19,13 @@ and React.js. MyScribe allows users to:
 
 
 ## Design Docs
-* [View Wireframes][./doc/wireframes]
+* [View Wireframes][wireframes]
 * [React Components][components]
 * [Flux Stores][stores]
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
+[wireframes]: ./doc/wireframes
 [views]: ./doc/views.md
 [components]: ./doc/components.md
 [stores]: ./doc/stores.md
