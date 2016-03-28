@@ -26,4 +26,4 @@
 
 ##SearchIndex
 [SearchView][search-index]
-[search-index]: ./wireframes/SearchIndex.jpg
+[search-index]: ./wireframes/searchIndex.jpg
