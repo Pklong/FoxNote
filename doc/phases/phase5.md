@@ -1,4 +1,4 @@
-# Phase 5: Searching and Styling (1.5 Days)
+# Phase 5: Searching and Styling (2 Day)
 
 ## Rails
 ### Models
@@ -26,3 +26,5 @@
 ## Gems/Libraries
 * skeleton CSS
 * normalize CSS
+* Velocity-React
+* ReactCSSTransitionGroup

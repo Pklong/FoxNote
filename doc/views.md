@@ -1,16 +1,29 @@
 # View Wireframes
 
 ## New User
-![new-user]
+[NewUser][new-user]
+[new-user]: ./wireframes/Login_SignUp.jpg
 
 ## New Session
-![new-session]
+[NewSession][new-session]
+[new-session]: ./wireframes/SignInModal.jpg
 
 ## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+[NotesIndexView][note-index]
+[NoteFormDropDown][note-dropdown]
+[NotesIndexWithoutNotes][bare-note-index]
+[note-index]: ./wireframes/NotesIndex.jpg
+[note-dropdown]: ./wireframes/NoteFormDropdown.jpg
+[bare-note-index]: ./wireframes/NotebookWithNoNotes.jpg
 
 ## NotebooksIndex / NotebookIndexItem
-![notebooks]
+[NoteBooksIndexView][notebooks-index]
+[notebooks-index]: ./wireframes/NoteBookIndex.jpg
 
 ## NotebookForm
-![notebook-form]
+[NotebookFormView][notebook-form]
+[notebook-form]: ./wireframes/NoteBookForm(full-page-modal).jpg
+
+##SearchIndex
+[SearchView][search-index]
+[search-index]: ./wireframes/SearchIndex.jpg

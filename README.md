@@ -25,8 +25,7 @@ and React.js. MyScribe allows users to:
 * [API endpoints][api-endpoints]
 * [DB schema][schema]
 
-[wireframes]: ./doc/wireframes
-[views]: ./doc/views.md
+[wireframes]: ./doc/views.md
 [components]: ./doc/components.md
 [stores]: ./doc/stores.md
 [api-endpoints]: ./doc/api-endpoints.md
@@ -44,7 +43,7 @@ and React.js. MyScribe allows users to:
 - [ ] user signup/signin pages
 - [ ] blank landing page after signin
 
-### Phase 2: Notes Model, API, and basic APIUtil (1.0 days)
+### Phase 2: Notes Model, API, and basic APIUtil (1 day)
 
 **Objective:** Notes can be created, read, edited and destroyed through
 the API.
@@ -57,7 +56,7 @@ the API.
 - [ ] setup `APIUtil` to interact with the API
 - [ ] test out API interaction in the console.
 
-### Phase 3: Flux Architecture and Router (1.5 days)
+### Phase 3: Flux Architecture and Router (1 day)
 
 **Objective:** Notes can be created, read, edited and destroyed with the
 user interface.
@@ -73,7 +72,7 @@ user interface.
 
 ### Phase 4: Start Styling (1 day)
 
-**Objective:** Existing pages (including singup/signin) will look good.
+**Objective:** Existing pages (including sign-up/sign-in) will look good.
 
 - [ ] create a basic style guide
 - [ ] create icons for `Note` and `Notebook`
@@ -83,7 +82,7 @@ user interface.
 - [ ] position elements on the page
 - [ ] add basic colors & styles
 
-### Phase 5: Notebooks (1.5 days)
+### Phase 5: Notebooks (1 day)
 
 **Objective:** Notes belong to Notebooks, and can be viewed by notebook.
 
@@ -99,13 +98,14 @@ Phase 5 adds organization to the Notes. Notes belong to a Notebook,
 which has its own `Index` view.
 
 
-### Phase 6: Allow Complex Styling in Notes (1.5 day)
+### Phase 6: Allow Complex Styling in Notes (2 days)
 
 **objective:** Enable complex styling of notes.
 
 - [ ] Integrate `ProseMirror` Rich Text Editor component.
 - [ ] Use Rails helpers to sanitize HTML before rendering.
 - [ ] Style the new ProseMirror elements.
+- [ ] Embedding of images (hopefully!)
 
 ### Phase 7: Add Searching for Notes and Notebooks (1 day)
 
@@ -114,23 +114,21 @@ which has its own `Index` view.
 - [ ] Create `SearchIndex` Component, API, Flux loop
 - [ ] Create Search Icon for Navbar component
 - [ ] Allow User to search Notes for text
-- [ ] Allow Search of Notebooks in NotebookIndex (RTS textbar)
 
-### Phase 8: Styling Cleanup and Seeding (.5 days)
+### Phase 8: Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more cohesive and awesome.
 
 - [ ] Get feedback on my UI from others
 - [ ] Refactor HTML classes & CSS rules
-- [ ] Add transitions and modals
+- [ ] Add transitions and modals ( Velocity-React? )
 
 ### Bonus Features (TBD)
 - [ ] Implement Responsive Web Design ( Flexbox or Media Queries)
 - [ ] Tag Notes with multiple Tags
 - [ ] Display Notes by Tag
-- [ ] Embed images within Notes
+- [ ] Pagination / infinite scroll for Notes Index
 - [ ] Set Reminders on Notes
 - [ ] Add Shortcuts to Notebooks and Notes
 - [ ] Share Notes and Notebooks with other Users (View and/or Edit)
-- [ ] Pagination / infinite scroll for Notes Index
 - [ ] Chat with other Users

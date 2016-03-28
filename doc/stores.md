@@ -44,3 +44,13 @@ Holds un-persisted notebook data to send to the API.
 
 ##### Listeners:
 - `NotebookForm`
+
+### SearchStore
+
+Holds search parameters to send to the API.
+
+##### Actions:
+- `receiveSearchParams`
+
+##### Listeners:
+- `SearchIndex`

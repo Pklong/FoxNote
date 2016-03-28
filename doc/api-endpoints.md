@@ -38,4 +38,3 @@
 - `DELETE /api/notebooks/:id`
 - `GET /api/notebooks/:id/notes`
   - index of all notes for a notebook
-  - Notebooks index/search
