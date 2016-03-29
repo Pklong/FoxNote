@@ -17,3 +17,4 @@ node_modules
 app/assets/javascripts/bundle.js*
 
 .byebug_history
+.DS_Store
