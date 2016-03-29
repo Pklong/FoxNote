@@ -1,4 +1,4 @@
-# MyScribe
+# FoxNote
 
 [Live][heroku]
 

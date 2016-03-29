@@ -1,5 +1,5 @@
 {
-  "name": "Capstone",
+  "name": "FoxNote",
   "version": "1.0.0",
   "description": "[Live][heroku]",
   "main": "webpack.config.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pklong/MyScribe.git"
+    "url": "git+https://github.com/Pklong/FoxNote.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Pklong/MyScribe/issues"
+    "url": "https://github.com/Pklong/FoxNote/issues"
   },
-  "homepage": "https://github.com/Pklong/MyScribe#readme",
+  "homepage": "https://github.com/Pklong/FoxNote#readme",
   "dependencies": {
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
