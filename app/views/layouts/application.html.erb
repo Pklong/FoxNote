@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Capstone</title>
+  <title>FoxNote</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <%= flash[:error].join("<br>").html_safe if flash[:error] %>
+
 <%= yield %>
+
+  <% if logged_in? %>
+    <%= "Logged In As: #{current_user.username}" %>
+    <%= button_to "Log Out", session_url, method: :delete %>
+  <% else %>
+    <%= link_to "Sign In", new_session_url %>
+    <%= link_to "Sign Up", new_user_url %>
+  <% end %>
 
 </body>
 </html>
