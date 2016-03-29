@@ -1,0 +1,34 @@
+{
+  "name": "Capstone",
+  "version": "1.0.0",
+  "description": "[Live][heroku]",
+  "main": "webpack.config.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pklong/MyScribe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pklong/MyScribe/issues"
+  },
+  "homepage": "https://github.com/Pklong/MyScribe#readme",
+  "dependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "flux": "^2.1.1",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "react-router": "^2.0.1",
+    "webpack": "^1.12.14"
+  }
+}
