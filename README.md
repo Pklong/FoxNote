@@ -6,8 +6,8 @@
 
 ## Minimum Viable Product
 
-MyScribe is a web application inspired by Evernote built using Ruby on Rails
-and React.js. MyScribe allows users to:
+FoxNote is a web application inspired by Evernote built using Ruby on Rails
+and React.js. FoxNote allows users to:
 
 - [ ] Create an account
 - [ ] Log in / Log out
