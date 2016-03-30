@@ -37,7 +37,12 @@ NoteStore.__onDispatch = function (payload) {
 };
 
 NoteStore.all = function() {
-    var notes = Object.assign({}, _notes);
+    var notes = [];
+    for (var noteId in _notes) {
+        if (_notes.hasOwnProperty(noteId)) {
+            notes.push(_notes[noteId]);
+        }
+    }
     return notes;
 };
 
