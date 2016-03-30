@@ -2,12 +2,16 @@ var React = require('react'),
     ReactDOM = require('react-dom'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
-    IndexRoute = require('react-router').IndexRoute;
+    IndexRoute = require('react-router').IndexRoute,
+    App = require('./components/app');
 
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    ReactDOM.render(<div>Hello!</div>, document.getElementById("root"));
+    ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+    );
 });
 
 

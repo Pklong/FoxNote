@@ -1,0 +1,50 @@
+.navbar-container {
+}
+
+.navbar-main {
+  position: fixed;
+  height: 100%;
+  float: left;
+  width: 50px;
+  background: #F8F8F8;
+  padding: 9px;
+  text-align: center;
+  border-right: 1px solid #ECECEC;
+}
+
+.navbar-link {
+  margin: 15px auto;
+  background: #fff;
+  border: 1px solid #2DBE60;
+  border-radius: 50%;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+}
+.navbar-link > a {
+  display: block;
+  width: 100%;
+}
+
+.navbar-account-box {
+  border-top: 1px solid #e1e1e1;
+  background: #2DBE60;
+  position: absolute;
+  padding: 4px 4px 5px 5px;
+  bottom: 0px;
+  left: 0px;
+  width: 60px;
+  height: 60px;
+}
+
+.small-logo {
+  width: 40px;
+  height: 32px;
+  margin: 5px auto 40px auto;
+  background: image-url('FoxNote-logo-small.png');
+  background-size: cover;
+}
+
+.nav-icon {
+  margin: 50px auto;
+}

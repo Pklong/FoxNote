@@ -2,7 +2,7 @@
 
 [Live][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://www.foxnote.herokuapp.com
 
 ## Minimum Viable Product
 
