@@ -1,0 +1,7 @@
+var NoteConstants = {
+  RECEIVE_ALL_NOTES: "RECEIVE_ALL_NOTES",
+  RECEIVE_SINGLE_NOTE: "RECEIVE_SINGLE_NOTE",
+  REMOVE_NOTE: "REMOVE_NOTE"
+};
+
+module.exports = NoteConstants;
