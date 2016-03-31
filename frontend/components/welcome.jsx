@@ -1,9 +1,10 @@
-var React = require('react');
+var React = require('react'),
+    LoginForm = require('./user/login_form');
 
 var Welcome = React.createClass({
   render: function() {
     return (
-      <div>Welcome</div>
+      <LoginForm />
     );
   }
 });

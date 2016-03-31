@@ -1,7 +1,7 @@
 var React = require('react'),
     NotesUtil = require('../../utils/notes_util'),
     NoteIndexItem = require('./note_index_item'),
-    NoteStore = require('../../stores/notes/note');
+    NoteStore = require('../../stores/note');
 
 var NotesIndex = React.createClass({
     getInitialState: function() {
@@ -9,7 +9,6 @@ var NotesIndex = React.createClass({
     },
 
     _onChange: function () {
-        debugger;
         this.setState({notes: NoteStore.all()});
     },
 

@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    AccountBadge = require('./account_badge');
 
 var NavBar = React.createClass({
   render: function() {
@@ -21,9 +22,7 @@ var NavBar = React.createClass({
               <a href="#">All Notebooks</a>
             </li>
           </ul>
-          <div className='navbar-account-box'>
-            <a href="#">Account</a>
-          </div>
+          <AccountBadge className='navbar-account-box' />
         </div>
       </div>
   );
