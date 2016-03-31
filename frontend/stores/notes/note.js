@@ -29,6 +29,14 @@ NoteStore.__onDispatch = function (payload) {
             resetNote(payload.note);
             NoteStore.__emitChange();
             break;
+        case NoteConstants.CREATE_NOTE:
+            resetNote(payload.note);
+            NoteStore.__emitChange();
+            break;
+        case NoteConstants.UPDATE_NOTE:
+            resetNote(payload.note);
+            NoteStore.__emitChange();
+            break;
         case NoteConstants.REMOVE_NOTE:
             deleteNote(payload.note);
             NoteStore.__emitChange();

@@ -3,10 +3,12 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, uniqueness: true, presence: true, format: { with: VALID_EMAIL_REGEX }
-
   validates :password_digest, :session_token, presence: true
-
   validates :password, length: { minimum: 6, allow_nil: true }
+
+  # Paperclip
+  has_attached_file :image, default_url: "missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token
 

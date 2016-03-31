@@ -19,6 +19,18 @@ var NoteActions = {
             actionType: NoteConstants.REMOVE_NOTE,
             note: note
         });
+    },
+    createNote: function(note) {
+        AppDispatcher.dispatch({
+            actionType: NoteConstants.CREATE_NOTE,
+            note: note
+        });
+    },
+    updateNote: function(note) {
+        AppDispatcher.dispatch({
+            actionType: NoteConstants.UPDATE_NOTE,
+            note: note
+        });
     }
 };
 

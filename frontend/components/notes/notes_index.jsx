@@ -9,6 +9,7 @@ var NotesIndex = React.createClass({
     },
 
     _onChange: function () {
+        debugger;
         this.setState({notes: NoteStore.all()});
     },
 

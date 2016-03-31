@@ -34,7 +34,7 @@ var NotesUtil = {
       dataType: 'json',
       data: {note: note},
       success: function (newNote) {
-        NoteActions.receiveSingleNote(newNote);
+        NoteActions.createNote(newNote);
         cb && cb(newNote.id);
       },
       error: function () {
@@ -49,7 +49,7 @@ var NotesUtil = {
       dataType: 'json',
       data: {note: note},
       success: function (newNote) {
-        NoteActions.receiveSingleNote(newNote);
+        NoteActions.updateNote(newNote);
         cb && cb(newNote.id);
       },
       error: function () {

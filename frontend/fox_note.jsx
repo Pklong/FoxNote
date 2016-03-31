@@ -3,20 +3,30 @@ var React = require('react'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
-    browserHistory = require('react-router').browserHistory,
+    hashHistory = require('react-router').hashHistory,
+    NoteForm = require('./components/notes/note_form'),
+    Welcome = require('./components/welcome'),
+    Search = require('./components/search/search'),
+
     App = require('./components/app');
 
-NoteStore = require('./stores/notes/note');
-ApiUtil = require('./utils/notes_util');
-
 var routes = (
-    <Route path="/" component={App} />
+    <Router history={hashHistory}>
+        <Route path="/" component={Welcome} />
+        <Route path="home" component={App} onEnter>
+            <Route path="notebook/:notebookId">
+                <Route path="note/:noteId" component={NoteForm} />
+            </Route>
+            <Route path="note/:noteId" component={NoteForm} />
+            <Route path="Search" component={Search} />
+        </Route>
+    </Router>
 );
 
 
 document.addEventListener("DOMContentLoaded", function() {
     ReactDOM.render(
-        <Router history={browserHistory}>{routes}</Router>,
+        routes,
         document.getElementById("root")
     );
 });
