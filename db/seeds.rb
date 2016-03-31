@@ -14,6 +14,11 @@ p_note2 = patrick.notes.create!(title: "My Second Note",
                                 body: "Buy milk",
                                 notebook_id: 1)
 
+p_note2 = patrick.notes.create!(title: "My Third note that is so long
+                                this title will wrap for me baby",
+                                body: "Buy milk",
+                                notebook_id: 1)
+
 
 g_note1 = gigi.notes.create!(title: "I love dogs",
                                 body: "I'm making a dog website",

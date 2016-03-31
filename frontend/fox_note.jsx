@@ -6,10 +6,11 @@ var React = require('react'),
     browserHistory = require('react-router').browserHistory,
     App = require('./components/app');
 
+NoteStore = require('./stores/notes/note');
+ApiUtil = require('./utils/notes_util');
 
 var routes = (
-    <Route path="/" component={App}>
-    </Route>
+    <Route path="/" component={App} />
 );
 
 

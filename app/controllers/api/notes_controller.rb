@@ -1,17 +1,15 @@
 class Api::NotesController < ApplicationController
   def index
-    @notes = Note.all
+    @notes = current_user.notes
   end
 
   def create
     @note = Note.new(note_params)
 
-    if @note.save
-      redirect_to api_notes_url
-    else
-      flash[:error] = @note.errors.full_messages
-      render :index
-    end
+    @note.save!
+
+    render :index
+
   end
 
   def destroy
@@ -29,7 +27,7 @@ class Api::NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
 
-    @note.update(note_params)
+    @note.update!(note_params)
 
     render :index
   end

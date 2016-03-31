@@ -1,3 +1,105 @@
+.note-view {
+  float: left;
+  margin-left: 69px;
+  width: 349px;
+  background: #FBFBFB;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid #ECECEC;
+}
+
+.notes-header {
+  height: 24px;
+  border-bottom: 1px solid #ECECEC;
+  position: relative;
+  padding: 0 24px;
+  margin-top: 32px;
+  display: block;
+}
+
+.notes-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ababab;
+}
+
+.notes-header-title {
+  text-align: left;
+  font-size: 21px;
+  color: #878787;
+  text-transform: uppercase;
+  padding: 24px 20px 0 24px;
+  letter-spacing: 0.5px;
+  vertical-align: top;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 26px;
+}
+
 .note-index {
-  margin-left: 70px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.note-title {
+  color: #4a4a4a;
+}
+
+.note-index-item {
+}
+
+.note-index-item-snippet {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #ECECEC;
+
+}
+
+.note-index-item-title {
+  font-weight: 400;
+  color: #4a4a4a;
+}
+
+.note-last-update {
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
+}
+
+/* FORM */
+.note-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 600px;
+  margin-left: 425px;
+}
+
+.note-form-title {
+  float: left;
+  display: block;
+  background: #eee;
+  padding: 10px;
+}
+
+.note-form-body {
+  float: left;
+  height: 500px;
+  width: 600px;
+  padding: 20px;
+  border: 3px solid #4a4a4a;
+  background: #eee;
+}
+
+.note-form-submit {
+  
 }

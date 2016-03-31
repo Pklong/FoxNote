@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   namespace :api, defaults: {format: :json} do
-    resources :notes, except: [:new, :edit]
+    resources :notes, except: [:edit, :new]
   end
 end

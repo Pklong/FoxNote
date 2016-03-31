@@ -3,15 +3,10 @@ body {
   width: 100%;
   background: #DA7529;
   font-size: 16px;
+  color: #4a4a4a;
+  font-family: sans-serif;
+  font-weight: 200;
 }
 
-h3 {
-  font-size: 36px;
-  padding: 20px;
-  color: #fff;
-}
-
-p {
-  padding: 20px;
-  color: #fff;
+.container {
 }
