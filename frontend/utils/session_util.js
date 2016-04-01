@@ -45,6 +45,21 @@ var SessionUtil = {
         completion && completion();
       }
     });
+  },
+  createUser: function(newUser, completion) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/users',
+      dataType: 'json',
+      data: {user: newUser},
+      success: function(user) {
+        SessionActions.currentUserReceived(newUser);
+        completion && completion();
+      },
+      error: function() {
+        console.log("Failed AJAX Request");
+      }
+    });
   }
 };
 

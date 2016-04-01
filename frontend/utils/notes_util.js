@@ -4,7 +4,7 @@ var NotesUtil = {
   fetchAllNotes: function() {
     $.ajax({
       type: 'GET',
-      url: 'api/notes',
+      url: '/api/notes',
       dataType: 'json',
       success: function (notes) {
         NoteActions.receiveAllNotes(notes);
@@ -17,7 +17,7 @@ var NotesUtil = {
   fetchSingleNote: function(noteId) {
     $.ajax({
       type: 'GET',
-      url: 'api/notes/' + noteId,
+      url: '/api/notes/' + noteId,
       dataType: 'json',
       success: function (note) {
         NoteActions.receiveSingleNote(note);
@@ -30,7 +30,7 @@ var NotesUtil = {
   createNote: function(note, cb) {
     $.ajax({
       type: 'POST',
-      url: 'api/notes',
+      url: '/api/notes',
       dataType: 'json',
       data: {note: note},
       success: function (newNote) {
@@ -45,7 +45,7 @@ var NotesUtil = {
   updateNote: function(note) {
     $.ajax({
       type: 'PATCH',
-      url: 'api/notes/' + note.id,
+      url: '/api/notes/' + note.id,
       dataType: 'json',
       data: {note: note},
       success: function (newNote) {
@@ -60,7 +60,7 @@ var NotesUtil = {
   removeNote: function(noteId) {
     $.ajax({
       type: 'DELETE',
-      url: 'api/notes/' + noteId,
+      url: '/api/notes/' + noteId,
       dataType: 'json',
       success: function () {
         NoteActions.removeNote(noteId);

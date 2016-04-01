@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in
-    redirect_to new_session_url unless current_user
+    render text: "You Shall Not Pass!", status: 401 unless current_user
   end
 end

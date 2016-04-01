@@ -1,5 +1,5 @@
 var React = require('react');
-var SessionUtil = require('../utils/session_util');
+var SessionUtil = require('../../utils/session_util');
 
 var SignUpForm = React.createClass({
   contextTypes: {
@@ -15,23 +15,31 @@ var SignUpForm = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <h1>Please Log in</h1>
+      <div className='user-form-container'>
+        <h1 className='sign-up-title'>Remember Everything</h1>
+        <h3 className='sign-up-subtitle'
+          >Modern life can be complicated. Simplify it with FoxNote,
+        the app to manage it all.</h3>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input className='user-form-input'
-                 onChange={this.updateEmail}
-                 type="text"
-                 value={this.state.email}/>
+        <form onSubmit={this.handleSubmit} className='user-form'>
+          <label htmlFor="email"
+                 className='sign-up-label'>
+            <input className='user-form-input'
+              onChange={this.updateEmail}
+              type="text"
+              placeholder='Email'
+              value={this.state.email}/>
+          </label>
 
-          <label htmlFor="password">Password</label>
-          <input className='user-form-input'
-                 onChange={this.updatePassword}
-                 type="password"
-                 value={this.state.password}/>
-
-               <button className='user-form-submit'>Submit</button>
+          <label htmlFor="password"
+                 className='sign-up-label'>
+            <input className='user-form-input'
+              onChange={this.updatePassword}
+              type="password"
+              placeholder='Password'
+              value={this.state.password}/>
+          </label>
+          <button className='user-form-submit'>Sign up for free</button>
         </form>
       </div>
     );
@@ -42,7 +50,7 @@ var SignUpForm = React.createClass({
 
     var router = this.context.router;
 
-    SessionUtil.login(this.state, function() {
+    SessionUtil.createUser(this.state, function() {
       router.push("/home");
     });
   },

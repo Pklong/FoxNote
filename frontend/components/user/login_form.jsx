@@ -1,5 +1,6 @@
-var React = require('react');
-var SessionUtil = require('../../utils/session_util');
+var React = require('react'),
+    Link = require('react-router').Link,
+    SessionUtil = require('../../utils/session_util');
 
 var LoginForm = React.createClass({
   contextTypes: {
@@ -15,24 +16,30 @@ var LoginForm = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <h1>Please Log in</h1>
+      <div className='login-form-container'>
+        <div className='login-brand'></div>
+        <h1 className='login-form-title'>Sign in</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input className='user-form-input'
+        <form className='login-formset' onSubmit={this.handleSubmit}>
+          <label htmlFor="email">Email address</label>
+          <input className='login-form-input'
                  onChange={this.updateEmail}
                  type="text"
                  value={this.state.email}/>
 
           <label htmlFor="password">Password</label>
-          <input className='user-form-input'
+          <input className='login-form-input'
                  onChange={this.updatePassword}
                  type="password"
                  value={this.state.password}/>
 
-               <button className='user-form-submit'>Submit</button>
+               <button className='login-form-submit'>Sign in</button>
         </form>
+        <footer className='login-footer'>
+          <p className='login-footer-subheader'>Don't have an account?</p>
+          <Link className='login-footer-redirect'
+                to="/">Create account</Link>
+        </footer>
       </div>
     );
   },

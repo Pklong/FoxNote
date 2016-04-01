@@ -22,7 +22,7 @@ var NavBar = React.createClass({
               <a href="#">All Notebooks</a>
             </li>
           </ul>
-          <AccountBadge className='navbar-account-box' />
+          <AccountBadge />
         </div>
       </div>
   );

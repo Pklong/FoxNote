@@ -1,4 +1,5 @@
 class Api::NotesController < ApplicationController
+  before_action :require_signed_in
   def index
     @notes = current_user.notes
   end

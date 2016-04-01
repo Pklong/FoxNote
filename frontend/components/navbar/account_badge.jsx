@@ -1,11 +1,11 @@
-var React = require('react');
+var React = require('react'),
+    SessionUtil = require('../../utils/session_util');
 
 var AccountBadge = React.createClass({
   render: function () {
     return (
-      <div>
-        <a href="#">Account</a>
-      </div>
+      <div className='navbar-account-box'
+           onClick={SessionUtil.logout}>Account</div>
     );
   },
 });

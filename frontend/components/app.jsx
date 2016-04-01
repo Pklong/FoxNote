@@ -21,19 +21,20 @@ var React = require('react'),
    },
    _onChange: function() {
       if (SessionStore.isLoggedIn()) {
-         debugger;
          this.setState({ currentUser: SessionStore.currentUser() });
       } else {
-         this.context.router.push("/login");
+         this.context.router.push("/");
       }
    },
    render: function () {
      return (
-       <div className='container group'>
+       <div className='container-left group'>
          <NavBar />
          <NotesIndex />
-         <NoteForm />
-         {this.props.children}
+         <div className='container-right group'>
+            <NoteForm />
+            {this.props.children}
+         </div>
        </div>
      );
    }

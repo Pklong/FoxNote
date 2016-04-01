@@ -1,10 +1,14 @@
 var React = require('react'),
-    LoginForm = require('./user/login_form');
+    SignUpHeader = require('./user/sign_up_header'),
+    SignUpForm = require('./user/sign_up_form');
 
 var Welcome = React.createClass({
   render: function() {
     return (
-      <LoginForm />
+      <div>
+        <SignUpHeader />
+        <SignUpForm />
+      </div>
     );
   }
 });
