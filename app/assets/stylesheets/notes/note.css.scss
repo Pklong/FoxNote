@@ -55,6 +55,14 @@
 .note-index-item {
 }
 
+.note-index-item-delete {
+  opacity: 0;
+}
+.note-index-item-delete:hover {
+  opacity: 1;
+  background: #000;
+}
+
 .note-index-item-snippet {
   overflow: hidden;
   overflow-wrap: break-word;
@@ -81,7 +89,6 @@
   top: 0;
   bottom: 0;
   width: 600px;
-  margin-left: 425px;
 }
 
 .note-form-title {
@@ -94,12 +101,12 @@
 .note-form-body {
   float: left;
   height: 500px;
-  width: 600px;
+  width: 100%;
   padding: 20px;
   border: 3px solid #4a4a4a;
   background: #eee;
 }
 
 .note-form-submit {
-  
+
 }

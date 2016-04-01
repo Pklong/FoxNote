@@ -42,15 +42,15 @@ var NotesUtil = {
       }
     });
   },
-  updateNote: function(note) {
+  updateNote: function(note, cb) {
     $.ajax({
       type: 'PATCH',
       url: '/api/notes/' + note.id,
       dataType: 'json',
       data: {note: note},
-      success: function (newNote) {
-        NoteActions.updateNote(newNote);
-        cb && cb(newNote.id);
+      success: function (updatedNote) {
+        NoteActions.updateNote(updatedNote);
+        cb && cb(updatedNote.id);
       },
       error: function () {
         console.error("Failed AJAX request...");

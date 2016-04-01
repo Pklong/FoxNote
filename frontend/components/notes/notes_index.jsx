@@ -1,30 +1,37 @@
 var React = require('react'),
-    NotesUtil = require('../../utils/notes_util'),
+    NotesApi = require('../../utils/notes_util'),
     NoteIndexItem = require('./note_index_item'),
     NoteStore = require('../../stores/note');
 
 var NotesIndex = React.createClass({
+    contextTypes: {
+      router: React.PropTypes.object.isRequired
+    },
     getInitialState: function() {
-        return {notes: NoteStore.all()};
+        return { notes: NoteStore.all(), notebooks: null };
     },
-
-    _onChange: function () {
-        this.setState({notes: NoteStore.all()});
-    },
-
     componentDidMount: function() {
-        this.noteListener = NoteStore.addListener(this._onChange);
-        NotesUtil.fetchAllNotes();
+        this.noteListener = NoteStore.addListener(this._noteChange);
+        NotesApi.fetchAllNotes();
     },
     componentWillUnmount: function() {
         this.noteListener.remove();
     },
+    _noteChange: function() {
+        this.setState({notes: NoteStore.all()});
+    },
     render: function () {
-        var notes = this.state.notes.map(function(note) {
-            return <li key={note.id}
-                       className='note-index-item'>
-                       <NoteIndexItem note={note} />
-                   </li>;
+        if (this.state.notes === undefined) {
+            return <p>"Loading Notes..."</p>;
+        }
+
+        var active;
+        var notes = this.state.notes.map(function(note, i) {
+            active = (i === 0);
+            return <NoteIndexItem className='note-index-item'
+                                  key={note.id}
+                                  note={note}
+                                  activeNote={active} />;
         });
 
         return (

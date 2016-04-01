@@ -1,7 +1,12 @@
 var React = require('react'),
+    Link = require('react-router').Link,
+    SessionStore = require('../../stores/session'),
     AccountBadge = require('./account_badge');
 
 var NavBar = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
   render: function() {
     return (
       <div className='navbar-container group'>
@@ -10,19 +15,19 @@ var NavBar = React.createClass({
             <li className='small-logo'>
             </li>
             <li className='navbar-link'>
-              <a href="#">Add Note</a>
+              <Link to="/home/newNote">Add Note</Link>
             </li>
             <li className='navbar-link'>
-              <a href="#">Search Notes</a>
+              <Link to="/home/search">Search Note</Link>
             </li>
             <li className='navbar-link nav-icon'>
-              <a href="#">All Notes</a>
+              <Link to="/home">All Note</Link>
             </li>
             <li className='navbar-link nav-icon'>
-              <a href="#">All Notebooks</a>
+              <Link to="/home">All Notebooks</Link>
             </li>
           </ul>
-          <AccountBadge />
+          <AccountBadge user={SessionStore.currentUser()} />
         </div>
       </div>
   );

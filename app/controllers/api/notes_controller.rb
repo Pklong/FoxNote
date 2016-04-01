@@ -9,7 +9,7 @@ class Api::NotesController < ApplicationController
 
     @note.save!
 
-    render :index
+    render :show
 
   end
 
@@ -18,7 +18,7 @@ class Api::NotesController < ApplicationController
 
     note.destroy!
 
-    render :index
+    render text: "note destroyed"
   end
 
   def show
@@ -30,7 +30,7 @@ class Api::NotesController < ApplicationController
 
     @note.update!(note_params)
 
-    render :index
+    render :show
   end
 
   private
