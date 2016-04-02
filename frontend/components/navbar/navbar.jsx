@@ -1,13 +1,14 @@
 var React = require('react'),
     Link = require('react-router').Link,
+    
     Modal = require('react-modal'),
-    ModalStyle = require('./modal_style'),
-
+    ModalStyleDrawer = require('./modal_style_drawer'),
+    ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTEBOOK = 'NEW_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
 
-    NotebookIndex = require('../notebooks/notebook_form'),
+    NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
     NoteForm = require('../notes/note_form'),
     SessionStore = require('../../stores/session'),
@@ -50,6 +51,7 @@ var NavBar = React.createClass({
       switch (this.state.showModal) {
         case ALLNOTEBOOK:
           component = <NotebookIndex closeModal={this._closeModal} />;
+          style = ModalStyleDrawer;
           break;
 
         case NEWNOTEBOOK:
@@ -58,6 +60,7 @@ var NavBar = React.createClass({
 
         case NEWNOTE:
           component = <NoteForm closeModal={this._closeModal} />;
+          style = ModalStyleForm;
           break;
       }
 
@@ -65,14 +68,12 @@ var NavBar = React.createClass({
         <Modal
           isOpen={Boolean(this.state.showModal)}
           onRequestClose={this._closeModal}
-          style={ModalStyle}>
+          style={style}>
           {component}
         </Modal>
       );
     }
-
-
-    //   isOpen={bool}
+    // isOpen={bool}
     // onRequestClose={fn}
     // closeTimeoutMS={n}
     // style={customStyle}>
