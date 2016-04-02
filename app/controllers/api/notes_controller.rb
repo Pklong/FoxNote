@@ -1,8 +1,5 @@
 class Api::NotesController < ApplicationController
   before_action :require_signed_in
-  def index
-    @notes = current_user.notes
-  end
 
   def create
     @note = Note.new(note_params)
@@ -10,7 +7,6 @@ class Api::NotesController < ApplicationController
     @note.save!
 
     render :show
-
   end
 
   def destroy
@@ -19,6 +15,10 @@ class Api::NotesController < ApplicationController
     note.destroy!
 
     render text: "note destroyed"
+  end
+
+  def index
+    @notes = current_user.notes
   end
 
   def show

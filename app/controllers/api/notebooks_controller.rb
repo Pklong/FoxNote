@@ -1,20 +1,41 @@
 class Api::NotebooksController < ApplicationController
-  def index
-  end
-
-  def show
-  end
+  before_action :require_signed_in
 
   def create
-  end
+    @notebook = Notebook.new(notebook_params)
 
-  def update
+    @notebook.save!
+
+    render :show
   end
 
   def destroy
+    @notebook = Notebook.find(params[:id])
+
+    notebook.destroy!
+
+    render :show
   end
 
+  def index
+    @notebooks = current_user.notebooks
+  end
+
+  def show
+    @notebook = Notebook.find(params[:id])
+  end
+
+  def update
+    @notebook = Notebook.find(params[:id])
+
+    @notebook.update!(notebook_params)
+
+    render :show
+  end
+
+  private
+
   def notebook_params
-    params.require(:notebook).permit(:title, :body, :notebook_id, :author_id)
+    params.require(:notebook).permit(:title, :author_id)
   end
 end
