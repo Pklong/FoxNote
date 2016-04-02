@@ -5,7 +5,7 @@ var React = require('react'),
     Router = ReactRouter.Router,
     Route = ReactRouter.Route,
     IndexRoute = ReactRouter.IndexRoute,
-    hashHistory = ReactRouter.hashHistory,
+    browserHistory = ReactRouter.browserHistory,
 
     LoginForm = require('./components/user/login_form'),
     NoteView = require('./components/notes/note_view'),
@@ -19,7 +19,7 @@ var React = require('react'),
     App = require('./components/app');
 
 var routes = (
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path="/" component={Welcome} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
             <Route path="newNote" component={NoteForm} />

@@ -10,7 +10,7 @@ var NotesUtil = {
         NoteActions.receiveAllNotes(notes);
       },
       error: function () {
-        console.error("Failed AJAX request...");
+        console.error("Failed fetchAllNotes...");
       }
     });
   },
@@ -23,7 +23,7 @@ var NotesUtil = {
         NoteActions.receiveSingleNote(note);
       },
       error: function () {
-        console.error("Failed AJAX request...");
+        console.error("Failed fetchSingleNote...");
       }
     });
   },
@@ -38,7 +38,7 @@ var NotesUtil = {
         cb && cb(newNote.id);
       },
       error: function () {
-        console.error("Failed AJAX request...");
+        console.error("Failed createNote...");
       }
     });
   },
@@ -53,7 +53,7 @@ var NotesUtil = {
         cb && cb(updatedNote.id);
       },
       error: function () {
-        console.error("Failed AJAX request...");
+        console.error("Failed updateNote...");
       }
     });
   },
@@ -66,7 +66,7 @@ var NotesUtil = {
         NoteActions.removeNote(noteId);
       },
       error: function () {
-        console.error("Failed AJAX request...");
+        console.error("Failed removeNote...");
       }
     });
   }

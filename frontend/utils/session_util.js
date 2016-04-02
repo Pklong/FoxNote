@@ -2,7 +2,6 @@ var SessionActions = require('../actions/session_actions');
 
 var SessionUtil = {
   login: function(credentials, callback) {
-
     $.ajax({
       type: 'POST',
       url: '/api/session',
@@ -13,7 +12,7 @@ var SessionUtil = {
         callback && callback();
       },
       error: function() {
-        console.error("Failed AJAX Request");
+        console.error("Failed login...");
       },
     });
   },
@@ -26,7 +25,7 @@ var SessionUtil = {
         SessionActions.logout();
       },
       error: function() {
-        console.error("Failed AJAX Request");
+        console.error("Failed logout...");
       },
     });
   },
@@ -39,7 +38,7 @@ var SessionUtil = {
         SessionActions.currentUserReceived(currentUser);
       },
       error: function() {
-        console.log("Failed AJAX Request");
+        console.log("Failed fetchCurrentUser...");
       },
       complete: function () {
         completion && completion();
@@ -57,7 +56,7 @@ var SessionUtil = {
         completion && completion();
       },
       error: function() {
-        console.log("Failed AJAX Request");
+        console.log("Failed createUser...");
       }
     });
   }
