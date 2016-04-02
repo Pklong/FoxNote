@@ -36,8 +36,8 @@ var NavBar = React.createClass({
     console.log("Add note click");
     this.setState({showModal: NEWNOTE});
   },
-  _closeModal: function(e) {
-    e.preventDefault();
+
+  _closeModal: function() {
     this.setState({showModal: null});
   },
 
@@ -49,23 +49,34 @@ var NavBar = React.createClass({
     if (this.state.showModal) {
       switch (this.state.showModal) {
         case ALLNOTEBOOK:
-          component = <NotebookIndex />;
+          component = <NotebookIndex closeModal={this._closeModal} />;
           break;
 
         case NEWNOTEBOOK:
-          component = <NotebookForm />;
+          component = <NotebookForm closeModal={this._closeModal} />;
           break;
 
         case NEWNOTE:
-          component = <NoteForm />;
+          component = <NoteForm closeModal={this._closeModal} />;
           break;
       }
+
+      modal = (
+        <Modal
+          isOpen={Boolean(this.state.showModal)}
+          onRequestClose={this._closeModal}
+          style={ModalStyle}>
+          {component}
+        </Modal>
+      );
     }
 
+
     //   isOpen={bool}
-  // onRequestClose={fn}
-  // closeTimeoutMS={n}
-  // style={customStyle}>
+    // onRequestClose={fn}
+    // closeTimeoutMS={n}
+    // style={customStyle}>
+
     return (
       <div className='navbar-container group'>
         <div className='navbar-main'>

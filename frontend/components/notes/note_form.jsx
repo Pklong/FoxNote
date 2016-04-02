@@ -18,6 +18,7 @@ var NoteForm = React.createClass({
     createNote: function (e) {
         e.preventDefault();
         NotesApi.createNote(this.state, function (newNoteId) {
+            this.props.closeModal();
             this.context.router.push("/home/" + newNoteId);
         }.bind(this));
     },
