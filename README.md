@@ -61,26 +61,26 @@ the API.
 **Objective:** Notes can be created, read, edited and destroyed with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [X] setup the flux loop with skeleton files
+- [X] setup React Router
 - implement each note component, building out the flux loop as needed.
-  - [ ] `NotesIndex` - Show All Notes
-  - [ ] `NoteIndexItem` - Abbreviated Note Show (just title and created_at)
-  - [ ] `NoteForm` - Create Note
-  - [ ] `NoteDetail` - Show Note (will display Notebook when implemented)
-  - [ ] `NoteEditArea` - Edit Note (ProseMirror tooltip when implemented)
+  - [X] `NotesIndex` - Show All Notes
+  - [X] `NoteIndexItem` - Abbreviated Note Show (title / updated_at)
+  - [X] `NoteForm` - Create Note
+  - [X] `NoteView` - Show Note
+  - [X] `NoteEditArea` - Edit Note
 
 ### Phase 4: Start Styling (1 day)
 
 **Objective:** Existing pages (including sign-up/sign-in) will look good.
 
-- [ ] create a basic style guide
+- [X] create a basic style guide
 - [ ] create icons for `Note` and `Notebook`
   - [ ] NoteAdd icon
   - [ ] NoteBookAdd icon
   - [ ] GarbageCan for deleting Note or Notebook
-- [ ] position elements on the page
-- [ ] add basic colors & styles
+- [X] position elements on the page
+- [X] add basic colors & styles
 
 ### Phase 5: Notebooks (1 day)
 
