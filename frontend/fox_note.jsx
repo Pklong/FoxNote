@@ -1,6 +1,7 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
     ReactRouter = require('react-router'),
+    Modal = require('react-modal'),
 
     Router = ReactRouter.Router,
     Route = ReactRouter.Route,
@@ -49,6 +50,7 @@ function _requireLoggedIn(nextState, replace, asyncCompletionCallback) {
 
 
 window.initializeApp = function() {
+    Modal.setAppElement(document.body);
     ReactDOM.render(
         routes,
         document.getElementById("root")
