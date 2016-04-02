@@ -29,14 +29,24 @@
 
 .navbar-account-box {
   border-top: 1px solid #e1e1e1;
-  background: #2DBE60;
   position: absolute;
-  padding: 4px 4px 5px 5px;
+  padding: 4px 4px 17px 5px;
   bottom: 0px;
   left: 0px;
   width: 60px;
   height: 60px;
+  background: #2DBE60;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.navbar-account-box:hover {
+  background: #28a956;
+}
+.navbar-account-box:hover::before {
+  content: "LOGOUT";
+  margin-top: -20px;
+  display: block;
 }
 
 .small-logo {

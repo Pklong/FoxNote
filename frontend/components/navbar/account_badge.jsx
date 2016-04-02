@@ -12,7 +12,9 @@ var AccountBadge = React.createClass({
   render: function () {
     return (
       <div className='navbar-account-box'
-           onClick={this.handleClick}>Account</div>
+           onClick={this.handleClick}>
+           <img src={this.props.user.image} />
+      </div>
     );
   },
 });
