@@ -1,7 +1,9 @@
 var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
+    NotebooksApi = require('../../utils/notebooks_util'),
     NoteIndexItem = require('./note_index_item'),
-    NoteStore = require('../../stores/note');
+    NoteStore = require('../../stores/note'),
+    NotebookStore = require('../../stores/notebook');
 
 var NotesIndex = React.createClass({
     contextTypes: {
@@ -12,13 +14,18 @@ var NotesIndex = React.createClass({
     },
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
+        this.notebookListener = NotebookStore.addListener(this._notebookChange);
         NotesApi.fetchAllNotes();
     },
     componentWillUnmount: function() {
         this.noteListener.remove();
+        this.notebookListener.remove();
     },
     _noteChange: function() {
         this.setState({notes: NoteStore.all()});
+    },
+    _notebookChange: function() {
+        this.setState({notebooks: NotebookStore.all()});
     },
     render: function () {
         if (this.state.notes === undefined) {

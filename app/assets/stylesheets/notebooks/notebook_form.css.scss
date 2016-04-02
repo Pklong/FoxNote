@@ -1,0 +1,55 @@
+.notebook-form-header {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #878787;
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9
+}
+
+.notebook-form {
+  background: #fff;
+}
+
+.notebook-form-title {
+  color: #c4c4c4;
+  line-height: 44px;
+  font-weight: 300;
+  font-size: 32px;
+  text-align: center;
+}
+
+.notebook-form-submit {
+  text-align: center;
+  color: #fff;
+  background: #2dbe60;
+  border: 1px solid #2dbe60;
+  font-size: 13px;
+  font-weight: 500;
+  width: 180px;
+  margin: 0 4px;
+  padding: 9px 14px;
+  border-radius: 5px;
+}
+
+.notebook-form-submit {
+  background: #28a955;
+  border: 1px solid #28a955;
+}
+.notebook-form-cancel {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  background: #ececec;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 180px;
+  margin: 0 4px;
+  padding: 9px 14px;
+}
+
+.notebook-form-cancel:hover {
+  background: #d9d9d9;
+  border: 1px solid #d1d1d1;
+}

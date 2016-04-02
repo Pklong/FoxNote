@@ -28,7 +28,6 @@ var NoteView = React.createClass({
   composeNote: function() {
     var note = NoteStore.find(this.props.params.noteId);
     this.setState({
-      id: note.id,
       title: note.title,
       body: note.body,
       notebook_id: note.notebook_id
