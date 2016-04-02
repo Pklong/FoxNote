@@ -52,7 +52,7 @@ var NotebooksUtil = {
         cb && cb(updatedNotebook.id);
       },
       error: function () {
-        console.error("Failed updateNotebook");
+        console.error("Failed updateNotebook...");
       }
     });
   },
@@ -65,7 +65,7 @@ var NotebooksUtil = {
         NotebookActions.removeNotebook(notebookId);
       },
       error: function () {
-        console.error("Failed removeNotebook");
+        console.error("Failed removeNotebook...");
       }
     });
   }
