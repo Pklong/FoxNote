@@ -12,6 +12,7 @@ var React = require('react'),
     NoteForm = require('./components/notes/note_form'),
     Welcome = require('./components/welcome'),
     Search = require('./components/search/search'),
+    NotebookForm = require('./components/notebooks/notebook_form'),
 
     SessionStore = require('./stores/session'),
     SessionUtil = require('./utils/session_util'),
@@ -22,7 +23,6 @@ var routes = (
     <Router history={browserHistory}>
         <Route path="/" component={Welcome} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path="newNote" component={NoteForm} />
             <Route path=":noteId" component={NoteView} />
             <Route path="search" component={Search} />
         </Route>

@@ -10,6 +10,8 @@
 
 .notebook-form {
   background: #fff;
+  width: 100%;
+  height: 700px;
 }
 
 .notebook-form-title {
@@ -17,7 +19,6 @@
   line-height: 44px;
   font-weight: 300;
   font-size: 32px;
-  text-align: center;
 }
 
 .notebook-form-submit {
@@ -33,7 +34,7 @@
   border-radius: 5px;
 }
 
-.notebook-form-submit {
+.notebook-form-submit:hover {
   background: #28a955;
   border: 1px solid #28a955;
 }

@@ -34,11 +34,11 @@ var NotebookForm = React.createClass({
                         placeholder='Title your notebook'
                         onChange={this.handleTitleChange} />
                     <button
-                        className='notebook-form-submit'
-                        onClick={this.handleSubmit}>Create notebook</button>
-                    <button
                         className='notebook-form-cancel'
                         onClick={this.handleCancel}>Cancel</button>
+                    <button
+                        className='notebook-form-submit'
+                        onClick={this.handleSubmit}>Create notebook</button>
                 </form>
             </div>
         );
