@@ -16,6 +16,9 @@ var SessionAPI = {
       },
     });
   },
+  guestLogin: function(callback) {
+    this.login({email: "student@aa.io", password: "sennacy"}, callback);
+  },
   logout: function() {
     $.ajax({
       type: 'DELETE',

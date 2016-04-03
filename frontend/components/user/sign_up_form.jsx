@@ -13,6 +13,13 @@ var SignUpForm = React.createClass({
     };
   },
 
+  _guestLogin: function(e) {
+    e.preventDefault();
+    SessionAPI.guestLogin(function() {
+      this.context.router.push("/home");
+    }.bind(this));
+  },
+
   render: function() {
     return (
       <div className='user-form-container'>
@@ -40,6 +47,8 @@ var SignUpForm = React.createClass({
               value={this.state.password}/>
           </label>
           <button className='user-form-submit'>Sign up for free</button>
+          <button className='user-form-submit'
+                  onClick={this._guestLogin}>Explore as Guest</button>
         </form>
       </div>
     );
