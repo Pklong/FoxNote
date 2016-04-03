@@ -5,15 +5,13 @@ var React = require('react'),
 
     Router = ReactRouter.Router,
     Route = ReactRouter.Route,
-    IndexRoute = ReactRouter.IndexRoute,
+    // IndexRoute = ReactRouter.IndexRoute,
     browserHistory = ReactRouter.browserHistory,
 
     LoginForm = require('./components/user/login_form'),
     NoteView = require('./components/notes/note_view'),
-    NoteForm = require('./components/notes/note_form'),
     Welcome = require('./components/welcome'),
     Search = require('./components/search/search'),
-    NotebookForm = require('./components/notebooks/notebook_form'),
 
     SessionStore = require('./stores/session'),
     SessionUtil = require('./utils/session_util'),
@@ -24,7 +22,10 @@ var routes = (
     <Router history={browserHistory}>
         <Route path="/" component={Welcome} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path=":noteId" component={NoteView} />
+            <Route path="notebook/:notebookId">
+                <Route path="note/:noteId" component={NoteView} />
+            </Route>
+            <Route path="note/:noteId" component={NoteView} />
             <Route path="search" component={Search} />
         </Route>
         <Route path="login" component={LoginForm} />
