@@ -4,17 +4,50 @@
   padding: 20px 35px;
   background: #fff;
 }
+.sign-up-header-logo {
+  position: relative;
+}
 .sign-up-header-brand {
-  background: image-url('FoxNote-logo.png') center no-repeat;
-  height: 44px;
-  width: 200px;
-  float: left;
+  background-image: url(image-path('logo.png'));
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: -15px;
+  left: 5px;
+  height: 65px;
+  width: 65px;
+}
+.sign-up-header-title {
+  font-size: 28px;
+  line-height: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #2dbe60;
+  position: absolute;
+  top: 15px;
+  left: 60px;
 }
 .sign-in-header-link {
+  font-size: 18px;
+  letter-spacing: 2px;
   color: #848484;
   display: block;
   padding: 10px 20px;
   float: right;
+}
+.sign-in-header-link:after {
+  display: block;
+  content: '';
+  border-bottom: 1px solid #696969;
+  transform: scaleX(0.0001);
+  transition: transform 250ms ease-in-out;
+}
+
+.sign-in-header-link:hover:after {
+  color: #7B868A;
+  transform: scaleX(1);
 }
 
 /* SIGN UP FORM */
@@ -83,7 +116,9 @@
   display: block;
   height: 90px;
   padding: 40px 0 20px 0;
-  background: image-url('lrg-logo.png') no-repeat center;
+  background-image: url(image-path('logo.png'));
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: 68px 68px;
 }
 .login-form-title {

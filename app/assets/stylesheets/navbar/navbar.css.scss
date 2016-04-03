@@ -54,7 +54,8 @@
   width: 40px;
   height: 32px;
   margin: 5px auto 40px auto;
-  background: image-url('FoxNote-logo-small.png');
+  background-image: url(image-path('logo.png'));
+  background-repeat: no-repeat;
   background-size: cover;
 }
 

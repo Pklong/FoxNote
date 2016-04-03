@@ -1,4 +1,5 @@
 var React = require('react'),
+    Link = require('react-router').Link,
     LoginForm = require('./login_form');
 
 var SignUpHeader = React.createClass({
@@ -12,7 +13,10 @@ var SignUpHeader = React.createClass({
 
     return (
       <header className='sign-up-header group'>
-        <div className='sign-up-header-brand'></div>
+        <Link to='/' className='sign-up-header-logo'>
+          <div className='sign-up-header-brand'></div>
+          <h1 className='sign-up-header-title'>FoxNote</h1>
+        </Link>
         <button className='sign-in-header-link'
                 onClick={this.handleClick}>Sign In</button>
       </header>
