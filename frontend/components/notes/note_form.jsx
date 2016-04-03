@@ -33,7 +33,6 @@ var NoteBody = React.createClass({
         this.setState({notebook_id: e.target.value});
     },
     render: function () {
-        debugger;
         var notebookDropdown = NotebookStore.all().map(function(notebook) {
             return <option key={notebook.id}
                            value={notebook.id}>
