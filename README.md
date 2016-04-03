@@ -9,9 +9,9 @@
 FoxNote is a web application inspired by Evernote built using Ruby on Rails
 and React.js. FoxNote allows users to:
 
-- [ ] Create an account
-- [ ] Log in / Log out
-- [ ] Create, read, edit, and delete Notes
+- [X] Create an account
+- [X] Log in / Log out
+- [X] Create, read, edit, and delete Notes
 - [ ] Organize Notes within Notebooks
 - [ ] Create, edit, and delete Notebooks
 - [ ] Apply complex styling to Notes while editing
@@ -86,10 +86,10 @@ user interface.
 
 **Objective:** Notes belong to Notebooks, and can be viewed by notebook.
 
-- [ ] create `Notebook` model
+- [X] create `Notebook` model
 - build out API, Flux loop, and components for:
-  - [ ] Notebook CRUD
-  - [ ] adding notes requires a notebook
+  - [X] Notebook CRUD
+  - [X] adding notes requires a notebook
   - [ ] moving notes to a different notebook
   - [ ] viewing notes by notebook
 - Use CSS to style new views
@@ -102,10 +102,9 @@ which has its own `Index` view.
 
 **objective:** Enable complex styling of notes.
 
-- [ ] Integrate `ProseMirror` Rich Text Editor component.
+- [ ] Integrate `React-Quill` Rich Text Editor component.
 - [ ] Use Rails helpers to sanitize HTML before rendering.
-- [ ] Style the new ProseMirror elements.
-- [ ] Embedding of images (hopefully!)
+- [ ] Style the new Quill elements.
 
 ### Phase 7: Add Searching for Notes and Notebooks (1 day)
 
