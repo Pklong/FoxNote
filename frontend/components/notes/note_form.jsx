@@ -1,5 +1,6 @@
 var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
+    NotebookStore = require('../../stores/notebook'),
     SessionStore = require('../../stores/session');
 
 
@@ -28,9 +29,22 @@ var NoteBody = React.createClass({
     handleTitleChange: function(e) {
         this.setState({title:e.target.value});
     },
+    handleNotebookChange: function(e) {
+        this.setState({notebook_id: e.target.value});
+    },
     render: function () {
+        var notebookDropdown = NotebookStore.all().map(function(notebook) {
+            return <option key={notebook.id}
+                           value={notebook.id}>
+                           {notebook.title}
+                       </option>;
+        });
+
         return (
             <form className='note-form' onSubmit={this.createNote}>
+                <select value={this.state.notebook_id}>
+                    {notebookDropdown}
+                </select>
                 <input
                     htmlFor="title"
                     className='note-form-title'
