@@ -10,7 +10,7 @@ var NoteBody = React.createClass({
     },
     getInitialState: function() {
         var authorId = SessionStore.currentUser().id;
-        var firstNotebook = NotebookStore.authorNotebooks(authorId)[0].id;
+        var firstNotebook = NotebookStore.all()[0].id;
 
         return {
             title: "",
@@ -37,7 +37,7 @@ var NoteBody = React.createClass({
     },
     render: function () {
         var notebookDropdown = NotebookStore
-                                .authorNotebooks(this.state.author_id)
+                                .all()
                                 .map(function(notebook) {
                                     return <option key={notebook.id}
                                                    value={notebook.id}>

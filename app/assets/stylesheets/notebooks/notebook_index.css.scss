@@ -1,0 +1,25 @@
+.notebook-view {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 450px;
+}
+
+.notebook-index-item {
+  height: 40px;
+  width: 400px;
+  padding: 20px;
+  border: 2.5px solid #000;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notebook-index-item-title {
+  color: #4a4a4a;
+  font-size: 16px;
+  font-weight: 400;
+
+}
