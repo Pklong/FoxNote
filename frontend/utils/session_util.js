@@ -38,7 +38,7 @@ var SessionAPI = {
         SessionActions.currentUserReceived(currentUser);
       },
       error: function() {
-        console.log("Failed fetchCurrentUser...");
+        console.error("Failed fetchCurrentUser...");
       },
       complete: function () {
         completion && completion();
@@ -56,7 +56,7 @@ var SessionAPI = {
         completion && completion();
       },
       error: function() {
-        console.log("Failed createUser...");
+        console.error("Failed createUser...");
       }
     });
   }

@@ -12,7 +12,7 @@ var NoteBody = React.createClass({
         return {
             title: "",
             body: "",
-            notebook_id: 1,
+            notebook_id: null,
             author_id: SessionStore.currentUser().id
         };
     },
@@ -33,6 +33,7 @@ var NoteBody = React.createClass({
         this.setState({notebook_id: e.target.value});
     },
     render: function () {
+        debugger;
         var notebookDropdown = NotebookStore.all().map(function(notebook) {
             return <option key={notebook.id}
                            value={notebook.id}>

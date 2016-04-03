@@ -24,12 +24,12 @@ var NavBar = React.createClass({
   },
 
   _handleNotebookIndexClick: function() {
-    console.log("noteindex");
+    console.log("notebook index click");
     this.setState({showModal: ALLNOTEBOOK});
   },
 
   _handleNewNotebookClick: function() {
-    console.log("newnotebookindex");
+    console.log("Add notebook click");
     this.setState({showModal: NEWNOTEBOOK});
   },
 

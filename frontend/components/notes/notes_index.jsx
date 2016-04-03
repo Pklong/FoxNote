@@ -26,7 +26,6 @@ var NotesIndex = React.createClass({
         this.setState({notes: NoteStore.all()});
     },
     _notebookChange: function() {
-        console.log(this.state.notebooks);
         this.setState({notebooks: NotebookStore.all()});
     },
     render: function () {

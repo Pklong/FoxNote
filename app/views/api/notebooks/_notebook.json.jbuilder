@@ -1,5 +1,3 @@
-json.notebook do
-  json.title notebook.title
-  json.note_count notebook.notes.count
-  json.id notebook.id
-end
+json.title notebook.title
+json.note_count notebook.notes.count
+json.id notebook.id
