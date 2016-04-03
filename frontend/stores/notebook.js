@@ -22,23 +22,23 @@ var deleteNotebook = function(notebookId) {
 NotebookStore.__onDispatch = function (payload) {
     switch(payload.actionType) {
         case NotebookConstants.RECEIVE_ALL_NOTEBOOKS:
-            resetNotebooks(payload.notes);
+            resetNotebooks(payload.notebooks);
             NotebookStore.__emitChange();
             break;
         case NotebookConstants.RECEIVE_SINGLE_NOTEBOOK:
-            resetNotebook(payload.note);
+            resetNotebook(payload.notebook);
             NotebookStore.__emitChange();
             break;
         case NotebookConstants.CREATE_NOTEBOOK:
-            resetNotebook(payload.note);
+            resetNotebook(payload.notebook);
             NotebookStore.__emitChange();
             break;
         case NotebookConstants.UPDATE_NOTEBOOK:
-            resetNotebook(payload.note);
+            resetNotebook(payload.notebook);
             NotebookStore.__emitChange();
             break;
         case NotebookConstants.REMOVE_NOTEBOOK:
-            deleteNotebook(payload.note);
+            deleteNotebook(payload.notebook);
             NotebookStore.__emitChange();
             break;
     }

@@ -42,7 +42,8 @@ var NoteBody = React.createClass({
 
         return (
             <form className='note-form' onSubmit={this.createNote}>
-                <select value={this.state.notebook_id}>
+                <select value={this.state.notebook_id}
+                        onChange={this.handleNotebookChange}>
                     {notebookDropdown}
                 </select>
                 <input
