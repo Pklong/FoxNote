@@ -1,6 +1,6 @@
 var React = require('react'),
     Link = require('react-router').Link,
-    
+
     Modal = require('react-modal'),
     ModalStyleDrawer = require('./modal_style_drawer'),
     ModalStyleForm = require('./modal_style_form'),
@@ -93,7 +93,7 @@ var NavBar = React.createClass({
               <div>Search Note</div>
             </li>
             <li className='navbar-link nav-icon'>
-              <div>All Note</div>
+              <div>All Notes</div>
             </li>
             <li className='navbar-link nav-icon'>
               <div onClick={this._handleNotebookIndexClick}>

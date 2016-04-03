@@ -9,16 +9,16 @@ module.exports = {
   },
   content : {
     position                   : 'absolute',
-    top                        : '40px',
-    left                       : '40px',
-    right                      : '40px',
-    bottom                     : '40px',
+    top                        : 0,
+    left                       : '68px',
+    right                      : 0,
+    bottom                     : 0,
     border                     : '1px solid #ccc',
     background                 : '#fff',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : '4px',
     outline                    : 'none',
-    padding                    : '20px'
+    padding                    : '5px'
   }
 };

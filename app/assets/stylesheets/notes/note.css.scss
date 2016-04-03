@@ -85,23 +85,21 @@
 
 /* FORM */
 .note-form {
-  position: absolute;
+  position: relative;
   top: 0;
   bottom: 0;
-  width: 600px;
+  left: 0;
+  right: 0;
 }
 
 .note-form-title {
-  float: left;
   display: block;
   background: #eee;
   padding: 10px;
 }
 
 .note-form-body {
-  float: left;
   height: 500px;
-  width: 100%;
   padding: 20px;
   border: 3px solid #4a4a4a;
   background: #eee;
