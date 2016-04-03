@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token
-  has_many :notebooks, foreign_key: "author_id"
-  has_many :notes, foreign_key: "author_id"
+  has_many :notebooks, foreign_key: "author_id", dependent: :destroy
+  has_many :notes, foreign_key: "author_id", dependent: :destroy
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
