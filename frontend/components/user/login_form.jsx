@@ -1,6 +1,6 @@
 var React = require('react'),
     Link = require('react-router').Link,
-    SessionUtil = require('../../utils/session_util');
+    SessionAPI = require('../../utils/session_util');
 
 var LoginForm = React.createClass({
   contextTypes: {
@@ -49,7 +49,7 @@ var LoginForm = React.createClass({
 
     var router = this.context.router;
 
-    SessionUtil.login(this.state, function() {
+    SessionAPI.login(this.state, function() {
       router.push("/home");
     });
   },

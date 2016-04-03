@@ -1,6 +1,6 @@
 var SessionActions = require('../actions/session_actions');
 
-var SessionUtil = {
+var SessionAPI = {
   login: function(credentials, callback) {
     $.ajax({
       type: 'POST',
@@ -62,4 +62,4 @@ var SessionUtil = {
   }
 };
 
-module.exports = SessionUtil;
+module.exports = SessionAPI;

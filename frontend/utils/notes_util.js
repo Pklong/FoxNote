@@ -1,6 +1,6 @@
 var NoteActions = require('../actions/note_actions');
 
-var NotesUtil = {
+var NotesAPI = {
   fetchAllNotes: function() {
     $.ajax({
       type: 'GET',
@@ -72,4 +72,4 @@ var NotesUtil = {
   }
 };
 
-module.exports = NotesUtil;
+module.exports = NotesAPI;

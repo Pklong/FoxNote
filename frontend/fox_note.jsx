@@ -8,33 +8,33 @@ var React = require('react'),
     // IndexRoute = ReactRouter.IndexRoute,
     browserHistory = ReactRouter.browserHistory,
 
-    LoginForm = require('./components/user/login_form'),
-    NoteView = require('./components/notes/note_view'),
     Welcome = require('./components/welcome'),
+    LoginForm = require('./components/user/login_form'),
+    App = require('./components/app'),
+    NoteView = require('./components/notes/note_view'),
     Search = require('./components/search/search'),
 
     SessionStore = require('./stores/session'),
-    SessionUtil = require('./utils/session_util'),
+    SessionAPI = require('./utils/session_util');
 
-    App = require('./components/app');
 
 var routes = (
     <Router history={browserHistory}>
         <Route path="/" component={Welcome} />
+        <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path="notebook/:notebookId">
-                <Route path="note/:noteId" component={NoteView} />
+            <Route path="notebooks/:notebookId">
+                <Route path="notes/:noteId" component={NoteView} />
             </Route>
-            <Route path="note/:noteId" component={NoteView} />
+            <Route path="notes/:noteId" component={NoteView} />
             <Route path="search" component={Search} />
         </Route>
-        <Route path="login" component={LoginForm} />
     </Router>
 );
 
-function _requireLoggedIn(nextState, replace, asyncCompletionCallback) {
+function _requireLoggedIn(nextState, replace, completionCallback) {
     if (!SessionStore.currentUserHasBeenFetched()) {
-        SessionUtil.fetchCurrentUser(_redirectIfNotLoggedIn);
+        SessionAPI.fetchCurrentUser(_redirectIfNotLoggedIn);
     } else {
         _redirectIfNotLoggedIn();
     }
@@ -44,7 +44,7 @@ function _requireLoggedIn(nextState, replace, asyncCompletionCallback) {
             replace("/");
         }
 
-        asyncCompletionCallback();
+        completionCallback();
     }
 }
 

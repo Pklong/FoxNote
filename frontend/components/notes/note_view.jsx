@@ -1,30 +1,28 @@
 var React = require('react'),
     NoteStore = require('../../stores/note'),
-    NotesApi = require('../../utils/notes_util');
+    NotesApi = require('../../utils/notes_util'),
+    NotebookStore = require('../../stores/notebook');
 
 var NoteView = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-  getInitialState: function() {
-    var note = NoteStore.find(this.props.params.noteId);
 
-    return {
-      id: note.id,
-      title: note.title,
-      body: note.body,
-      notebook_id: note.notebook_id
-    };
+  getInitialState: function() {
+    return {note: NoteStore.find(this.props.params.noteId)};
   },
 
-  componentWillMount: function() {
-    this.noteListener = NoteStore.addListener(this._onChange);
+  componentDidMount: function() {
+    this.noteListener = NoteStore.addListener(this._noteChange);
+    this.notebookListener = NotebookStore.addListener(this._notebookChange);
     NotesApi.fetchSingleNote(this.props.params.noteId);
   },
 
   componentWillUnmount: function() {
     this.noteListener.remove();
+    this.notebookListener.remove();
   },
+
   composeNote: function() {
     var note = NoteStore.find(this.props.params.noteId);
     this.setState({
@@ -34,12 +32,14 @@ var NoteView = React.createClass({
     });
   },
 
-  _onChange: function () {
+  _noteChange: function () {
     this.composeNote();
   },
+
   handleBodyChange: function(e) {
     this.setState({body:e.target.value});
   },
+
   handleTitleChange: function(e) {
     this.setState({title:e.target.value});
   },

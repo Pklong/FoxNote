@@ -1,5 +1,5 @@
 var React = require('react');
-var SessionUtil = require('../../utils/session_util');
+var SessionAPI = require('../../utils/session_util');
 
 var SignUpForm = React.createClass({
   contextTypes: {
@@ -50,7 +50,7 @@ var SignUpForm = React.createClass({
 
     var router = this.context.router;
 
-    SessionUtil.createUser(this.state, function() {
+    SessionAPI.createUser(this.state, function() {
       router.push("/home");
     });
   },

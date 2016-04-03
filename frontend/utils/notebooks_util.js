@@ -1,6 +1,6 @@
 var NotebookActions = require('../actions/notebook_actions');
 
-var NotebooksUtil = {
+var NotebooksAPI = {
   fetchAllNotebooks: function() {
     $.ajax({
       type: 'GET',
@@ -71,4 +71,4 @@ var NotebooksUtil = {
   }
 };
 
-module.exports = NotebooksUtil;
+module.exports = NotebooksAPI;

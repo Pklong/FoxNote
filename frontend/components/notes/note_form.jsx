@@ -3,7 +3,7 @@ var React = require('react'),
     SessionStore = require('../../stores/session');
 
 
-var NoteForm = React.createClass({
+var NoteBody = React.createClass({
     contextTypes: {
       router: React.PropTypes.object.isRequired
     },
@@ -19,7 +19,7 @@ var NoteForm = React.createClass({
         e.preventDefault();
         NotesApi.createNote(this.state, function (newNoteId) {
             this.props.closeModal();
-            this.context.router.push("/home/" + newNoteId);
+            this.context.router.push("/home/notes/" + newNoteId);
         }.bind(this));
     },
     handleBodyChange: function(e) {
@@ -53,4 +53,4 @@ var NoteForm = React.createClass({
     }
 });
 
-module.exports = NoteForm;
+module.exports = NoteBody;
