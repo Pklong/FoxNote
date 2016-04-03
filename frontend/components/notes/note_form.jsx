@@ -9,11 +9,14 @@ var NoteBody = React.createClass({
       router: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
+        var authorId = SessionStore.currentUser().id;
+        var firstNotebook = NotebookStore.authorNotebooks(authorId)[0].id;
+
         return {
             title: "",
             body: "",
-            notebook_id: null,
-            author_id: SessionStore.currentUser().id
+            notebook_id: firstNotebook,
+            author_id: authorId
         };
     },
     createNote: function (e) {
@@ -33,12 +36,14 @@ var NoteBody = React.createClass({
         this.setState({notebook_id: e.target.value});
     },
     render: function () {
-        var notebookDropdown = NotebookStore.all().map(function(notebook) {
-            return <option key={notebook.id}
-                           value={notebook.id}>
-                           {notebook.title}
-                       </option>;
-        });
+        var notebookDropdown = NotebookStore
+                                .authorNotebooks(this.state.author_id)
+                                .map(function(notebook) {
+                                    return <option key={notebook.id}
+                                                   value={notebook.id}>
+                                                   {notebook.title}
+                                               </option>;
+                                            });
 
         return (
             <form className='note-form' onSubmit={this.createNote}>

@@ -16,9 +16,12 @@ var SessionAPI = {
       },
     });
   },
-  guestLogin: function(callback) {
-    this.login({email: "student@aa.io", password: "sennacy"}, callback);
+
+  guestLogin: function(loginCallback) {
+    this.login({email: "student@aa.io", password: "sennacy"},
+                loginCallback);
   },
+
   logout: function() {
     $.ajax({
       type: 'DELETE',
@@ -32,6 +35,7 @@ var SessionAPI = {
       },
     });
   },
+
   fetchCurrentUser: function(completion) {
     $.ajax({
       type: 'GET',
@@ -48,6 +52,7 @@ var SessionAPI = {
       }
     });
   },
+
   createUser: function(newUser, completion) {
     $.ajax({
       type: 'POST',

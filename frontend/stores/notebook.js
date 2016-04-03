@@ -58,6 +58,18 @@ NotebookStore.find = function(notebookId) {
     return _notebooks[notebookId];
 };
 
+NotebookStore.authorNotebooks = function(authorId) {
+    var notebooks = [];
+    for (var notebookId in _notebooks) {
+        if (_notebooks.hasOwnProperty(notebookId)) {
+            if (_notebooks[notebookId].author_id === authorId) {
+                notebooks.push(_notebooks[notebookId]);
+            }
+        }
+    }
+    return notebooks;
+};
+
 
 
 module.exports = NotebookStore;

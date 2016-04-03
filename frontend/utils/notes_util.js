@@ -14,6 +14,7 @@ var NotesAPI = {
       }
     });
   },
+
   fetchSingleNote: function(noteId) {
     $.ajax({
       type: 'GET',
@@ -27,6 +28,7 @@ var NotesAPI = {
       }
     });
   },
+
   createNote: function(note, cb) {
     $.ajax({
       type: 'POST',
@@ -42,6 +44,7 @@ var NotesAPI = {
       }
     });
   },
+
   updateNote: function(note, cb) {
     $.ajax({
       type: 'PATCH',
@@ -57,6 +60,7 @@ var NotesAPI = {
       }
     });
   },
+  
   removeNote: function(noteId) {
     $.ajax({
       type: 'DELETE',
