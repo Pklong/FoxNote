@@ -1,6 +1,6 @@
 var React = require('react'),
-    NotebookApi = require('../../utils/notebooks_util');
-
+    NotebookApi = require('../../utils/notebooks_util'),
+    NotebookActions = require('../../actions/notebook_actions');
 
 var NotebookForm = React.createClass({
     contextTypes: {
@@ -16,9 +16,8 @@ var NotebookForm = React.createClass({
             author_id: this.props.authorId
         };
         NotebookApi.createNotebook(newNotebook, function () {
-
+            NotebookActions.receiveCurrentNotebook(newNotebook);
             this.props.closeModal();
-            this.context.router.push("/home");
         }.bind(this));
     },
     handleCancel: function (e) {

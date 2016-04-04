@@ -1,5 +1,6 @@
 var React = require('react'),
-    NotebookActions = require('../../actions/notebook_actions');
+    NotebookActions = require('../../actions/notebook_actions'),
+    NotebooksApi = require('../../utils/notebooks_util');
 
 var NotebookIndexItem = React.createClass({
   contextTypes: {
@@ -8,6 +9,10 @@ var NotebookIndexItem = React.createClass({
   handleClick: function() {
     NotebookActions.receiveCurrentNotebook(this.props.notebook);
     this.props.closeModal();
+  },
+  deleteClick: function(e) {
+    e.stopPropagation();
+    NotebooksApi.removeNotebook(this.props.notebook.id);
   },
   render: function() {
     return (
@@ -19,6 +24,8 @@ var NotebookIndexItem = React.createClass({
         <p className='notebook-index-item-notecount'>
           {this.props.notebook.note_count}
         </p>
+        <span className='note-index-item-delete'
+              onClick={this.deleteClick}>Delete</span>
       </li>
     );
   }
