@@ -38,4 +38,11 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
+
+  def self.set_up_new_user(user)
+    user.notebooks.create!(title: "Welcome to Foxnote")
+    user.notebooks.first.notes.create!(title: "Welcome",
+                                       body: "have fun!",
+                                       author_id: user.id)
+  end
 end

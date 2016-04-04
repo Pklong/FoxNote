@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      User.set_up_new_user(@user)
       login!(@user)
       render :show
     else
