@@ -28,6 +28,7 @@ var NoteView = React.createClass({
 
   composeNote: function() {
     var note = NoteStore.find(this.props.params.noteId);
+    //buggy fix for when "active" note has been deleted...
     if (!note) {return;}
     this.setState({
       title: note.title,

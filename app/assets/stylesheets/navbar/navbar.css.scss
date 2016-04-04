@@ -6,7 +6,7 @@
   position: fixed;
   height: 100%;
   float: left;
-  width: 50px;
+  width: 70px;
   background: #F8F8F8;
   padding: 9px;
   text-align: center;
@@ -31,18 +31,36 @@
 .navbar-account-box {
   border-top: 1px solid #e1e1e1;
   position: absolute;
-  padding: 4px 4px 17px 5px;
-  bottom: 0px;
+  padding: 4px 4px 5px 5px;
+  bottom: 18px;
   left: 0px;
-  width: 60px;
-  height: 60px;
-  background: #2DBE60;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
   font-size: 14px;
 }
 .navbar-account-box > img {
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 16px;
+  left: 13px;
 }
+
+/*ACCOUNT HOVER */
+// white-space: nowrap;
+// padding: 4px 7px;
+// background: #606060;
+// color: #d9d9d9;
+// border-radius: 2px;
+// overflow: hidden;
+// max-width: 444px;
+// text-overflow: ellipsis;
+// display: inline-block;
+//     font-size: 12px;
+  // font-weight: 500;
+  // text-transform: uppercase;
 
 .navbar-account-box:hover {
   background: #28a956;
@@ -54,8 +72,8 @@
 }
 
 .small-logo {
-  width: 40px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   margin: 5px auto 40px auto;
   background-image: url(image-path('logo.png'));
   background-repeat: no-repeat;
