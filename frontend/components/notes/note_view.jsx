@@ -9,7 +9,10 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-    return {note: NoteStore.find(this.props.params.noteId)};
+    return {
+      note: NoteStore.find(this.props.params.noteId),
+      notebooks: NotebookStore.all()
+    };
   },
 
   componentDidMount: function() {
@@ -25,6 +28,7 @@ var NoteView = React.createClass({
 
   composeNote: function() {
     var note = NoteStore.find(this.props.params.noteId);
+    if (!note) {return;}
     this.setState({
       title: note.title,
       body: note.body,
@@ -34,6 +38,9 @@ var NoteView = React.createClass({
 
   _noteChange: function () {
     this.composeNote();
+  },
+  _notebookChange: function() {
+    this.setState({notebooks: NotebookStore.all()});
   },
 
   handleBodyChange: function(e) {
@@ -56,7 +63,6 @@ var NoteView = React.createClass({
   },
 
   render: function() {
-
     return (
       <form className='note-form' onSubmit={this.handleSubmit}>
               <input

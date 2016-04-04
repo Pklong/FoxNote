@@ -9,11 +9,14 @@ var NoteIndexItem = React.createClass({
     this.context.router.push("/home/notes/" + parseInt(this.props.note.id));
   },
   deleteClick: function(e) {
+    e.stopPropagation();
     NotesApi.removeNote(this.props.note.id, function() {
       this.context.router.push("/home");
-    });
+    }.bind(this));
   },
   render: function() {
+    if (!this.props) {return <p>Note Deleted...</p>;}
+
     return (
       <li  onClick={this.handleClick}
             className='note-index-item-snippet'>

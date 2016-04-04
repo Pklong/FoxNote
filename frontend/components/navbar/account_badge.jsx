@@ -7,7 +7,7 @@ var AccountBadge = React.createClass({
   },
   handleClick: function() {
     SessionAPI.logout();
-    this.context.router.push("login");
+    this.context.router.push("/");
   },
   render: function () {
     return (

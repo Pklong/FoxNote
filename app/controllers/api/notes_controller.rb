@@ -10,11 +10,11 @@ class Api::NotesController < ApplicationController
   end
 
   def destroy
-    note = Note.find(params[:id])
+    @note = Note.find(params[:id])
 
-    note.destroy!
+    @note.destroy!
 
-    render text: "note destroyed"
+    render json: @note
   end
 
   def index

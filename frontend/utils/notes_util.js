@@ -60,14 +60,15 @@ var NotesAPI = {
       }
     });
   },
-  
-  removeNote: function(noteId) {
+
+  removeNote: function(noteId, cb) {
     $.ajax({
       type: 'DELETE',
       url: '/api/notes/' + noteId,
       dataType: 'json',
       success: function () {
         NoteActions.removeNote(noteId);
+        cb && cb();
       },
       error: function () {
         console.error("Failed removeNote...");
