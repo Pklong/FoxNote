@@ -36,6 +36,7 @@ var NavBar = React.createClass({
     this.setState({showModal: null});
   },
   _clearCurrentNotebook: function() {
+    this.context.router.push("/home");
     NotebookActions.receiveCurrentNotebook(null);
   },
 

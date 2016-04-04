@@ -60,7 +60,7 @@ var SessionAPI = {
       dataType: 'json',
       data: {user: newUser},
       success: function(user) {
-        SessionActions.currentUserReceived(newUser);
+        SessionActions.currentUserReceived(user);
         completion && completion();
       },
       error: function() {
