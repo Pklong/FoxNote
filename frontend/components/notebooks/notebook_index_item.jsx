@@ -13,6 +13,7 @@ var NotebookIndexItem = React.createClass({
   deleteClick: function(e) {
     e.stopPropagation();
     NotebooksApi.removeNotebook(this.props.notebook.id);
+    debugger;
   },
   render: function() {
     return (

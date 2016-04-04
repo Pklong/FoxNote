@@ -6,7 +6,7 @@ var React = require('react'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
-
+    NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
     NoteForm = require('../notes/note_form'),
@@ -34,6 +34,9 @@ var NavBar = React.createClass({
 
   _closeModal: function() {
     this.setState({showModal: null});
+  },
+  _clearCurrentNotebook: function() {
+    NotebookActions.receiveCurrentNotebook(null);
   },
 
   render: function() {
@@ -85,7 +88,7 @@ var NavBar = React.createClass({
               <div>Search Note</div>
             </li>
             <li className='navbar-link nav-icon'>
-              <div>All Notes</div>
+              <div onClick={this._clearCurrentNotebook}>All Notes</div>
             </li>
             <li className='navbar-link nav-icon'>
               <div onClick={this._handleNotebookIndexClick}>

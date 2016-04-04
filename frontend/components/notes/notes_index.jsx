@@ -54,7 +54,10 @@ var NotesIndex = React.createClass({
         if (!this.state.notes) {
             return <p>"Loading..."</p>;
         }
-        var active;
+
+        var active,
+            notebook;
+
         var notes = this.state.notes.map(function(note, i) {
             active = (i === 0);
             return <NoteIndexItem className='note-index-item'
@@ -62,10 +65,14 @@ var NotesIndex = React.createClass({
                                   note={note}
                                   activeNote={active} />;
         });
-
+        if (this.state.notebook) {
+            notebook = this.state.notebook.title;
+        } else {
+            notebook = "All Notes";
+        }
         return (
             <article className='note-view'>
-                <h3 className='notes-header-title'>notes</h3>
+                <h3 className='notes-header-title'>{notebook}</h3>
                 <div className='notes-header'>
                     <span className='notes-count'>{notes.length} notes</span>
                 </div>
