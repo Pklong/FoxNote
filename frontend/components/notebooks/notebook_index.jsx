@@ -20,15 +20,17 @@ var NotebookIndex = React.createClass({
       notebooks: NotebookStore.all()
     });
   },
+
   render: function() {
     var notebooks = this.state.notebooks.map(function(notebook, i) {
-      return <NotebookIndexItem closeModal={this.props.closeModal}
+      return <NotebookIndexItem closeModal={this.props.closeInitialModal}
                                 key={notebook.id}
                                 notebook={notebook} />;
                             }.bind(this));
     return (
       <div className='notebook-view'>
-        <NotebookViewHeader />
+        <NotebookViewHeader closeFirstModal={this.props.closeInitialModal}
+                            authorId={this.props.authorId} />
         <ul>
           {notebooks}
         </ul>

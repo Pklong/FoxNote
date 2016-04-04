@@ -37,15 +37,23 @@ var NotesIndex = React.createClass({
         }
     },
     _notebookChange: function() {
-        this.setState({
-            notebook: NotebookStore.currentNotebook()
-        });
+        var notebook = NotebookStore.currentNotebook();
+        if (notebook) {
+            this.setState({
+                notes: NoteStore.currentNotebookNotes(notebook.id),
+                notebook: notebook
+            });
+        } else {
+            this.setState({
+                notes: NoteStore.all(),
+                notebook: notebook
+            });
+        }
     },
     render: function () {
         if (!this.state.notes) {
             return <p>"Loading..."</p>;
         }
-
         var active;
         var notes = this.state.notes.map(function(note, i) {
             active = (i === 0);

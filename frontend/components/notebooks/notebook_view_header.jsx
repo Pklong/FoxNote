@@ -14,6 +14,7 @@ var NotebookViewHeader = React.createClass({
   },
   _closeModal: function() {
     this.setState({showModal: null});
+    this.props.closeFirstModal();
   },
   render: function() {
     var modal;
@@ -23,7 +24,8 @@ var NotebookViewHeader = React.createClass({
           isOpen={Boolean(this.state.showModal)}
           onRequestClose={this._closeModal}
           style={ModalStyleForm}>
-          <NotebookForm closeModal={this._closeModal} />;
+          <NotebookForm authorId={this.props.authorId}
+                        closeModal={this._closeModal} />;
         </Modal>
       );
     }

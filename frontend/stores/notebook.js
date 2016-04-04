@@ -36,6 +36,7 @@ NotebookStore.__onDispatch = function (payload) {
             break;
         case NotebookConstants.CLEAR_CURRENT_NOTEBOOK:
             _currentNotebook = null;
+            NotebookStore.__emitChange();
             break;
         case NotebookConstants.CREATE_NOTEBOOK:
             resetNotebook(payload.notebook);

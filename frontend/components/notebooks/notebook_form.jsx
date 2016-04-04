@@ -13,11 +13,17 @@ var NotebookForm = React.createClass({
         e.preventDefault();
         var newNotebook = {
             title: this.state.title,
-            author_id: this.props.author
+            author_id: this.props.authorId
         };
         NotebookApi.createNotebook(newNotebook, function () {
+
+            this.props.closeModal();
             this.context.router.push("/home");
         }.bind(this));
+    },
+    handleCancel: function (e) {
+        e.preventDefault();
+        this.props.closeModal();
     },
     handleTitleChange: function(e) {
         this.setState({title:e.target.value});

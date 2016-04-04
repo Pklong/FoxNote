@@ -1,22 +1,34 @@
 var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
     NotebookStore = require('../../stores/notebook'),
-    SessionStore = require('../../stores/session');
+    NotebooksApi = require('../../utils/notebooks_util');
 
 
 var NoteBody = React.createClass({
     contextTypes: {
       router: React.PropTypes.object.isRequired
     },
+
+    componentDidMount: function() {
+      this.notebookListener = NotebookStore.addListener(this._onNotebookChange);
+      NotebooksApi.fetchAllNotebooks();
+    },
+
+    componentWillUnmount: function() {
+      this.notebookListener.remove();
+    },
+
+    _onNotebookChange: function() {
+        this.setState({notebook_id: NotebookStore.all()[0].id});
+    },
+
     getInitialState: function() {
-        var authorId = SessionStore.currentUser().id;
-        var firstNotebook = NotebookStore.all()[0].id;
 
         return {
             title: "",
             body: "",
-            notebook_id: firstNotebook,
-            author_id: authorId
+            notebook_id: null,
+            author_id: this.props.authorId
         };
     },
     createNote: function (e) {
@@ -36,6 +48,8 @@ var NoteBody = React.createClass({
         this.setState({notebook_id: e.target.value});
     },
     render: function () {
+        if (!this.state.notebook_id) { return <p>loading notebooks...</p>; }
+
         var notebookDropdown = NotebookStore
                                 .all()
                                 .map(function(notebook) {
