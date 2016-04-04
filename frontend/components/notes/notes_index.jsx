@@ -10,26 +10,39 @@ var NotesIndex = React.createClass({
       router: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
-        return { notes: NoteStore.all(), notebooks: NoteStore.all() };
+        return {
+            notes: NoteStore.all(),
+            notebook: NotebookStore.currentNotebook()
+        };
     },
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         this.notebookListener = NotebookStore.addListener(this._notebookChange);
         NotesApi.fetchAllNotes();
-        NotebooksApi.fetchAllNotebooks();
     },
     componentWillUnmount: function() {
         this.noteListener.remove();
         this.notebookListener.remove();
     },
     _noteChange: function() {
-        this.setState({notes: NoteStore.all()});
+        var currentNotebook = this.state.notebook;
+        if (currentNotebook) {
+            this.setState({
+                notes: NoteStore.currentNotebookNotes(currentNotebook.id)
+            });
+        } else {
+            this.setState({
+                notes: NoteStore.all()
+            });
+        }
     },
     _notebookChange: function() {
-        this.setState({notebooks: NotebookStore.all()});
+        this.setState({
+            notebook: NotebookStore.currentNotebook()
+        });
     },
     render: function () {
-        if (!this.state.notes || !this.state.notebooks) {
+        if (!this.state.notes) {
             return <p>"Loading..."</p>;
         }
 

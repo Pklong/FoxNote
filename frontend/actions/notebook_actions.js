@@ -8,9 +8,9 @@ var NotebookActions = {
             notebooks: notebooks
         });
     },
-    receiveSingleNotebook: function(notebook) {
+    receiveCurrentNotebook: function(notebook) {
         AppDispatcher.dispatch({
-            actionType: NotebookConstants.RECEIVE_SINGLE_NOTEBOOK,
+            actionType: NotebookConstants.RECEIVE_CURRENT_NOTEBOOK,
             notebook: notebook
         });
     },

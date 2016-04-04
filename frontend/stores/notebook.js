@@ -2,6 +2,7 @@ var Store = require('flux/utils').Store,
     AppDispatcher = require('../dispatcher/dispatcher'),
     NotebookConstants = require('../constants/notebook_constants'),
     _notebooks = {},
+    _currentNotebook,
     NotebookStore = new Store(AppDispatcher);
 
 var resetNotebooks = function(notebooks) {
@@ -19,15 +20,22 @@ var deleteNotebook = function(notebookId) {
     delete _notebooks[notebookId];
 };
 
+var setCurrentNotebook = function(notebook) {
+    _currentNotebook = notebook;
+};
+
 NotebookStore.__onDispatch = function (payload) {
     switch(payload.actionType) {
         case NotebookConstants.RECEIVE_ALL_NOTEBOOKS:
             resetNotebooks(payload.notebooks);
             NotebookStore.__emitChange();
             break;
-        case NotebookConstants.RECEIVE_SINGLE_NOTEBOOK:
-            resetNotebook(payload.notebook);
+        case NotebookConstants.RECEIVE_CURRENT_NOTEBOOK:
+            setCurrentNotebook(payload.notebook);
             NotebookStore.__emitChange();
+            break;
+        case NotebookConstants.CLEAR_CURRENT_NOTEBOOK:
+            _currentNotebook = null;
             break;
         case NotebookConstants.CREATE_NOTEBOOK:
             resetNotebook(payload.notebook);
@@ -56,6 +64,10 @@ NotebookStore.all = function() {
 
 NotebookStore.find = function(notebookId) {
     return _notebooks[notebookId];
+};
+
+NotebookStore.currentNotebook = function() {
+    return _currentNotebook;
 };
 
 

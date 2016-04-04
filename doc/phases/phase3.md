@@ -26,14 +26,14 @@
 * ApiActions.receiveSingleNotebook
 * ApiActions.deleteNotebook
 * NotebookActions.fetchAllNotebooks -> triggers ApiUtil
-* NotebookActions.fetchSingleNotebook
+* NotebookActions.fetchCurrentNotebook
 * NotebookActions.createNotebook
 * NotebookActions.editNotebook
 * NotebookActions.destroyNotebook
 
 ### ApiUtil
 * ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
+* ApiUtil.fetchCurrentNotebook
 * ApiUtil.createNotebook
 * ApiUtil.editNotebook
 * ApiUtil.destroyNotebook

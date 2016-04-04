@@ -54,6 +54,18 @@ NoteStore.all = function() {
     return notes;
 };
 
+NoteStore.currentNotebookNotes = function(notebookId) {
+    var notes = [];
+    for (var noteId in _notes) {
+        if (_notes.hasOwnProperty(noteId)) {
+            if (_notes[noteId].notebook_id === notebookId) {
+                notes.push(_notes[noteId]);
+            }
+        }
+    }
+    return notes;
+};
+
 NoteStore.find = function(noteId) {
     return _notes[noteId];
 };

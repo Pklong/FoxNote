@@ -14,16 +14,16 @@ var NotebooksAPI = {
       }
     });
   },
-  fetchSingleNotebook: function(notebookId) {
+  fetchCurrentNotebook: function(notebookId) {
     $.ajax({
       type: 'GET',
       url: '/api/notebooks/' + notebookId,
       dataType: 'json',
       success: function (notebook) {
-        NotebookActions.receiveSingleNotebook(notebook);
+        NotebookActions.receiveCurrentNotebook(notebook);
       },
       error: function () {
-        console.error("Failed fetchSingleNotebook...");
+        console.error("Failed fetchCurrentNotebook...");
       }
     });
   },

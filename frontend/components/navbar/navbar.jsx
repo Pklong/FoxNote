@@ -5,7 +5,6 @@ var React = require('react'),
     ModalStyleDrawer = require('./modal_style_drawer'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
-    NEWNOTEBOOK = 'NEW_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
 
     NotebookIndex = require('../notebooks/notebook_index'),
@@ -28,11 +27,6 @@ var NavBar = React.createClass({
     this.setState({showModal: ALLNOTEBOOK});
   },
 
-  _handleNewNotebookClick: function() {
-    console.log("Add notebook click");
-    this.setState({showModal: NEWNOTEBOOK});
-  },
-
   _handleAddNoteClick: function() {
     console.log("Add note click");
     this.setState({showModal: NEWNOTE});
@@ -52,10 +46,6 @@ var NavBar = React.createClass({
         case ALLNOTEBOOK:
           component = <NotebookIndex closeModal={this._closeModal} />;
           style = ModalStyleDrawer;
-          break;
-
-        case NEWNOTEBOOK:
-          component = <NotebookForm closeModal={this._closeModal} />;
           break;
 
         case NEWNOTE:
