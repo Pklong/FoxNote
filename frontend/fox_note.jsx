@@ -13,7 +13,8 @@ var React = require('react'),
     App = require('./components/app'),
     NoteView = require('./components/notes/note_view'),
     Search = require('./components/search/search'),
-
+    NotebookActions = require('./actions/notebook_actions'),
+    NoteActions = require('./actions/note_actions'),
     SessionStore = require('./stores/session'),
     SessionAPI = require('./utils/session_util');
 
@@ -23,9 +24,6 @@ var routes = (
         <Route path="/" component={Welcome} />
         <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path="notebooks/:notebookId">
-                <Route path="notes/:noteId" component={NoteView} />
-            </Route>
             <Route path="notes/:noteId" component={NoteView} />
             <Route path="search" component={Search} />
         </Route>
@@ -43,7 +41,7 @@ function _requireLoggedIn(nextState, replace, completionCallback) {
         if (!SessionStore.isLoggedIn()) {
             replace("/");
         }
-
+        NotebookActions.receiveCurrentNotebook(null);
         completionCallback();
     }
 }

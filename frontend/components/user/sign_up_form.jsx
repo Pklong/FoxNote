@@ -20,6 +20,24 @@ var SignUpForm = React.createClass({
     }.bind(this));
   },
 
+  handleSubmit: function(e) {
+    e.preventDefault();
+
+    var router = this.context.router;
+
+    SessionAPI.createUser(this.state, function() {
+      router.push("/home");
+    });
+  },
+
+  updateEmail: function(e) {
+    this.setState({ email: e.currentTarget.value });
+  },
+
+  updatePassword: function(e) {
+    this.setState({ password: e.currentTarget.value });
+  },
+
   render: function() {
     return (
       <div className='user-form-container'>
@@ -52,25 +70,8 @@ var SignUpForm = React.createClass({
         </form>
       </div>
     );
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-
-    var router = this.context.router;
-
-    SessionAPI.createUser(this.state, function() {
-      router.push("/home");
-    });
-  },
-
-  updateEmail: function(e) {
-    this.setState({ email: e.currentTarget.value });
-  },
-
-  updatePassword: function(e) {
-    this.setState({ password: e.currentTarget.value });
   }
+
 
 });
 

@@ -110,8 +110,11 @@
 
 /* LOGIN FORM */
 .login-form-container {
-  background: #2dbe60;
-  height: 4px;
+  // background: #2dbe60;
+  // height: 4px;
+  height: 100%;
+  border-top: 4px solid #2dbe60;
+  background: #f3f3f3;
   width: 100%;
 }
 .login-brand {
