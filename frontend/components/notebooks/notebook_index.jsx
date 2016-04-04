@@ -1,5 +1,6 @@
 var React = require('react'),
     NotebooksApi = require('../../utils/notebooks_util'),
+    NotesApi = require('../../utils/notes_util'),
     NotebookStore = require('../../stores/notebook'),
     NotebookIndexItem = require('./notebook_index_item'),
     NotebookActions = require('../../actions/notebook_actions'),
@@ -26,19 +27,27 @@ var NotebookIndex = React.createClass({
     if (this.state.notebooks.length === 1) {
       console.log("can't delete last notebook");
     } else {
+      var notesToDelete = NotebookStore.find(notebookId).noteIds;
+      notesToDelete.forEach(function(noteId) {
+        NotesApi.removeNote(noteId);
+      });
       NotebooksApi.removeNotebook(notebookId);
-      debugger;
+
+      if (NotebookStore.currentNotebook().id === notebookId) {
+        NotebookActions.receiveCurrentNotebook(null);
+      }
       //Check to see if deleted notebook contains a currently shown note
       if (this.props.params.noteId) {
         var shownNoteId = parseInt(this.props.params.noteId);
-      }
-      for (var i = 0, n = this.state.notebooks.length; i < n; i++) {
-        var noteIds = this.state.notebooks[i].notes;
-        if (noteIds.includes(shownNoteId)) {
-          this.context.router.push("/home");
+        for (var i = 0, n = this.state.notebooks.length; i < n; i++) {
+          var noteIds = this.state.notebooks[i].noteIds;
+          if (noteIds.includes(shownNoteId)) {
+            this.context.router.push("/home");
+          }
         }
       }
     }
+    this.props.closeInitialModal();
   },
   _handleSelection: function(notebook) {
     NotebookActions.receiveCurrentNotebook(notebook);

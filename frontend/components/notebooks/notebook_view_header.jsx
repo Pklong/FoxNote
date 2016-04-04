@@ -9,7 +9,6 @@ var NotebookViewHeader = React.createClass({
     return ({showModal: null});
   },
   _handleNewNotebookClick: function() {
-    console.log("Add notebook click");
     this.setState({showModal: NEWNOTEBOOK});
   },
   _closeModal: function() {
