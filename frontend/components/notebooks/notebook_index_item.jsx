@@ -1,23 +1,19 @@
-var React = require('react'),
-    NotebookActions = require('../../actions/notebook_actions'),
-    NotebooksApi = require('../../utils/notebooks_util');
+var React = require('react');
 
 var NotebookIndexItem = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  handleClick: function() {
-    NotebookActions.receiveCurrentNotebook(this.props.notebook);
+  selectClick: function(e) {
+    e.stopPropagation();
+    this.props.selectNotebook(this.props.notebook);
     this.props.closeModal();
   },
   deleteClick: function(e) {
     e.stopPropagation();
-    NotebooksApi.removeNotebook(this.props.notebook.id);
+    this.props.delete(this.props.notebook.id);
   },
   render: function() {
     return (
       <li className='notebook-index-item'
-          onClick={this.handleClick}>
+          onClick={this.selectClick}>
         <h3 className='notebook-index-item-title'>
           {this.props.notebook.title}
         </h3>

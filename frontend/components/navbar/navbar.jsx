@@ -23,12 +23,10 @@ var NavBar = React.createClass({
   },
 
   _handleNotebookIndexClick: function() {
-    console.log("notebook index click");
     this.setState({showModal: ALLNOTEBOOK});
   },
 
   _handleAddNoteClick: function() {
-    console.log("Add note click");
     this.setState({showModal: NEWNOTE});
   },
 
@@ -48,7 +46,8 @@ var NavBar = React.createClass({
     if (this.state.showModal) {
       switch (this.state.showModal) {
         case ALLNOTEBOOK:
-          component = <NotebookIndex  authorId={SessionStore.currentUser().id}
+          component = <NotebookIndex  params={this.props.params}
+                                      authorId={SessionStore.currentUser().id}
                                       closeInitialModal={this._closeModal} />;
           style = ModalStyleDrawer;
           break;

@@ -7,7 +7,7 @@ var React = require('react'),
    render: function () {
      return (
        <div className='container-left group'>
-         <NavBar />
+         <NavBar params={this.props.params} />
          <NotesIndex />
          <div className='container-right group'>
             {this.props.children}
