@@ -48,27 +48,29 @@
   left: 13px;
 }
 
-/*ACCOUNT HOVER */
-// white-space: nowrap;
-// padding: 4px 7px;
-// background: #606060;
-// color: #d9d9d9;
-// border-radius: 2px;
-// overflow: hidden;
-// max-width: 444px;
-// text-overflow: ellipsis;
-// display: inline-block;
-//     font-size: 12px;
-  // font-weight: 500;
-  // text-transform: uppercase;
 
-.navbar-account-box:hover {
-  background: #28a956;
-}
-.navbar-account-box:hover::before {
-  content: "LOGOUT";
-  margin-top: -20px;
+.navbar-account-logout {
+  white-space: nowrap;
+  padding: 6px 7px;
+  background: #606060;
+  color: #d9d9d9;
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: absolute;
   display: block;
+  top: 35px;
+  left: 75px;
+  visibility: hidden;
+}
+
+.navbar-account-box:hover .navbar-account-logout {
+  visibility: visible;
 }
 
 .small-logo {
