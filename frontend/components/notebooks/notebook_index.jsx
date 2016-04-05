@@ -27,10 +27,7 @@ var NotebookIndex = React.createClass({
     if (this.state.notebooks.length === 1) {
       console.log("can't delete last notebook");
     } else {
-      // var notesToDelete = NotebookStore.find(notebookId).noteIds;
-      // notesToDelete.forEach(function(noteId) {
-      //   NotesApi.removeNote(noteId);
-      // });
+
       NotebooksApi.removeNotebook(notebookId);
       if (NotebookStore.currentNotebook().id === notebookId) {
         NotebookActions.receiveCurrentNotebook(null);
