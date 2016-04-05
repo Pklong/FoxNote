@@ -5,6 +5,11 @@ var NoteIndexItem = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
+  componentWillMount: function() {
+    if (this.props.activeNote) {
+      this.context.router.push("/home/" + parseInt(this.props.note.id));
+    }
+  },
   handleClick: function(e) {
     this.context.router.push("/home/" + parseInt(this.props.note.id));
   },
@@ -15,7 +20,6 @@ var NoteIndexItem = React.createClass({
     }.bind(this));
   },
   render: function() {
-    if (!this.props) {return <p>Note Deleted...</p>;}
 
     return (
       <li  onClick={this.handleClick}
