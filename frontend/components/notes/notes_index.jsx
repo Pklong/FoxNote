@@ -13,13 +13,14 @@ var NotesIndex = React.createClass({
         return {notes: this._filterNotes()};
     },
     _filterNotes: function () {
-        if (NotebookStore.currentNotebook) {
-            NoteStore.currentNotebookNotes(NotebookStore.currentNotebook);
+        var notebook = NotebookStore.currentNotebook();
+        if (notebook) {
+            NoteStore.currentNotebookNotes(NotebookStore.currentNotebook().id);
         } else {
             NoteStore.all();
         }
     },
-    componentWillMount: function() {
+    componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         NotesApi.fetchAllNotes();
         NotebooksApi.fetchAllNotebooks();
@@ -28,26 +29,30 @@ var NotesIndex = React.createClass({
         this.noteListener.remove();
     },
     _noteChange: function() {
-        this.setState({notes: this._filterNotes()});
+        // this.setState({notes: this._filterNotes()});
+        this.setState({notes: NoteStore.all()});
     },
 
     render: function () {
-
+        if (!this.state.notes) {return <p>Loading...</p>;}
         var active,
             notebook;
 
-        if (NotebookStore.currentNotebook) {
-            notebook = NotebookStore.currentNotebook.title;
+        if (NotebookStore.currentNotebook()) {
+            notebook = NotebookStore.currentNotebook().title;
         } else {
             notebook = "All Notes";
         }
 
         var notes = this.state.notes.map(function(note, i) {
             active = (i === 0);
-            return <NoteIndexItem className='note-index-item'
-                                  key={note.id}
-                                  note={note}
-                                  activeNote={active} />;
+            return  (
+                <NoteIndexItem
+                    className='note-index-item'
+                    key={note.id}
+                    note={note}
+                    activeNote={active} />
+            );
         });
         return (
             <article className='note-view'>

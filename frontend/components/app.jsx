@@ -6,13 +6,6 @@ var React = require('react'),
 
 
  var App = React.createClass({
-    componentWillMount: function() {
-      if (this.props.params.notebookId) {
-         NotebooksApi.fetchCurrentNotebook(this.props.params.notebookId);
-      } else {
-         NotebookActions.receiveCurrentNotebook(null);
-      }
-   },
    render: function () {
      return (
        <div className='container-left group'>
