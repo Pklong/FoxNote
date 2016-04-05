@@ -1,29 +1,23 @@
 var React = require('react'),
+    NotebookActions = require('../actions/notebook_actions'),
+    NotebooksApi = require('../utils/notebooks_util'),
     NavBar = require('./navbar/navbar'),
     NotesIndex = require('./notes/notes_index');
 
 
  var App = React.createClass({
-    getInitialState: function () {
-      return (
-         {noteParams: this.noteRoute(this.props.params)}
-      );
-   },
-   noteRoute: function(route) {
+    componentWillMount: function() {
       if (this.props.params.notebookId) {
-         return {
-                  view: "notebooks",
-                  notebookId: this.props.params.notebookId
-               };
+         NotebooksApi.fetchCurrentNotebook(this.props.params.notebookId);
       } else {
-         return { view: "notes" };
+         NotebookActions.receiveCurrentNotebook(null);
       }
    },
    render: function () {
      return (
        <div className='container-left group'>
-         <NavBar />
-         <NotesIndex view={this.noteParams} />
+         <NavBar params={this.props.params} />
+         <NotesIndex />
          <div className='container-right group'>
             {this.props.children}
          </div>

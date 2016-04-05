@@ -5,7 +5,7 @@ var React = require('react'),
 
     Router = ReactRouter.Router,
     Route = ReactRouter.Route,
-    // IndexRoute = ReactRouter.IndexRoute,
+    IndexRoute = ReactRouter.IndexRoute,
     browserHistory = ReactRouter.browserHistory,
 
     Welcome = require('./components/welcome'),

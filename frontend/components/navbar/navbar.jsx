@@ -6,6 +6,7 @@ var React = require('react'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
+    
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
@@ -33,6 +34,7 @@ var NavBar = React.createClass({
   _closeModal: function() {
     this.setState({showModal: null});
   },
+
   _clearCurrentNotebook: function() {
     this.context.router.push("/home");
     NotebookActions.receiveCurrentNotebook(null);
@@ -68,10 +70,6 @@ var NavBar = React.createClass({
         </Modal>
       );
     }
-    // isOpen={bool}
-    // onRequestClose={fn}
-    // closeTimeoutMS={n}
-    // style={customStyle}>
 
     return (
       <div className='navbar-container group'>

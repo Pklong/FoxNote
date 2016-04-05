@@ -10,53 +10,37 @@ var NotesIndex = React.createClass({
       router: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
-        return {
-            notes: NoteStore.all(),
-            notebook: NotebookStore.currentNotebook()
-        };
+        return {notes: this._filterNotes()};
     },
-    componentDidMount: function() {
+    _filterNotes: function () {
+        if (NotebookStore.currentNotebook) {
+            NoteStore.currentNotebookNotes(NotebookStore.currentNotebook);
+        } else {
+            NoteStore.all();
+        }
+    },
+    componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
-        this.notebookListener = NotebookStore.addListener(this._notebookChange);
         NotesApi.fetchAllNotes();
+        NotebooksApi.fetchAllNotebooks();
     },
     componentWillUnmount: function() {
         this.noteListener.remove();
-        this.notebookListener.remove();
     },
     _noteChange: function() {
-        var currentNotebook = this.state.notebook;
-        if (currentNotebook) {
-            this.setState({
-                notes: NoteStore.currentNotebookNotes(currentNotebook.id)
-            });
-        } else {
-            this.setState({
-                notes: NoteStore.all()
-            });
-        }
+        this.setState({notes: this._filterNotes()});
     },
-    _notebookChange: function() {
-        var notebook = NotebookStore.currentNotebook();
-        if (notebook) {
-            this.setState({
-                notes: NoteStore.currentNotebookNotes(notebook.id),
-                notebook: notebook
-            });
-        } else {
-            this.setState({
-                notes: NoteStore.all(),
-                notebook: notebook
-            });
-        }
-    },
+
     render: function () {
-        if (!this.state.notes) {
-            return <p>"Loading..."</p>;
-        }
 
         var active,
             notebook;
+
+        if (NotebookStore.currentNotebook) {
+            notebook = NotebookStore.currentNotebook.title;
+        } else {
+            notebook = "All Notes";
+        }
 
         var notes = this.state.notes.map(function(note, i) {
             active = (i === 0);
@@ -65,11 +49,6 @@ var NotesIndex = React.createClass({
                                   note={note}
                                   activeNote={active} />;
         });
-        if (this.state.notebook) {
-            notebook = this.state.notebook.title;
-        } else {
-            notebook = "All Notes";
-        }
         return (
             <article className='note-view'>
                 <h3 className='notes-header-title'>{notebook}</h3>
