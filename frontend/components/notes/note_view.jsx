@@ -4,6 +4,10 @@ var React = require('react'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookStore = require('../../stores/notebook'),
     Quill = require('react-quill'),
+    Toolbar = require('react-quill').Toolbar,
+    _editor,
+    // DefaultItems = Toolbar.defaultItems,
+    // DefaultColors = Toolbar.defaultColors,
     NoteToolbar = require('./note_toolbar');
 
 var NoteView = React.createClass({
@@ -31,80 +35,74 @@ var NoteView = React.createClass({
   },
 
   componentDidMount: function() {
-    // var _editor = new Quill('#editor', {
-    //   modules: {
-    //     'toolbar': { container: '#toolbar' }
-    //   },
-    //   theme: 'snow'
-    // });
+    _editor = (
+                <Quill theme='snow'>
+                  <Toolbar />
+                </Quill>
+                );
+  },
+
+  _handleNoteChange: function () {
+    var note = this.state.note;
+    var format = _editor.getContents();
+    var title = document.getElementsByClassName('note-form-title');
+    var notebookId = document.getElementsByClassName('notebookId-dropdown');
+    note['body'] = _editor.getText();
+    note['body_delta'] = JSON.stringify(format);
+    note['title'] = title;
+    note['notebook_id'] = notebookId;
+    this.setState({note: note});
+  },
+  _submitNote: function (e) {
+    e.preventDefault();
+    var note = this.state.note;
+    var format = _editor.getContents();
+    note['body'] = _editor.getText();
+    note['body_delta'] = JSON.stringify(format);
+    this.setState({note: note});
+    NotesApi.updateNote(this.state.note);
   },
 
   _noteChange: function () {
     this.setState({note: NoteStore.find(parseInt(this.props.params.noteId))});
   },
+
   _notebookChange: function() {
     this.setState({notebooks: NotebookStore.all()});
-  },
-
-  handleBodyChange: function(value) {
-    var body = value;
-    var updatedNote = this.state.note;
-    updatedNote['body'] = body;
-    this.setState({note: updatedNote});
-  },
-
-  handleTitleChange: function(e) {
-    var title = e.target.value;
-    var updatedNote = this.state.note;
-    updatedNote['title'] = title;
-    this.setState({note: updatedNote});
-  },
-  _handleNotebookChange: function(e) {
-    this.setState({notebook_id: e.target.value});
   },
 
   componentWillReceiveProps: function(newProps) {
     NotesApi.fetchSingleNote(newProps.params.noteId);
   },
 
-  handleSubmit: function(e) {
-    e.preventDefault();
-
-    NotesApi.updateNote(this.state.note, function (newNoteId) {
-        this.context.router.push("/home/" + newNoteId);
-    }.bind(this));
-  },
-
   render: function() {
     if (!this.state.note || !this.state.notebooks) {return <p>Loading...</p>;}
+
+    var note = this.state.note;
+    _editor.setContents
 
     return (
       <div className='note-container'>
 
-        <NoteToolbar
-          handleNotebookChange={this._handleNotebookChange}
-          notebooks={NotebookStore.all()}
-          myNotebookId={this.state.notebook_id}/>
-
-        <form className='note-form' onSubmit={this.handleSubmit}>
 
           <input
             htmlFor='title'
             className='note-form-title'
             placeholder='Title your note'
             value={this.state.note.title}
-            onChange={this.handleTitleChange} />
-          <Quill
-            theme='snow'
-            value={this.state.note.body}
-            onChange={this.handleBodyChange} />
+            onChange={this._handleNoteChange} />
 
-          <input
+          <NoteToolbar
+            editor={_editor}
+            handleNotebookChange={this._handleNoteChange}
+            notebooks={this.state.notebooks}
+            myNotebookId={this.state.note.notebook_id}/>
+
+          <button
+            onClick={this._submitNote}
             className='note-form-submit'
-            type='submit'
-            value='Edit Your Note' />
+            value='Edit Note' />
 
-        </form>
       </div>
     );
   }

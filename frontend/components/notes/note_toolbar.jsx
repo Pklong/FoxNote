@@ -14,9 +14,10 @@ var NoteToolbar = React.createClass({
         <option key={key} value={notebook.id}>{notebook.title}</option>
       );
     });
-    
+
     var dropdown = (
       <select
+        className='notebookId-dropdown'
         onChange={this._notebookChange}
         defaultValue={this.props.notebooks[0].id}
         value={this.props.myNotebookId}>
