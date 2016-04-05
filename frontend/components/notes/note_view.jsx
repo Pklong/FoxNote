@@ -74,7 +74,7 @@ var NoteView = React.createClass({
       notebook_id: this.state.notebook_id
     };
     NotesApi.updateNote(updatedNote, function (newNoteId) {
-        this.context.router.push("/home/notes/" + newNoteId);
+        this.context.router.push("/home/" + newNoteId);
     }.bind(this));
   },
 

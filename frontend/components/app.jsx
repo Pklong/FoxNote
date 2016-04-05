@@ -1,6 +1,4 @@
 var React = require('react'),
-    NotebookActions = require('../actions/notebook_actions'),
-    NotebooksApi = require('../utils/notebooks_util'),
     NavBar = require('./navbar/navbar'),
     NotesIndex = require('./notes/notes_index');
 

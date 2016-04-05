@@ -6,12 +6,13 @@ var React = require('react'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
-    
+
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
     NoteForm = require('../notes/note_form'),
     SessionStore = require('../../stores/session'),
+    NotesApi = require('../../utils/notes_util'),
     AccountBadge = require('./account_badge');
 
 var NavBar = React.createClass({

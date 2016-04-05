@@ -14,7 +14,6 @@ var React = require('react'),
     NoteView = require('./components/notes/note_view'),
     Search = require('./components/search/search'),
     NotebookActions = require('./actions/notebook_actions'),
-    NoteActions = require('./actions/note_actions'),
     SessionStore = require('./stores/session'),
     SessionAPI = require('./utils/session_util');
 

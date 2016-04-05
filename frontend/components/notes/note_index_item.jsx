@@ -6,7 +6,7 @@ var NoteIndexItem = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   handleClick: function(e) {
-    this.context.router.push("/home/notes/" + parseInt(this.props.note.id));
+    this.context.router.push("/home/" + parseInt(this.props.note.id));
   },
   deleteClick: function(e) {
     e.stopPropagation();
