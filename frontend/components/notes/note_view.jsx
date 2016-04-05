@@ -2,7 +2,9 @@ var React = require('react'),
     NoteStore = require('../../stores/note'),
     NotesApi = require('../../utils/notes_util'),
     NotebookApi = require('../../utils/notebooks_util'),
-    NotebookStore = require('../../stores/notebook');
+    NotebookStore = require('../../stores/notebook'),
+    Quill = require('react-quill'),
+    NoteToolbar = require('./note_toolbar');
 
 var NoteView = React.createClass({
   contextTypes: {
@@ -10,21 +12,17 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-    var note = NoteStore.find(this.props.params.noteId);
-    if (!note) {return {title:"", body: "", notebook_id: null, notebooks: NotebookStore.all()};}
     return {
-      title: note.title,
-      body: note.body,
-      notebook_id: note.notebook_id,
-      notebooks: NotebookStore.all()
+      note: NoteStore.find(parseInt(this.props.params.noteId)),
+      notebooks: null
     };
   },
 
-  componentDidMount: function() {
+  componentWillMount: function() {
     this.noteListener = NoteStore.addListener(this._noteChange);
     this.notebookListener = NotebookStore.addListener(this._notebookChange);
-    NotebookApi.fetchAllNotebooks();
     NotesApi.fetchSingleNote(this.props.params.noteId);
+    NotebookApi.fetchAllNotebooks();
   },
 
   componentWillUnmount: function() {
@@ -32,32 +30,36 @@ var NoteView = React.createClass({
     this.notebookListener.remove();
   },
 
+  componentDidMount: function() {
+    // var _editor = new Quill('#editor', {
+    //   modules: {
+    //     'toolbar': { container: '#toolbar' }
+    //   },
+    //   theme: 'snow'
+    // });
+  },
+
   _noteChange: function () {
-    var note = NoteStore.find(this.props.params.noteId);
-    if (note) {
-      this.setState(
-        {
-          title: note.title,
-          body: note.body,
-          notebook_id: note.notebook_id,
-        }
-      );
-    } else {
-      this.context.router.push("/home");
-    }
+    this.setState({note: NoteStore.find(parseInt(this.props.params.noteId))});
   },
   _notebookChange: function() {
     this.setState({notebooks: NotebookStore.all()});
   },
 
-  handleBodyChange: function(e) {
-    this.setState({body:e.target.value});
+  handleBodyChange: function(value) {
+    var body = value;
+    var updatedNote = this.state.note;
+    updatedNote['body'] = body;
+    this.setState({note: updatedNote});
   },
 
   handleTitleChange: function(e) {
-    this.setState({title:e.target.value});
+    var title = e.target.value;
+    var updatedNote = this.state.note;
+    updatedNote['title'] = title;
+    this.setState({note: updatedNote});
   },
-  handleNotebookChange: function(e) {
+  _handleNotebookChange: function(e) {
     this.setState({notebook_id: e.target.value});
   },
 
@@ -67,54 +69,43 @@ var NoteView = React.createClass({
 
   handleSubmit: function(e) {
     e.preventDefault();
-    var updatedNote = {
-      id: this.props.params.noteId,
-      title: this.state.title,
-      body: this.state.body,
-      notebook_id: this.state.notebook_id
-    };
-    NotesApi.updateNote(updatedNote, function (newNoteId) {
+
+    NotesApi.updateNote(this.state.note, function (newNoteId) {
         this.context.router.push("/home/" + newNoteId);
     }.bind(this));
   },
 
   render: function() {
-    if (!this.state.notebook_id) { return <p>loading notebooks...</p>; }
+    if (!this.state.note || !this.state.notebooks) {return <p>Loading...</p>;}
 
-        var notebookDropdown = NotebookStore
-                                .all()
-                                .map(function(notebook) {
-                                    return <option key={notebook.id}
-                                                   value={notebook.id}>
-                                                   {notebook.title}
-                                               </option>;
-                                            });
     return (
-      <form className='note-form' onSubmit={this.handleSubmit}>
-        <select value={this.state.notebook_id}
-                        onChange={this.handleNotebookChange}>
-                    {notebookDropdown}
-                </select>
-              <input
-                  htmlFor="title"
-                  className='note-form-title'
-                  type='text'
-                  placeholder='Title'
-                  value={this.state.title}
-                  onChange={this.handleTitleChange} />
-              <textarea
-                  htmlFor="body"
-                  className='note-form-body'
-                  type='text'
-                  value={this.state.body}
-                  placeholder='just start typing...'
-                  onChange={this.handleBodyChange}
-                   />
-              <input
-                  className='note-form-submit'
-                  type='submit'
-                  value='Edit Your Note' />
-          </form>
+      <div className='note-container'>
+
+        <NoteToolbar
+          handleNotebookChange={this._handleNotebookChange}
+          notebooks={NotebookStore.all()}
+          myNotebookId={this.state.notebook_id}/>
+
+        <form className='note-form' onSubmit={this.handleSubmit}>
+
+          <input
+            htmlFor='title'
+            className='note-form-title'
+            placeholder='Title your note'
+            value={this.state.note.title}
+            onChange={this.handleTitleChange} />
+          <Quill
+            theme='snow'
+            value={this.state.note.body}
+            onChange={this.handleBodyChange} />
+
+          <input
+            className='note-form-submit'
+            type='submit'
+            value='Edit Your Note' />
+
+        </form>
+      </div>
     );
   }
 });

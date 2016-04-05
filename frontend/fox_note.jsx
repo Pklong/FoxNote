@@ -23,8 +23,8 @@ var routes = (
         <Route path="/" component={Welcome} />
         <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path=":noteId" component={NoteView} />
             <Route path="search" component={Search} />
+            <Route path=":noteId" component={NoteView} />
         </Route>
     </Router>
 );
