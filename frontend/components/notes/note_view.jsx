@@ -4,11 +4,22 @@ var React = require('react'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookStore = require('../../stores/notebook'),
     Quill = require('react-quill'),
-    Toolbar = require('react-quill').Toolbar,
-    _editor,
-    // DefaultItems = Toolbar.defaultItems,
-    // DefaultColors = Toolbar.defaultColors,
-    NoteToolbar = require('./note_toolbar');
+    _editor;
+
+var defaultColors = [
+  'rgb(  0,   0,   0)', 'rgb(230,   0,   0)', 'rgb(255, 153,   0)',
+  'rgb(255, 255,   0)', 'rgb(  0, 138,   0)', 'rgb(  0, 102, 204)',
+  'rgb(153,  51, 255)', 'rgb(255, 255, 255)', 'rgb(250, 204, 204)',
+  'rgb(255, 235, 204)', 'rgb(255, 255, 204)', 'rgb(204, 232, 204)',
+  'rgb(204, 224, 245)', 'rgb(235, 214, 255)', 'rgb(187, 187, 187)',
+  'rgb(240, 102, 102)', 'rgb(255, 194, 102)', 'rgb(255, 255, 102)',
+  'rgb(102, 185, 102)', 'rgb(102, 163, 224)', 'rgb(194, 133, 255)',
+  'rgb(136, 136, 136)', 'rgb(161,   0,   0)', 'rgb(178, 107,   0)',
+  'rgb(178, 178,   0)', 'rgb(  0,  97,   0)', 'rgb(  0,  71, 178)',
+  'rgb(107,  36, 178)', 'rgb( 68,  68,  68)', 'rgb( 92,   0,   0)',
+  'rgb(102,  61,   0)', 'rgb(102, 102,   0)', 'rgb(  0,  55,   0)',
+  'rgb(  0,  41, 102)', 'rgb( 61,  20,  10)',
+];
 
 var NoteView = React.createClass({
   contextTypes: {
@@ -16,9 +27,9 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
+
     return {
-      note: NoteStore.find(parseInt(this.props.params.noteId)),
-      notebooks: null
+      noteId: parseInt(this.props.params.noteId),
     };
   },
 
@@ -33,34 +44,47 @@ var NoteView = React.createClass({
     this.noteListener.remove();
     this.notebookListener.remove();
   },
-
   componentDidMount: function() {
-    _editor = (
-                <Quill theme='snow'>
-                  <Toolbar />
-                </Quill>
-                );
+    this.setUpEditor();
+  },
+
+  setUpEditor: function() {
+    _editor = new Quill('#editor', {
+      modules: {
+        'toolbar': { container: '#toolbar' }
+      },
+      theme: 'snow'
+    });
+    _editor.on('text-change', function(delta, source) {
+      if (source === 'user') {
+        this._handleBodyChange();
+      }
+    }.bind(this));
+  },
+
+  _handleTitleChange: function(e) {
+    var note = this.state.note;
+    note['title'] = e.target.value;
+    this.setState({note: note});
+  },
+
+  _handleBodyChange: function(content, delta, source, editor) {
+    debugger;
+    var note = this.state.note;
+    note['body'] = value;
+    this.setState({note: note});
+  },
+  _updateNotebook: function(e) {
+    debugger;
   },
 
   _handleNoteChange: function () {
     var note = this.state.note;
-    var format = _editor.getContents();
-    var title = document.getElementsByClassName('note-form-title');
-    var notebookId = document.getElementsByClassName('notebookId-dropdown');
-    note['body'] = _editor.getText();
-    note['body_delta'] = JSON.stringify(format);
-    note['title'] = title;
-    note['notebook_id'] = notebookId;
-    this.setState({note: note});
   },
+
   _submitNote: function (e) {
     e.preventDefault();
-    var note = this.state.note;
-    var format = _editor.getContents();
-    note['body'] = _editor.getText();
-    note['body_delta'] = JSON.stringify(format);
-    this.setState({note: note});
-    NotesApi.updateNote(this.state.note);
+    //TO DO!
   },
 
   _noteChange: function () {
@@ -76,34 +100,42 @@ var NoteView = React.createClass({
   },
 
   render: function() {
+
     if (!this.state.note || !this.state.notebooks) {return <p>Loading...</p>;}
 
-    var note = this.state.note;
-    _editor.setContents
+
+      var textEditor = (
+                        <Quill theme='snow'
+                               value={this.state.note.body}
+                               onChange={this._handleBodyChange}/>
+                           );
+
+
 
     return (
-      <div className='note-container'>
-
-
-          <input
-            htmlFor='title'
-            className='note-form-title'
-            placeholder='Title your note'
-            value={this.state.note.title}
-            onChange={this._handleNoteChange} />
-
-          <NoteToolbar
-            editor={_editor}
-            handleNotebookChange={this._handleNoteChange}
-            notebooks={this.state.notebooks}
-            myNotebookId={this.state.note.notebook_id}/>
-
-          <button
-            onClick={this._submitNote}
-            className='note-form-submit'
-            value='Edit Note' />
-
-      </div>
+      <form className='note-form' onSubmit={this.updateNote}>
+              <select value={this.state.note.notebook_id}
+                      onChange={this.handleNotebookChange}>
+                  {notebookDropdown}
+              </select>
+              <input
+                  htmlFor="title"
+                  className='note-form-title'
+                  type='text'
+                  placeholder='Title your note'
+                  onChange={this.handleTitleChange} />
+              <textarea
+                  htmlFor="body"
+                  className='note-form-body'
+                  type='text'
+                  placeholder='just start typing...'
+                  onChange={this.handleBodyChange}
+                   />
+              <input
+                  className='note-form-submit'
+                  type='submit'
+                  value='Create New Note' />
+          </form>
     );
   }
 });

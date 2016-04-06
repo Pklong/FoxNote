@@ -3,10 +3,12 @@ class Api::NotebooksController < ApplicationController
 
   def create
     @notebook = Notebook.new(notebook_params)
-
-    @notebook.save!
-
-    render :show
+    @notebook.author_id = current_user.id
+    if @notebook.save
+      render :show
+    else
+      render json: @notebook.errors.full_messages, status: 422
+    end
   end
 
   def destroy
@@ -14,11 +16,11 @@ class Api::NotebooksController < ApplicationController
 
     @notebook.destroy!
 
-    render json: @notebook
+    render :show
   end
 
   def index
-    @notebooks = current_user.notebooks.includes(:notes)
+    @notebooks = current_user.notebooks
   end
 
   def show
@@ -28,14 +30,16 @@ class Api::NotebooksController < ApplicationController
   def update
     @notebook = Notebook.find(params[:id])
 
-    @notebook.update!(notebook_params)
-
-    render :show
+    if @notebook.update(notebook_params)
+      render :show
+    else
+      render json: @notebook.errors.full_messages, status: 422
+    end
   end
 
   private
 
   def notebook_params
-    params.require(:notebook).permit(:title, :author_id)
+    params.require(:notebook).permit(:title)
   end
 end
