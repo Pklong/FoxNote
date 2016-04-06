@@ -29,6 +29,7 @@ var NotesIndex = React.createClass({
     },
 
     render: function () {
+        debugger;
         var active,
             notebook;
         if (NotebookStore.currentNotebook()) {

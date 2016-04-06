@@ -11,7 +11,6 @@ var React = require('react'),
     Welcome = require('./components/welcome'),
     LoginForm = require('./components/user/login_form'),
     App = require('./components/app'),
-    NoteView = require('./components/notes/note_view'),
     Search = require('./components/search/search'),
     NotebookActions = require('./actions/notebook_actions'),
     SessionStore = require('./stores/session'),
@@ -26,8 +25,8 @@ var routes = (
             <Route path='notebook/:notebookId' >
                 <Route path='note/:noteId' component={ NoteForm } />
             </Route>
-            <Route path='note/:noteId' component={NoteView} />
-            <Route path="search" component={Search} />
+            <Route path='note/:noteId' component={ NoteForm } />
+            <Route path="search" component={ Search } />
         </Route>
     </Router>
 );

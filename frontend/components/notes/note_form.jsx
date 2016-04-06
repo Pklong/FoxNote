@@ -8,9 +8,7 @@ var NoteForm = React.createClass({
     },
 
     getInitialState: function() {
-        return {
-            return { noteId: this.props.params.noteId}
-        };
+        return { noteId: this.props.params.noteId };
     },
 
     componentWillReceiveProps: function (newProps) {
