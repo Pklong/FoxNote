@@ -3,7 +3,7 @@ var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookStore = require('../../stores/notebook'),
-    Quill = require('react-quill'),
+    Quill = require('react-quill').Quill,
     NoteToolbar = require('./note_toolbar'),
     created = false,
     noteFetched = false,
@@ -16,7 +16,6 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-
     return {
       noteId: parseInt(this.props.params.noteId)
     };
