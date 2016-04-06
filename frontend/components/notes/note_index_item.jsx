@@ -17,7 +17,6 @@ var NoteIndexItem = React.createClass({
   componentWillMount: function() {
     if (this.props.activeNote) {
       this._handleClick();
-      // this.context.router.push("/home/" + parseInt(this.props.note.id));
     }
   },
   componentWillUnmount: function() {
@@ -34,9 +33,9 @@ var NoteIndexItem = React.createClass({
 
   _selectNote: function(e) {
     e.preventDefault();
-    var oldSelected = document.body.querySelectorAll('.activeNote')[0];
-    oldSelected.classList.remove('.active-note');
-    e.currentTarget.classList.add('.active-note');
+    var oldSelected = document.body.querySelectorAll('.active-note')[0];
+    oldSelected.classList.remove('active-note');
+    e.currentTarget.classList.add('active-note');
     this._handleClick();
   },
 
@@ -61,7 +60,7 @@ var NoteIndexItem = React.createClass({
   render: function() {
     var klass = 'note-index-item-snippet';
     var isActive;
-    if (this.props.active) {
+    if (this.props.activeNote) {
       klass += ' active-note';
     }
 

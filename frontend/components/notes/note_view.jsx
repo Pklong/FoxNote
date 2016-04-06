@@ -51,6 +51,7 @@ var NoteView = React.createClass({
     });
 
     _editor.on('text-change', function(delta, source) {
+      // Quill can receive text-changes from APIs, we need to specify user
       if (source === 'user') {
         this._handleBodyChange();
       }
@@ -68,12 +69,13 @@ var NoteView = React.createClass({
     if (this.props.noteId === 'new') {
       if (!created) {
         created = true;
-        $('.submit-note').on('click', function() {
+        var button = document.getElementsByClassName('note-form-submit')[0];
+        button.addEventListener('click', function() {
           var note = {
             title: this.state.title,
             body: _editor.getText(),
             body_delta: JSON.stringify(_editor.getContents()),
-            notebook_id:  $('.notebook-select').val()
+            notebook_id: this.getDropdownNotebookId()
           };
           NotesApi.createNote(note, function(createdNote) {
             this.context.router.push("home/note/" + createdNote.id);
@@ -82,6 +84,15 @@ var NoteView = React.createClass({
         }.bind(this));
       }
     } else {
+      this.editNote();
+    }
+  },
+
+  _notebookChange: function(e) {
+    var note = this.state.note;
+    note.notebook_id = parseInt(e.target.value);
+    this.setState({ note: note });
+    if (created) {
       this.editNote();
     }
   },
@@ -96,10 +107,14 @@ var NoteView = React.createClass({
         title: this.state.title,
         body: _editor.getText(),
         body_delta: JSON.stringify(_editor.getContents()),
-        notebook_id: $('.notebook-select').val()
+        notebook_id: this.getDropdownNotebookId()
       };
       NotesApi.updateNote(note);
     }.bind(this), 2000);
+  },
+
+  getDropdownNotebookId: function() {
+    return document.getElementById('notebook-select').value;
   },
 
   _noteChange: function () {
@@ -131,7 +146,7 @@ var NoteView = React.createClass({
 
     return (
       <select
-        className='notebook-select'
+        id='notebook-select'
         onChange={this._notebookChange}
         defaultValue={NotebookStore.all()[0].id}
         value={value}>

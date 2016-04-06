@@ -46,8 +46,6 @@ var NoteToolbar = React.createClass({
         <span className="ql-strike ql-format-button"></span>
         <span className="ql-underline ql-format-button"></span>
         <span className="ql-format-separator"></span>
-        <span className="ql-link ql-format-button"></span>
-        <span className="ql-format-separator"></span>
         <select
           className="ql-background ql-format-button"
           data-reactid='c'>
