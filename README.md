@@ -12,8 +12,8 @@ and React.js. FoxNote allows users to:
 - [X] Create an account
 - [X] Log in / Log out
 - [X] Create, read, edit, and delete Notes
-- [ ] Organize Notes within Notebooks
-- [ ] Create, edit, and delete Notebooks
+- [X] Organize Notes within Notebooks
+- [X] Create, edit, and delete Notebooks
 - [ ] Apply complex styling to Notes while editing
 - [ ] Search Notes for text
 
@@ -75,10 +75,10 @@ user interface.
 **Objective:** Existing pages (including sign-up/sign-in) will look good.
 
 - [X] create a basic style guide
-- [ ] create icons for `Note` and `Notebook`
-  - [ ] NoteAdd icon
-  - [ ] NoteBookAdd icon
-  - [ ] GarbageCan for deleting Note or Notebook
+- [X] create icons for `Note` and `Notebook`
+  - [X] NoteAdd icon
+  - [X] NoteBookAdd icon
+  - [X] GarbageCan for deleting Note or Notebook
 - [X] position elements on the page
 - [X] add basic colors & styles
 
@@ -90,8 +90,8 @@ user interface.
 - build out API, Flux loop, and components for:
   - [X] Notebook CRUD
   - [X] adding notes requires a notebook
-  - [ ] moving notes to a different notebook
-  - [ ] viewing notes by notebook
+  - [X] moving notes to a different notebook
+  - [X] viewing notes by notebook
 - Use CSS to style new views
 
 Phase 5 adds organization to the Notes. Notes belong to a Notebook,
@@ -102,8 +102,7 @@ which has its own `Index` view.
 
 **objective:** Enable complex styling of notes.
 
-- [ ] Integrate `React-Quill` Rich Text Editor component.
-- [ ] Use Rails helpers to sanitize HTML before rendering.
+- [X] Integrate `React-Quill` Rich Text Editor component.
 - [ ] Style the new Quill elements.
 
 ### Phase 7: Add Searching for Notes and Notebooks (1 day)
