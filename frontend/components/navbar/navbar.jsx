@@ -51,14 +51,12 @@ var NavBar = React.createClass({
       switch (this.state.showModal) {
         case ALLNOTEBOOK:
           component = <NotebookIndex  params={this.props.params}
-                                      authorId={SessionStore.currentUser().id}
                                       closeInitialModal={this._closeModal} />;
           style = ModalStyleDrawer;
           break;
 
         case NEWNOTE:
-          component = <NoteForm authorId={SessionStore.currentUser().id}
-                                closeModal={this._closeModal} />;
+          component = <NoteForm closeModal={this._closeModal} />;
           style = ModalStyleForm;
           break;
       }

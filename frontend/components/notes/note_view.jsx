@@ -17,13 +17,13 @@ var NoteView = React.createClass({
 
   getInitialState: function() {
     return {
-      noteId: parseInt(this.props.params.noteId)
+      noteId: parseInt(this.props.noteId)
     };
   },
 
   componentWillMount: function() {
     if (!this.props.newNote) {
-      NotesApi.fetchSingleNote(this.props.params.noteId);
+      NotesApi.fetchSingleNote(this.props.noteId);
     }
     NotebookApi.fetchAllNotebooks();
   },
@@ -112,7 +112,7 @@ var NoteView = React.createClass({
     this.setFetched();
     if (!this.props.newNote) {
       var cursor = _editor.getSelection();
-      var note = NoteStore.find(parseInt(this.props.params.noteId));
+      var note = NoteStore.find(parseInt(this.props.noteId));
       this.setState({ title: note.title, note: note });
       if (cursor) {
         _editor.setSelection(cursor.start, cursor.end);
@@ -164,7 +164,8 @@ var NoteView = React.createClass({
   },
 
   render: function() {
-
+    // TO DO document.getElementById('selected Notebook') not working...
+    debugger;
     var toolbar = <NoteToolbar dropdown={this.buildToolbar()} />;
 
     if (noteFetched) {
