@@ -48,9 +48,7 @@ var NotesIndex = React.createClass({
     },
 
     render: function () {
-        debugger;
         var active;
-
         var noteIndexItems = this.state.notes.map(function(note, i) {
 
             active = (i === 0);

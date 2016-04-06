@@ -165,7 +165,6 @@ var NoteView = React.createClass({
 
   render: function() {
     // TO DO document.getElementById('selected Notebook') not working...
-    debugger;
     var toolbar = <NoteToolbar dropdown={this.buildToolbar()} />;
 
     if (noteFetched) {
