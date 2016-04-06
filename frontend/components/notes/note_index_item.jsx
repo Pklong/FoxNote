@@ -7,28 +7,10 @@ var NoteIndexItem = React.createClass({
     router: React.PropTypes.object.isRequired
   },
 
-  getInitialState: function() {
-    return {
-      note: this.props.note,
-      activeNote: this.props.active
-    };
-  },
-
   componentWillMount: function() {
-    if (this.props.activeNote) {
+    if (this.props.isSelectedNote) {
       this._handleClick();
     }
-  },
-  componentWillUnmount: function() {
-    this.noteListener.remove();
-  },
-
-  componentDidMount: function() {
-    this.noteListener = NoteStore.addListener(this._onChange);
-  },
-
-  _onChange: function() {
-    this.setState({note: NoteStore.find(this.props.note.id)});
   },
 
   _selectNote: function(e) {
@@ -41,26 +23,23 @@ var NoteIndexItem = React.createClass({
 
   _handleClick: function() {
     var router = this.context.router;
-    var noteId = this.state.note.id;
-    if (this.props.currentView === 'notebooks') {
-      var notebookId = this.state.viewedNotebook;
-      router.push("/home/notebook/" + notebookId + "/note/" + noteId );
-    } else {
-      router.push("/home/note/" + noteId);
-    }
+    var noteId = this.props.note.id;
+    router.push("/home/notes/" + noteId);
   },
 
   _handleDeleteClick: function(e) {
     e.stopPropagation();
     NotesApi.removeNote(this.props.note.id, function() {
-      this.context.router.push("/home");
+      if (this.props.isSelectedNote) {
+        this.context.router.push("/home");
+      }
     }.bind(this));
   },
 
   render: function() {
     var klass = 'note-index-item-snippet';
-    var isActive;
-    if (this.props.activeNote) {
+    var active;
+    if (this.props.isSelectedNote) {
       klass += ' active-note';
     }
 

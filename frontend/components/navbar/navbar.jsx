@@ -7,6 +7,7 @@ var React = require('react'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
 
+    NotebookApi = require('../../utils/notebooks_util'),
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
@@ -22,16 +23,18 @@ var NavBar = React.createClass({
   },
 
   getInitialState: function() {
-    return ({showModal: null});
+    return ({showModal: null, notebooks: this.getNotebooks()});
   },
-
+  getNotebooks: function () {
+    return NotebookApi.fetchAllNotebooks();
+  },
   _handleNotebookIndexClick: function() {
     this.setState({showModal: ALLNOTEBOOK});
   },
 
   _handleAddNoteClick: function() {
-    // this.setState({showModal: NEWNOTE});
-    this.context.router.push('/home/note/new');
+    this.setState({showModal: NEWNOTE});
+    // this.context.router.push('/home/note/new');
   },
 
   _closeModal: function() {
@@ -39,8 +42,8 @@ var NavBar = React.createClass({
   },
 
   _clearCurrentNotebook: function() {
-    this.context.router.push("/home");
     NotebookActions.receiveCurrentNotebook(null);
+    this.context.router.push("/home");
   },
 
   render: function() {

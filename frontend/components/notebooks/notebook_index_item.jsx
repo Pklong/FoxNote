@@ -11,6 +11,7 @@ var NotebookIndexItem = React.createClass({
     this.props.delete(this.props.notebook.id);
   },
   render: function() {
+    debugger;
     return (
       <li className='notebook-index-item'
           onClick={this.selectClick}>

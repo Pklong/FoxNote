@@ -10,13 +10,13 @@ var NotebookIndex = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
+
   getInitialState: function() {
     return {notebooks: NotebookStore.all()};
   },
 
   componentDidMount: function() {
     this.notebookListener = NotebookStore.addListener(this._notebookChange);
-    NotebooksApi.fetchAllNotebooks();
   },
 
   componentWillUnmount: function() {
@@ -25,9 +25,9 @@ var NotebookIndex = React.createClass({
 
   _handleDelete: function(notebookId) {
     if (this.state.notebooks.length === 1) {
+      //TO DO FLASH WARNING!
       console.log("can't delete last notebook");
     } else {
-
       NotebooksApi.removeNotebook(notebookId);
       if (NotebookStore.currentNotebook().id === notebookId) {
         NotebookActions.receiveCurrentNotebook(null);
@@ -54,19 +54,18 @@ var NotebookIndex = React.createClass({
     var notebookId = notebook.id;
     if (notebook.noteIds.length > 0) {
       var firstNote = notebook.noteIds[0];
-      router.push("/home/notebook/" + notebookId + "/note/" + firstNote);
+      router.push("/home/notes/" + firstNote);
     } else {
       router.push("/home");
     }
   },
 
   _notebookChange: function() {
-    this.setState({
-      notebooks: NotebookStore.all()
-    });
+    this.setState({notebooks: NotebookStore.all()});
   },
 
   render: function() {
+
     var notebooks = this.state.notebooks.map(function(notebook, i) {
       return <NotebookIndexItem selectNotebook={this._handleSelection}
                                 delete={this._handleDelete}
@@ -74,10 +73,10 @@ var NotebookIndex = React.createClass({
                                 key={notebook.id}
                                 notebook={notebook} />;
                             }.bind(this));
+
     return (
       <div className='notebook-view'>
-        <NotebookViewHeader closeFirstModal={this.props.closeInitialModal}
-                            authorId={this.props.authorId} />
+        <NotebookViewHeader closeFirstModal={this.props.closeInitialModal} />
         <ul>
           {notebooks}
         </ul>

@@ -22,10 +22,10 @@ var routes = (
         <Route path="/" component={Welcome} />
         <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path='notebook/:notebookId' >
-                <Route path='note/:noteId' component={ NoteForm } />
+            <Route path='notebooks/:notebookId' >
+                <Route path='notes/:noteId' component={ NoteForm } />
             </Route>
-            <Route path='note/:noteId' component={ NoteForm } />
+            <Route path='notes/:noteId' component={ NoteForm } />
             <Route path="search" component={ Search } />
         </Route>
     </Router>

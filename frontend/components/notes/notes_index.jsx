@@ -3,10 +3,7 @@ var React = require('react'),
     NotebooksApi = require('../../utils/notebooks_util'),
     NoteIndexItem = require('./note_index_item'),
     NoteStore = require('../../stores/note'),
-    NotebookStore = require('../../stores/notebook'),
-    currentView = 'notes',
-    title = 'notes',
-    NotebookFilter = false;
+    NotebookStore = require('../../stores/notebook');
 
 var NotesIndex = React.createClass({
     contextTypes: {
@@ -14,7 +11,7 @@ var NotesIndex = React.createClass({
     },
 
     getInitialState: function() {
-        return {notes: this.getNotes(this.props.filter)};
+        return this.getNotes();
     },
 
     componentWillMount: function() {
@@ -28,26 +25,25 @@ var NotesIndex = React.createClass({
     },
 
     _noteChange: function() {
-        this.setState({notes: this.getNotes(this.props.filter)});
+        this.setState(this.getNotes());
     },
 
     componentWillReceiveProps: function (newProps) {
-        this.setState({ notes: this.getNotes(newProps)});
+        this.setState(this.getNotes());
     },
 
-    getNotes: function(filter) {
-        if (filter.display === 'notebooks') {
-            currentView = 'notebooks';
-            title = NotebookStore.currentNotebook().title;
-            return NoteStore.currentNotebookNotes(filter.id);
+    getNotes: function() {
+        var currentNotebookId = NotebookStore.currentNotebook().id;
+        if (currentNotebookId) {
+            return {notes: NoteStore.currentNotebookNotes(currentNotebookId)};
         } else {
-            currentView = 'notes';
-            title = 'notes';
-            return NoteStore.all();
+            return {notes: NoteStore.all()};
         }
     },
 
     render: function () {
+        var currentNotebook = NotebookStore.currentNotebook();
+        var title = (currentNotebook.id) ? currentNotebook.title : "notes";
         var active;
         var noteIndexItems = this.state.notes.map(function(note, i) {
 
@@ -58,9 +54,7 @@ var NotesIndex = React.createClass({
                     className='note-index-item'
                     key={note.id}
                     note={note}
-                    currentView={currentView}
-                    viewedNotebook={ NotebookStore.currentNotebook().id }
-                    activeNote={active} />
+                    isSelectedNote={active} />
             );
         });
 
