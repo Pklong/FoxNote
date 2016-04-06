@@ -10,44 +10,42 @@ var NotesIndex = React.createClass({
       router: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
-        return {notes: this._filterNotes()};
-    },
-    _filterNotes: function () {
-        if (NotebookStore.currentNotebook) {
-            NoteStore.currentNotebookNotes(NotebookStore.currentNotebook);
-        } else {
-            NoteStore.all();
-        }
+        return {notes: []};
     },
     componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         NotesApi.fetchAllNotes();
-        NotebooksApi.fetchAllNotebooks();
     },
     componentWillUnmount: function() {
         this.noteListener.remove();
     },
     _noteChange: function() {
-        this.setState({notes: this._filterNotes()});
+        var notebook = NotebookStore.currentNotebook();
+        if (notebook) {
+            this.setState({notes:NoteStore.currentNotebookNotes(notebook.id)});
+        } else {
+            this.setState({notes: NoteStore.all()});
+        }
     },
 
     render: function () {
-
         var active,
             notebook;
-
-        if (NotebookStore.currentNotebook) {
-            notebook = NotebookStore.currentNotebook.title;
+        if (NotebookStore.currentNotebook()) {
+            notebook = NotebookStore.currentNotebook().title;
         } else {
             notebook = "All Notes";
         }
 
         var notes = this.state.notes.map(function(note, i) {
             active = (i === 0);
-            return <NoteIndexItem className='note-index-item'
-                                  key={note.id}
-                                  note={note}
-                                  activeNote={active} />;
+            return  (
+                <NoteIndexItem
+                    className='note-index-item'
+                    key={note.id}
+                    note={note}
+                    activeNote={active} />
+            );
         });
         return (
             <article className='note-view'>

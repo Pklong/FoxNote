@@ -6,12 +6,14 @@ var React = require('react'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     NEWNOTE = 'NEW_NOTE',
-    
+
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
     NotebookForm = require('../notebooks/notebook_form'),
     NoteForm = require('../notes/note_form'),
     SessionStore = require('../../stores/session'),
+    NotesApi = require('../../utils/notes_util'),
+    NavbarLinkIcon = require('./navbar_link_icon'),
     AccountBadge = require('./account_badge');
 
 var NavBar = React.createClass({
@@ -78,20 +80,23 @@ var NavBar = React.createClass({
             <li className='small-logo'>
             </li>
             <li className='navbar-link'>
-              <div onClick={this._handleAddNoteClick}>
-                Add Note
-              </div>
+              <div
+                className='icon-navbar-add-note'
+                onClick={this._handleAddNoteClick} ></div>
             </li>
             <li className='navbar-link'>
-              <div>Search Note</div>
+              <div
+                className='icon-navbar-search-notes'></div>
             </li>
             <li className='navbar-link nav-icon'>
-              <div onClick={this._clearCurrentNotebook}>All Notes</div>
+              <div
+                className='icon-navbar-all-notes'
+                onClick={this._clearCurrentNotebook}></div>
             </li>
             <li className='navbar-link nav-icon'>
-              <div onClick={this._handleNotebookIndexClick}>
-                All Notebooks
-              </div>
+              <div
+                className='icon-navbar-all-notebooks'
+                onClick={this._handleNotebookIndexClick}></div>
             </li>
           </ul>
           <AccountBadge user={SessionStore.currentUser()} />

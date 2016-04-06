@@ -14,7 +14,6 @@ var React = require('react'),
     NoteView = require('./components/notes/note_view'),
     Search = require('./components/search/search'),
     NotebookActions = require('./actions/notebook_actions'),
-    NoteActions = require('./actions/note_actions'),
     SessionStore = require('./stores/session'),
     SessionAPI = require('./utils/session_util');
 
@@ -24,11 +23,8 @@ var routes = (
         <Route path="/" component={Welcome} />
         <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path="notebooks/:notebookId">
-                <Route path="notes/:noteId" component={NoteView} />
-            </Route>
-            <Route path="notes/:noteId" component={NoteView} />
             <Route path="search" component={Search} />
+            <Route path=":noteId" component={NoteView} />
         </Route>
     </Router>
 );

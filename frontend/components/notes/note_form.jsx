@@ -35,7 +35,7 @@ var NoteBody = React.createClass({
         e.preventDefault();
         NotesApi.createNote(this.state, function (newNoteId) {
             this.props.closeModal();
-            this.context.router.push("/home/notes/" + newNoteId);
+            this.context.router.push("/home/" + newNoteId);
         }.bind(this));
     },
     handleBodyChange: function(e) {

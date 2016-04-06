@@ -14,18 +14,53 @@
 }
 
 .navbar-link {
-  margin: 15px auto;
+  margin: 3px auto;
   background: #fff;
-  border: 1px solid #2DBE60;
+  // border: 1px solid #2DBE60;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 10px;
+  width: 45px;
+  height: 45px;
 }
 .navbar-link > a {
   padding: 1px 6px;
   display: block;
   width: 100%;
+}
+/* NAV ICONS */
+
+[class*="icon-"] {
+  display: inline-block;
+  background-image: url(image-path("Icons.png"));
+  background-size: 70px 400px;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 49px;
+  width: 50px;
+}
+.icon-navbar-add-note {
+  background-position: -17px -203px;
+}
+.icon-navbar-add-note:hover {
+  background-position: -13px -5px;
+}
+.icon-navbar-search-notes {
+  background-position: -17px -345px;
+}
+.icon-navbar-search-notes:hover {
+  background-position: -15px -151px;
+}
+.icon-navbar-all-notes {
+  background-position: -17px -250px;
+}
+.icon-navbar-all-notes:hover {
+  background-position: -14px -102px;
+}
+.icon-navbar-all-notebooks {
+  background-position: -18px -310px;
+}
+.icon-navbar-all-notebooks:hover {
+  background-position: -16px -54px;
 }
 
 .navbar-account-box {
@@ -76,7 +111,7 @@
 .small-logo {
   width: 60px;
   height: 60px;
-  margin: 5px auto 40px auto;
+  margin: -4px auto 40px auto;
   background-image: url(image-path('logo.png'));
   background-repeat: no-repeat;
   background-size: cover;

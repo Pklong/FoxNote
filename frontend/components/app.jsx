@@ -1,18 +1,9 @@
 var React = require('react'),
-    NotebookActions = require('../actions/notebook_actions'),
-    NotebooksApi = require('../utils/notebooks_util'),
     NavBar = require('./navbar/navbar'),
     NotesIndex = require('./notes/notes_index');
 
 
  var App = React.createClass({
-    componentWillMount: function() {
-      if (this.props.params.notebookId) {
-         NotebooksApi.fetchCurrentNotebook(this.props.params.notebookId);
-      } else {
-         NotebookActions.receiveCurrentNotebook(null);
-      }
-   },
    render: function () {
      return (
        <div className='container-left group'>
