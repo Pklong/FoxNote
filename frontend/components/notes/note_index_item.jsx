@@ -7,11 +7,11 @@ var NoteIndexItem = React.createClass({
   },
   componentWillMount: function() {
     if (this.props.activeNote) {
-      this.context.router.push("/home/" + parseInt(this.props.note.id));
+      // this.context.router.push("/home/" + parseInt(this.props.note.id));
     }
   },
   handleClick: function(e) {
-    this.context.router.push("/home/" + parseInt(this.props.note.id));
+    // this.context.router.push("/home/" + parseInt(this.props.note.id));
   },
   deleteClick: function(e) {
     e.stopPropagation();

@@ -7,14 +7,14 @@ var React = require('react'),
 
  var App = React.createClass({
    getInitialState: function () {
-      return { header: this.filterNotes() };
+      return { noteHeader: this.filterNotes() };
    },
 
    filterNotes: function() {
       if (this.props.params.notebookId) {
          var activeNotebookId = parseInt(this.props.params.notebookId);
-         NotebookApi.receiveCurrentNotebook(activeNotebookId);
-         return {display: "notebook", id: activeNotebookId};
+         NotebookApi.fetchCurrentNotebook(activeNotebookId);
+         return {display: "notebooks", id: activeNotebookId};
       } else {
          NoteApi.fetchAllNotes();
          return {display: "notes"};
@@ -25,7 +25,7 @@ var React = require('react'),
      return (
        <div className='container-left group'>
          <NavBar params={this.props.params} />
-         <NotesIndex filter={this.state.header} />
+         <NotesIndex filter={this.state.noteHeader} />
          <div className='container-right group'>
             {this.props.children}
          </div>

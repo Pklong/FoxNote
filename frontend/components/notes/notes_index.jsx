@@ -3,28 +3,45 @@ var React = require('react'),
     NotebooksApi = require('../../utils/notebooks_util'),
     NoteIndexItem = require('./note_index_item'),
     NoteStore = require('../../stores/note'),
-    NotebookStore = require('../../stores/notebook');
+    NotebookStore = require('../../stores/notebook'),
+    currentView = 'notes',
+    title = 'notes',
+    NotebookFilter = false;
 
 var NotesIndex = React.createClass({
     contextTypes: {
       router: React.PropTypes.object.isRequired
     },
+
     getInitialState: function() {
-        return {notes: this.getNotes};
+        return {notes: this.getNotes(this.props.filter)};
     },
+
     componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         NotesApi.fetchAllNotes();
+        NotebooksApi.fetchAllNotebooks();
     },
+
     componentWillUnmount: function() {
         this.noteListener.remove();
     },
+
     _noteChange: function() {
-        var notebook = NotebookStore.currentNotebook();
-        if (notebook) {
-            this.setState({notes:NoteStore.currentNotebookNotes(notebook.id)});
+        this.setState({notes: this.getNotes(this.props.filter)});
+    },
+    componentWillReceiveProps: function (newProps) {
+        this.setState({ notes: this.getNotes(newProps)});
+    },
+    getNotes: function(filter) {
+        if (filter.display === 'notebooks') {
+            currentView = 'notebooks';
+            title = NotebookStore.currentNotebook().title;
+            return NoteStore.currentNotebookNotes(filter.id);
         } else {
-            this.setState({notes: NoteStore.all()});
+            currentView = 'notes';
+            title = 'notes';
+            return NoteStore.all();
         }
     },
 
