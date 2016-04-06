@@ -76,7 +76,7 @@ var NoteView = React.createClass({
             notebook_id:  $('.notebook-select').val()
           };
           NotesApi.createNote(note, function(createdNote) {
-            this.context.router.push("home/" + createdNote.id);
+            this.context.router.push("home/note/" + createdNote.id);
             created = false;
           }.bind(this));
         }.bind(this));
@@ -158,6 +158,7 @@ var NoteView = React.createClass({
   },
 
   render: function() {
+
     var toolbar = <NoteToolbar dropdown={this.buildToolbar()} />;
 
     if (noteFetched) {

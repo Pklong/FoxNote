@@ -45,7 +45,7 @@ var NoteIndexItem = React.createClass({
     var noteId = this.state.note.id;
     if (this.props.currentView === 'notebooks') {
       var notebookId = this.state.viewedNotebook;
-      router.push("/home/note/" + noteId + "/notebook/" + notebookId );
+      router.push("/home/notebook/" + notebookId + "/note/" + noteId );
     } else {
       router.push("/home/note/" + noteId);
     }

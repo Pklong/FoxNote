@@ -15,12 +15,25 @@ var NoteForm = React.createClass({
         this.setState( {noteId: newProps.params.noteId });
     },
     setHeader: function() {
-        
+        if (this.props.params.noteId === 'new') {
+            return (
+                <div className='new-note-form-header'>
+                    <div className='note-form-submit'>Create Note</div>
+                    <div className='note-form-cancel'>Cancel</div>
+                </div>
+            );
+        } else {
+            return (
+                <div className='note-form-header'></div>
+            );
+        }
     },
 
     render: function () {
+        var header = this.setHeader();
         return (
             <div className='note-form-container'>
+                {header}
                 <NoteView noteId={this.state.noteId} />
             </div>
         );

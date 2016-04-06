@@ -86,6 +86,43 @@
 }
 
 /* FORM */
+.new-note-form-header {
+  width: 500px;
+  background: blue;
+}
+.note-form-submit {
+  text-align: center;
+  color: #fff;
+  background: #2dbe60;
+  border: 1px solid #2dbe60;
+  font-size: 13px;
+  font-weight: 500;
+  width: 180px;
+  margin: 0 4px;
+  padding: 9px 14px;
+  border-radius: 5px;
+}
+
+.note-form-submit:hover {
+  background: #28a955;
+  border: 1px solid #28a955;
+}
+.note-form-cancel {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  background: #ececec;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 180px;
+  margin: 0 4px;
+  padding: 9px 14px;
+}
+
+.note-form-cancel:hover {
+  background: #d9d9d9;
+  border: 1px solid #d1d1d1;
+}
 .note-form {
   position: relative;
   top: 0;
@@ -105,8 +142,4 @@
   padding: 20px;
   border: 3px solid #4a4a4a;
   background: #eee;
-}
-
-.note-form-submit {
-
 }
