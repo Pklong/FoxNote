@@ -98,7 +98,7 @@ var NoteView = React.createClass({
         body_delta: JSON.stringify(_editor.getContents()),
         notebook_id: $('.notebook-select').val()
       };
-      NotesApi.editNote(note);
+      NotesApi.updateNote(note);
     }.bind(this), 2000);
   },
 
@@ -131,7 +131,7 @@ var NoteView = React.createClass({
 
     return (
       <select
-        id='selected-notebook'
+        className='notebook-select'
         onChange={this._notebookChange}
         defaultValue={NotebookStore.all()[0].id}
         value={value}>
@@ -149,7 +149,7 @@ var NoteView = React.createClass({
   componentWillReceiveProps: function(newProps) {
     this.setFetched();
     var note;
-    if (this.props.newNote) {
+    if (newProps.noteId === 'new') {
       note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
     } else {
       note = NoteStore.find(parseInt(newProps.noteId));

@@ -14,6 +14,9 @@ var NoteForm = React.createClass({
     componentWillReceiveProps: function (newProps) {
         this.setState( {noteId: newProps.params.noteId });
     },
+    setHeader: function() {
+        
+    },
 
     render: function () {
         return (

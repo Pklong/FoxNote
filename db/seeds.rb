@@ -16,35 +16,44 @@ Note.destroy_all
 
 p_note1 = patrick.notes.create!(title: "My First Note",
                                 body: "Feeling good about this note",
-                                notebook_id: p_nb1.id)
+                                notebook_id: p_nb1.id,
+                                body_delta: '{"ops":[{"insert": "Feeling good about this note"}]}')
 
 p_note2 = patrick.notes.create!(title: "My goodness!",
                                 body: "Gracious",
-                                notebook_id: p_nb1.id)
+                                notebook_id: p_nb1.id,
+                                body_delta: '{"ops":[{"insert": "Gracious"}]}')
 
 p_note3 = patrick.notes.create!(title: "To Do",
                                 body: "Buy milk",
-                                notebook_id: p_nb2.id)
+                                notebook_id: p_nb2.id,
+                                body_delta: '{"ops":[{"insert": "Buy milk"}]}')
 
 p_note4 = patrick.notes.create!(title: "I love Amy!",
-                                body: "Buy milk",
-                                notebook_id: p_nb2.id)
+                                body: "She is the best",
+                                notebook_id: p_nb2.id,
+                                body_delta: '{"ops":[{"insert": "She is the best"}]}')
 
 g_note1 = guest.notes.create!(title: "I love foxnote",
-                                  body: "It's awesome",
-                                  notebook_id: guest_nb1.id)
+                                  body: "It is awesome",
+                                  notebook_id: guest_nb1.id,
+                                  body_delta: '{"ops":[{"insert": "It is awesome"}]}')
 
 g_note2 = guest.notes.create!(title: "EVERYTHING IS BROKEN",
                                   body: "Noooooooo!",
-                                  notebook_id: guest_nb1.id)
+                                  notebook_id: guest_nb1.id,
+                                  body_delta: '{"ops":[{"insert": "Noooooooo!"}]}')
 
 g_note3 = guest.notes.create!(title: "Anakin",
                                 body: "Noooooooo!",
-                                notebook_id: guest_nb1.id)
+                                notebook_id: guest_nb1.id,
+                                body_delta: '{"ops":[{"insert": "Noooooooo!"}]}')
 
 g_note3 = guest.notes.create!(title: "Mitch Hedberg",
                                 body: "My fake plants died because I did not pretend to water them.",
-                                notebook_id: guest_nb2.id)
+                                notebook_id: guest_nb2.id,
+                                body_delta: '{"ops":[{"insert": "My fake plants died because I did not pretend to water them."}]}')
 g_note4 = guest.notes.create!(title: "George Carlin",
                                 body: "Think of how stupid the average person is, and realize half of them are stupider than that.",
-                                notebook_id: guest_nb2.id)
+                                notebook_id: guest_nb2.id,
+                                body_delta: '{"ops":[{"insert": "Think of how stupid the average person is, and realize half of them are stupider than that."}]}')
