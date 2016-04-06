@@ -60,7 +60,8 @@ var NavBar = React.createClass({
           break;
 
         case NEWNOTE:
-          component = <NoteForm closeModal={this._closeModal} />;
+          component = <NoteForm newNote={true}
+                        closeModal={this._closeModal} />;
           style = ModalStyleForm;
           break;
       }

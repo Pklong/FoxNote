@@ -5,7 +5,6 @@ var React = require('react'),
     NotebookStore = require('../../stores/notebook'),
     Quill = require('react-quill').Quill,
     NoteToolbar = require('./note_toolbar'),
-    created = false,
     cursor,
     noteFetched = false,
     notebooksFetched = false,
@@ -17,28 +16,12 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-    return {
-      noteId: parseInt(this.props.noteId)
-    };
-  },
-
-  componentWillMount: function() {
-    if (this.props.noteId !== 'new') {
-      NotesApi.fetchSingleNote(this.props.noteId);
-    }
-    NotebookApi.fetchAllNotebooks();
-  },
-
-  componentWillUnmount: function() {
-    this.noteListener.remove();
-    noteFetched = false;
-    notebooksFetched = false;
-    created = false;
+    //note
+    return {};
   },
 
   componentDidMount: function() {
     this.setUpEditor();
-    this.noteListener = NoteStore.addListener(this._noteChange);
   },
 
 
@@ -78,7 +61,7 @@ var NoteView = React.createClass({
             notebook_id: this.getDropdownNotebookId()
           };
           NotesApi.createNote(note, function(createdNote) {
-            this.context.router.push("home/note/" + createdNote.id);
+            this.context.router.push("home/notes/" + createdNote.id);
             created = false;
           }.bind(this));
         }.bind(this));
@@ -117,17 +100,17 @@ var NoteView = React.createClass({
     return document.getElementById('notebook-select').value;
   },
 
-  _noteChange: function () {
-    this.setFetched();
-    if (this.props.noteId !== 'new') {
-      cursor = _editor.getSelection();
-      var note = NoteStore.find(parseInt(this.props.noteId));
-      this.setState({ title: note.title, note: note });
-      if (cursor) {
-        _editor.setSelection(cursor.start, cursor.end);
-      }
-    }
-  },
+  // _noteChange: function () {
+  //   this.setFetched();
+  //   if (this.props.noteId !== 'new') {
+  //     cursor = _editor.getSelection();
+  //     var note = NoteStore.find(parseInt(this.props.noteId));
+  //     this.setState({ title: note.title, note: note });
+  //     if (cursor) {
+  //       _editor.setSelection(cursor.start, cursor.end);
+  //     }
+  //   }
+  // },
 
   setFetched: function () {
     if (NotebookStore.all().length > 0) { notebooksFetched = true; }
