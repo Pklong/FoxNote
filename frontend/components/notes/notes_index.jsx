@@ -10,7 +10,7 @@ var NotesIndex = React.createClass({
       router: React.PropTypes.object.isRequired
     },
     getInitialState: function() {
-        return {notes: []};
+        return {notes: this.getNotes};
     },
     componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
