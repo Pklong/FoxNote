@@ -4,22 +4,11 @@ var React = require('react'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookStore = require('../../stores/notebook'),
     Quill = require('react-quill'),
+    NoteToolbar = require('./note_toolbar'),
+    created = false,
+    noteFetched = false,
+    notebooksFetched = false,
     _editor;
-
-var defaultColors = [
-  'rgb(  0,   0,   0)', 'rgb(230,   0,   0)', 'rgb(255, 153,   0)',
-  'rgb(255, 255,   0)', 'rgb(  0, 138,   0)', 'rgb(  0, 102, 204)',
-  'rgb(153,  51, 255)', 'rgb(255, 255, 255)', 'rgb(250, 204, 204)',
-  'rgb(255, 235, 204)', 'rgb(255, 255, 204)', 'rgb(204, 232, 204)',
-  'rgb(204, 224, 245)', 'rgb(235, 214, 255)', 'rgb(187, 187, 187)',
-  'rgb(240, 102, 102)', 'rgb(255, 194, 102)', 'rgb(255, 255, 102)',
-  'rgb(102, 185, 102)', 'rgb(102, 163, 224)', 'rgb(194, 133, 255)',
-  'rgb(136, 136, 136)', 'rgb(161,   0,   0)', 'rgb(178, 107,   0)',
-  'rgb(178, 178,   0)', 'rgb(  0,  97,   0)', 'rgb(  0,  71, 178)',
-  'rgb(107,  36, 178)', 'rgb( 68,  68,  68)', 'rgb( 92,   0,   0)',
-  'rgb(102,  61,   0)', 'rgb(102, 102,   0)', 'rgb(  0,  55,   0)',
-  'rgb(  0,  41, 102)', 'rgb( 61,  20,  10)',
-];
 
 var NoteView = React.createClass({
   contextTypes: {
@@ -29,24 +18,29 @@ var NoteView = React.createClass({
   getInitialState: function() {
 
     return {
-      noteId: parseInt(this.props.params.noteId),
+      noteId: parseInt(this.props.params.noteId)
     };
   },
 
   componentWillMount: function() {
-    this.noteListener = NoteStore.addListener(this._noteChange);
-    this.notebookListener = NotebookStore.addListener(this._notebookChange);
-    NotesApi.fetchSingleNote(this.props.params.noteId);
+    if (!this.props.newNote) {
+      NotesApi.fetchSingleNote(this.props.params.noteId);
+    }
     NotebookApi.fetchAllNotebooks();
   },
 
   componentWillUnmount: function() {
     this.noteListener.remove();
-    this.notebookListener.remove();
+    noteFetched = false;
+    notebooksFetched = false;
+    created = false;
   },
+
   componentDidMount: function() {
     this.setUpEditor();
+    this.noteListener = NoteStore.addListener(this._noteChange);
   },
+
 
   setUpEditor: function() {
     _editor = new Quill('#editor', {
@@ -55,6 +49,7 @@ var NoteView = React.createClass({
       },
       theme: 'snow'
     });
+
     _editor.on('text-change', function(delta, source) {
       if (source === 'user') {
         this._handleBodyChange();
@@ -63,79 +58,133 @@ var NoteView = React.createClass({
   },
 
   _handleTitleChange: function(e) {
-    var note = this.state.note;
-    note['title'] = e.target.value;
-    this.setState({note: note});
+    this.setState({title: e.target.value});
+    if (created) {
+      this.editNote();
+    }
   },
 
-  _handleBodyChange: function(content, delta, source, editor) {
-    debugger;
-    var note = this.state.note;
-    note['body'] = value;
-    this.setState({note: note});
-  },
-  _updateNotebook: function(e) {
-    debugger;
+  _handleBodyChange: function() {
+    if (this.props.newNote) {
+      if (!created) {
+        created = true;
+        document.getElementById('submit-note').on('click', function() {
+          var selectedNotebookId = this.getNotebookId();
+          var note = {
+            title: this.state.title,
+            body: _editor.getText(),
+            body_delta: JSON.stringify(_editor.getContents()),
+            notebook_id: selectedNotebookId
+          };
+          NotesApi.createNote(note, function(createdNote) {
+            this.context.router.push("home/" + createdNote.id);
+            created = false;
+          }.bind(this));
+        }.bind(this));
+      }
+    } else {
+      this.editNote();
+    }
   },
 
-  _handleNoteChange: function () {
-    var note = this.state.note;
+  getNotebookId: function () {
+    var notebookIds = document.getElementById('selected-notebook');
+    var id = notebookIds.options[notebookIds.selectedIndex].value;
+    return id;
   },
 
-  _submitNote: function (e) {
-    e.preventDefault();
-    //TO DO!
+  editNote: function() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(function() {
+      var note = {
+        id: this.state.note.id,
+        title: this.state.title,
+        body: _editor.getText(),
+        body_delta: JSON.stringify(_editor.getContents()),
+        notebook_id: this.getNotebookId()
+      };
+      NotesApi.editNote(note);
+    }.bind(this), 2000);
   },
 
   _noteChange: function () {
-    this.setState({note: NoteStore.find(parseInt(this.props.params.noteId))});
+    this.setFetched();
+    if (!this.props.newNote) {
+      var cursor = _editor.getSelection();
+      var note = NoteStore.find(parseInt(this.props.params.noteId));
+      this.setState({ title: note.title, note: note });
+      if (cursor) {
+        _editor.setSelection(cursor.start, cursor.end);
+      }
+    }
   },
 
-  _notebookChange: function() {
-    this.setState({notebooks: NotebookStore.all()});
+  setFetched: function () {
+    if (NotebookStore.all().length > 0) { notebooksFetched = true; }
+    if (NoteStore.all().length > 0) { noteFetched = true; }
+  },
+
+  notebookDropdown: function () {
+    if (!notebooksFetched) {return;}
+
+    var notebooks = NotebookStore.all().map(function (notebook, key) {
+      return (
+        <option key={key} value={notebook.id}>{notebook.title}</option>
+      );
+    });
+    var value = noteFetched ? this.state.note.notebook_id : -1;
+
+    return (
+      <select
+        id='selected-notebook'
+        onChange={this._notebookChange}
+        defaultValue={NotebookStore.all()[0].id}
+        value={value}>
+        {notebooks}
+      </select>
+    );
+  },
+
+  buildToolbar: function () {
+    if (notebooksFetched) {
+      return this.notebookDropdown();
+    }
   },
 
   componentWillReceiveProps: function(newProps) {
-    NotesApi.fetchSingleNote(newProps.params.noteId);
+    this.setFetched();
+    var note;
+    if (this.props.newNote) {
+      note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
+    } else {
+      note = NoteStore.find(parseInt(newProps.noteId));
+    }
+    this.setState({note: note, title: note.title});
   },
 
   render: function() {
 
-    if (!this.state.note || !this.state.notebooks) {return <p>Loading...</p>;}
+    var toolbar = <NoteToolbar dropdown={this.buildToolbar()} />;
 
-
-      var textEditor = (
-                        <Quill theme='snow'
-                               value={this.state.note.body}
-                               onChange={this._handleBodyChange}/>
-                           );
-
-
+    if (noteFetched) {
+      _editor.setContents(JSON.parse(this.state.note.body_delta));
+    }
+    var input =  <input
+                    htmlFor="title"
+                    className='note-form-title'
+                    type='text'
+                    placeholder='Title your note'
+                    value={this.state.title}
+                    onChange={this._handleTitleChange} />;
 
     return (
-      <form className='note-form' onSubmit={this.updateNote}>
-              <select value={this.state.note.notebook_id}
-                      onChange={this.handleNotebookChange}>
-                  {notebookDropdown}
-              </select>
-              <input
-                  htmlFor="title"
-                  className='note-form-title'
-                  type='text'
-                  placeholder='Title your note'
-                  onChange={this.handleTitleChange} />
-              <textarea
-                  htmlFor="body"
-                  className='note-form-body'
-                  type='text'
-                  placeholder='just start typing...'
-                  onChange={this.handleBodyChange}
-                   />
-              <input
-                  className='note-form-submit'
-                  type='submit'
-                  value='Create New Note' />
-          </form>
+      <div className='note-form'>
+        {toolbar}
+        {input}
+        <div id='editor'></div>
+      </div>
     );
   }
 });
