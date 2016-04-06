@@ -30,9 +30,11 @@ var NotesIndex = React.createClass({
     _noteChange: function() {
         this.setState({notes: this.getNotes(this.props.filter)});
     },
+
     componentWillReceiveProps: function (newProps) {
         this.setState({ notes: this.getNotes(newProps)});
     },
+
     getNotes: function(filter) {
         if (filter.display === 'notebooks') {
             currentView = 'notebooks';
@@ -47,33 +49,34 @@ var NotesIndex = React.createClass({
 
     render: function () {
         debugger;
-        var active,
-            notebook;
-        if (NotebookStore.currentNotebook()) {
-            notebook = NotebookStore.currentNotebook().title;
-        } else {
-            notebook = "All Notes";
-        }
+        var active;
 
-        var notes = this.state.notes.map(function(note, i) {
+        var noteIndexItems = this.state.notes.map(function(note, i) {
+
             active = (i === 0);
+
             return  (
                 <NoteIndexItem
                     className='note-index-item'
                     key={note.id}
                     note={note}
+                    currentView={currentView}
+                    viewedNotebook={ NotebookStore.currentNotebook().id }
                     activeNote={active} />
             );
         });
+
+        var noteCount = noteIndexItems.length;
+
         return (
             <article className='note-view'>
-                <h3 className='notes-header-title'>{notebook}</h3>
+                <h3 className='notes-header-title'>{title}</h3>
                 <div className='notes-header'>
-                    <span className='notes-count'>{notes.length} notes</span>
+                    <span className='notes-count'>{noteCount} notes</span>
                 </div>
                 <div className='note-scroll-window'>
                     <ul className='note-index-item'>
-                        {notes}
+                        {noteIndexItems}
                     </ul>
                 </div>
             </article>
