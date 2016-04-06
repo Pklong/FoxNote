@@ -6,6 +6,7 @@ var React = require('react'),
     Quill = require('react-quill').Quill,
     NoteToolbar = require('./note_toolbar'),
     created = false,
+    cursor,
     noteFetched = false,
     notebooksFetched = false,
     _editor;
@@ -22,7 +23,7 @@ var NoteView = React.createClass({
   },
 
   componentWillMount: function() {
-    if (!this.props.newNote) {
+    if (this.props.noteId !== 'new') {
       NotesApi.fetchSingleNote(this.props.noteId);
     }
     NotebookApi.fetchAllNotebooks();
@@ -64,16 +65,15 @@ var NoteView = React.createClass({
   },
 
   _handleBodyChange: function() {
-    if (this.props.newNote) {
+    if (this.props.noteId === 'new') {
       if (!created) {
         created = true;
-        document.getElementById('submit-note').on('click', function() {
-          var selectedNotebookId = this.getNotebookId();
+        $('.submit-note').on('click', function() {
           var note = {
             title: this.state.title,
             body: _editor.getText(),
             body_delta: JSON.stringify(_editor.getContents()),
-            notebook_id: selectedNotebookId
+            notebook_id:  $('.notebook-select').val()
           };
           NotesApi.createNote(note, function(createdNote) {
             this.context.router.push("home/" + createdNote.id);
@@ -86,12 +86,6 @@ var NoteView = React.createClass({
     }
   },
 
-  getNotebookId: function () {
-    var notebookIds = document.getElementById('selected-notebook');
-    var id = notebookIds.options[notebookIds.selectedIndex].value;
-    return id;
-  },
-
   editNote: function() {
     if (this.timer) {
       clearTimeout(this.timer);
@@ -102,7 +96,7 @@ var NoteView = React.createClass({
         title: this.state.title,
         body: _editor.getText(),
         body_delta: JSON.stringify(_editor.getContents()),
-        notebook_id: this.getNotebookId()
+        notebook_id: $('.notebook-select').val()
       };
       NotesApi.editNote(note);
     }.bind(this), 2000);
@@ -110,8 +104,8 @@ var NoteView = React.createClass({
 
   _noteChange: function () {
     this.setFetched();
-    if (!this.props.newNote) {
-      var cursor = _editor.getSelection();
+    if (this.props.noteId !== 'new') {
+      cursor = _editor.getSelection();
       var note = NoteStore.find(parseInt(this.props.noteId));
       this.setState({ title: note.title, note: note });
       if (cursor) {
@@ -164,7 +158,6 @@ var NoteView = React.createClass({
   },
 
   render: function() {
-    // TO DO document.getElementById('selected Notebook') not working...
     var toolbar = <NoteToolbar dropdown={this.buildToolbar()} />;
 
     if (noteFetched) {
