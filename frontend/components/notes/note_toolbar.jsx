@@ -15,9 +15,6 @@ var React = require('react'),
     ];
 
 var NoteToolbar = React.createClass({
-
-
-
   render: function() {
 
 

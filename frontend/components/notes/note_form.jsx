@@ -1,6 +1,7 @@
 var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
     NoteStore = require('../../stores/note'),
+    NotebookStore = require('../../stores/notebook'),
     NoteActions = require('../../actions/note_actions'),
     NotebookApi = require('../../utils/notebooks_util'),
     NoteView = require('./note_view');
@@ -11,23 +12,30 @@ var NoteForm = React.createClass({
     },
 
     getInitialState: function() {
-        return {};
+        var note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
+        return {note: note, notebooks: []};
     },
 
-    componentWillReceiveProps: function () {
-        this.setState(NoteStore.find(this.props.params.noteId));
+    componentWillReceiveProps: function (newProps) {
+        this.setState({note: NoteStore.find(newProps.params.noteId)});
     },
 
     componentWillUnmount: function() {
       this.noteListener.remove();
+      this.notebookListener.remove();
     },
 
     _noteChange: function() {
-        this.setState(NoteStore.find(this.props.params.noteId));
+        this.setState({note: NoteStore.find(this.props.params.noteId)});
+    },
+
+    _notebookChange: function() {
+        this.setState({notebooks: NotebookStore.all()});
     },
 
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
+        this.notebookListener = NotebookStore.addListener(this._notebookChange);
         if (this.props.params) {
             // NoteForm is a Route component for editing note
             NotesApi.fetchSingleNote(this.props.params.noteId);
@@ -51,12 +59,17 @@ var NoteForm = React.createClass({
     },
 
     render: function () {
-        debugger;
+        if (this.state.notebooks.length < 1) {
+            return <p>Loading...</p>;
+        }
+
         var header = this.setHeader();
         return (
             <div className='note-form-container'>
                 {header}
-                <NoteView note={this.state.note} />
+                <NoteView newNote={this.props.newNote}
+                          notebooks={this.state.notebooks}
+                          note={this.state.note} />
             </div>
         );
     }
