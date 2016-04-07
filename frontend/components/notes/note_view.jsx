@@ -13,17 +13,7 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-    // if (this.props.note) {
       return {note: this.props.note};
-    // } else {
-    //   return  {
-    //     note:{
-    //       title: "",
-    //       body: "",
-    //       body_delta: '{"ops":[{"insert":""}]}'
-    //       }
-    //     };
-    // }
   },
 
   componentDidMount: function() {
@@ -37,12 +27,10 @@ var NoteView = React.createClass({
 
   _onChange: function(noteArg) {
     var note = noteArg || NoteStore.find(this.props.note.id);
-    if (!this.props.newNote) {
-      cursor = this._editor.getSelection();
-      this._editor.setContents(JSON.parse(note.body_delta));
-      if (cursor) {
-        this._editor.setSelection(cursor.start, cursor.end);
-      }
+    cursor = this._editor.getSelection();
+    this._editor.setContents(JSON.parse(note.body_delta));
+    if (cursor) {
+      this._editor.setSelection(cursor.start, cursor.end);
     }
   },
 
@@ -61,39 +49,17 @@ var NoteView = React.createClass({
       }
     }.bind(this));
 
-    if (!this.props.newNote) {
-      this._editor.setContents(JSON.parse(this.state.note.body_delta));
-    }
-
+    this._editor.setContents(JSON.parse(this.state.note.body_delta));
   },
 
   _handleTitleChange: function(e) {
-
     var note = this.state.note;
     note['title'] = e.target.value;
     this.setState({note: note}, this.editNote());
   },
 
   _handleBodyChange: function() {
-
-      if (this.props.newNote) {
-        var button = document.getElementsByClassName('note-form-submit')[0];
-
-        button.addEventListener('click', function() {
-          var note = {
-            title: this.state.note.title,
-            body: this._editor.getText(),
-            body_delta: JSON.stringify(this._editor.getContents()),
-            notebook_id: this.getDropdownNotebookId()
-          };
-
-          NotesApi.createNote(note, function(createdNote) {
-            this.context.router.push("home/notes/" + createdNote.id);
-          }.bind(this));
-        }.bind(this));
-      } else {
-        this.editNote();
-      }
+    this.editNote();
   },
 
   _notebookChange: function(e) {
@@ -101,9 +67,7 @@ var NoteView = React.createClass({
     var note = this.state.note;
     note.notebook_id = parseInt(e.target.value);
     this.setState({ note: note });
-    if (!this.props.newNote) {
-      this.editNote();
-    }
+    this.editNote();
   },
 
   editNote: function() {
@@ -134,7 +98,7 @@ var NoteView = React.createClass({
         <option key={key} value={notebook.id}>{notebook.title}</option>
       );
     });
-    var value = (this.props.newNote) ? this.state.note.notebook_id : -1;
+    var value = this.state.note.notebook_id;
 
     return (
       <select
@@ -155,7 +119,6 @@ var NoteView = React.createClass({
   render: function() {
 
     var toolbar = <NoteToolbar dropdown={this.notebookDropdown()} />;
-
     var input =  <input
                     htmlFor="title"
                     className='note-form-title'

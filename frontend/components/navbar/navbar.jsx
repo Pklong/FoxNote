@@ -10,6 +10,7 @@ var React = require('react'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
+    NotebookStore = require('../../stores/notebook'),
     NotebookForm = require('../notebooks/notebook_form'),
     NoteForm = require('../notes/note_form'),
     SessionStore = require('../../stores/session'),
@@ -34,7 +35,25 @@ var NavBar = React.createClass({
 
   _handleAddNoteClick: function() {
     // this.setState({showModal: NEWNOTE});
-    this.context.router.push('/home/notes/new');
+    // this.context.router.push('/home/notes/new');
+    var newNotebookId;
+
+    if (NotebookStore.currentNotebook().id) {
+      newNotebookId = NotebookStore.currentNotebook().id;
+    } else {
+      newNotebookId = NotebookStore.all()[0].id;
+    }
+
+    var note = {
+      title: "Title your note",
+      body: "just start typing...",
+      body_delta: '{"ops":[{"insert":"just start typing..."}]}',
+      notebook_id: newNotebookId
+    };
+
+    NotesApi.createNote(note, function(noteId) {
+      this.context.router.push("/home/notes/" + noteId);
+    }.bind(this));
   },
 
   _closeModal: function() {

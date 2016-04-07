@@ -17,12 +17,7 @@ var NoteForm = React.createClass({
     },
 
     componentWillReceiveProps: function (newProps) {
-        // Check if new note
-        if (newProps.params.noteId) {
-            this.setState({note: NoteStore.find(newProps.params.noteId)});
-        } else {
-            this.setState({note: {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'}});
-        }
+        this.setState({note: NoteStore.find(newProps.params.noteId)});
     },
 
     componentWillUnmount: function() {
@@ -31,7 +26,6 @@ var NoteForm = React.createClass({
     },
 
     _noteChange: function() {
-        debugger;
         var note = NoteStore.find(this.props.params.noteId);
         this.setState({note: note});
     },
@@ -40,48 +34,21 @@ var NoteForm = React.createClass({
         this.setState({notebooks: NotebookStore.all()});
     },
 
-    _handleCancel: function() {
-        this.context.router.push('/home');
-    },
-
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         this.notebookListener = NotebookStore.addListener(this._notebookChange);
-        if (this.props.params.noteId) {
-            // NoteForm is a Route component for editing note
-            NotesApi.fetchSingleNote(this.props.params.noteId);
-        }
+        NotesApi.fetchSingleNote(this.props.params.noteId);
         NotebookApi.fetchAllNotebooks();
     },
 
-    setHeader: function() {
-        if (!this.props.params.noteId) {
-            return (
-                <div className='new-note-form-header'>
-                    <div className='note-form-submit'>Create Note</div>
-                    <div className='note-form-cancel'
-                         onClick={this._handleCancel}>Cancel</div>
-                </div>
-            );
-        } else {
-            return (
-                <div className='note-form-header'></div>
-            );
-        }
-    },
 
     render: function () {
-        debugger;
         if (this.state.notebooks.length < 1) {
             return <p>Loading...</p>;
         }
-
-        var header = this.setHeader();
         return (
             <div className='note-form-container'>
-                {header}
-                <NoteView newNote={!this.props.params.noteId}
-                          notebooks={this.state.notebooks}
+                <NoteView notebooks={this.state.notebooks}
                           note={this.state.note} />
             </div>
         );

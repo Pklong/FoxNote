@@ -15,6 +15,10 @@ var NotebookIndex = React.createClass({
     return {notebooks: NotebookStore.all()};
   },
 
+  componentWillMount: function() {
+    NotebooksApi.fetchAllNotebooks();
+  },
+
   componentDidMount: function() {
     this.notebookListener = NotebookStore.addListener(this._notebookChange);
   },

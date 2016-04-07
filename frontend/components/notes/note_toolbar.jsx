@@ -17,7 +17,6 @@ var React = require('react'),
 var NoteToolbar = React.createClass({
   render: function() {
 
-
     return (
       <div id="toolbar" className="ql-toolbar-container toolbar">
         {this.props.dropdown}
