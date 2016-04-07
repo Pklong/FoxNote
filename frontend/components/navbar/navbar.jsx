@@ -34,26 +34,15 @@ var NavBar = React.createClass({
   },
 
   _handleAddNoteClick: function() {
-    // this.setState({showModal: NEWNOTE});
-    // this.context.router.push('/home/notes/new');
-    var newNotebookId;
+    var newNote = this._buildDummyNote();
 
-    if (NotebookStore.currentNotebook().id) {
-      newNotebookId = NotebookStore.currentNotebook().id;
-    } else {
-      newNotebookId = NotebookStore.all()[0].id;
-    }
-
-    var note = {
-      title: "Title your note",
-      body: "just start typing...",
-      body_delta: '{"ops":[{"insert":"just start typing..."}]}',
-      notebook_id: newNotebookId
-    };
-
-    NotesApi.createNote(note, function(noteId) {
+    NotesApi.createNote(newNote, function(noteId) {
       this.context.router.push("/home/notes/" + noteId);
     }.bind(this));
+  },
+
+  _handleSearchClick: function() {
+    this.context.router.push("/home/search");
   },
 
   _closeModal: function() {
@@ -63,6 +52,23 @@ var NavBar = React.createClass({
   _clearCurrentNotebook: function() {
     NotebookActions.receiveCurrentNotebook(null);
     this.context.router.push("/home");
+  },
+
+  _buildDummyNote: function() {
+    var newNotebookId;
+
+    if (NotebookStore.currentNotebook().id) {
+      newNotebookId = NotebookStore.currentNotebook().id;
+    } else {
+      newNotebookId = NotebookStore.all()[0].id;
+    }
+
+    return {
+      title: "Title your note",
+      body: "just start typing...",
+      body_delta: '{"ops":[{"insert":"just start typing..."}]}',
+      notebook_id: newNotebookId
+    };
   },
 
   render: function() {
@@ -108,7 +114,8 @@ var NavBar = React.createClass({
             </li>
             <li className='navbar-link'>
               <div
-                className='icon-navbar-search-notes'></div>
+                className='icon-navbar-search-notes'
+                onClick={this._handleSearchClick} ></div>
             </li>
             <li className='navbar-link nav-icon'>
               <div

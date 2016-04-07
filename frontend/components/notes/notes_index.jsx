@@ -41,6 +41,17 @@ var NotesIndex = React.createClass({
         }
     },
 
+    _handleDelete: function(deletedNoteId) {
+        if (parseInt(this.props.params.noteId) === deletedNoteId) {
+            this.context.router.push("/home");
+        }
+        NotesApi.removeNote(deletedNoteId);
+    },
+
+    _swapActive: function(selectedNoteId) {
+        debugger;
+    },
+
     render: function () {
         var currentNotebook = NotebookStore.currentNotebook();
         var title = (currentNotebook.id) ? currentNotebook.title : "notes";
@@ -54,9 +65,11 @@ var NotesIndex = React.createClass({
                     className='note-index-item'
                     key={note.id}
                     note={note}
-                    isSelectedNote={active} />
+                    isSelectedNote={active}
+                    deleteNote={this._handleDelete}
+                    changeActive={this._swapActive} />
             );
-        });
+        }.bind(this));
 
         var noteCount = noteIndexItems.length;
 

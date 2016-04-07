@@ -16,7 +16,9 @@ var NoteIndexItem = React.createClass({
   _selectNote: function(e) {
     e.preventDefault();
     var oldSelected = document.body.querySelectorAll('.active-note')[0];
-    oldSelected.classList.remove('active-note');
+    if (oldSelected) {
+      oldSelected.classList.remove('active-note');
+    }
     e.currentTarget.classList.add('active-note');
     this._handleClick();
   },
@@ -29,11 +31,7 @@ var NoteIndexItem = React.createClass({
 
   _handleDeleteClick: function(e) {
     e.stopPropagation();
-    NotesApi.removeNote(this.props.note.id, function() {
-      if (this.props.isSelectedNote) {
-        this.context.router.push("/home");
-      }
-    }.bind(this));
+    this.props.deleteNote(this.props.note.id);
   },
 
   render: function() {
