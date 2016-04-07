@@ -6,15 +6,17 @@ end
 
 
 json.search_results do
-  json.array! @search_results.map(&:searchable) do |search_result|
-    case search_result
+  all_results = @search_results.map(&:searchable)
+  author_pubs = all_results.select { |result| result.author_id == current_user.id } 
+  json.array! author_pubs do |author_pub|
+    case author_pub
     when Notebook
-      json.partial! "api/notebooks/notebook", notebook: search_result
+      json.partial! "api/notebooks/notebook", notebook: author_pub
 
     when Note
-      json.partial! "api/notes/note", note: search_result
+      json.partial! "api/notes/note", note: author_pub
     end
 
-    json._type search_result.class.to_s
+    json._type author_pub.class.to_s
   end
 end

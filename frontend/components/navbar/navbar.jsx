@@ -5,8 +5,9 @@ var React = require('react'),
     ModalStyleDrawer = require('./modal_style_drawer'),
     ModalStyleForm = require('./modal_style_form'),
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
-    NEWNOTE = 'NEW_NOTE',
+    SEARCHNOTES = 'SEARCH_NOTES',
 
+    Search = require('../search/search'),
     NotebookApi = require('../../utils/notebooks_util'),
     NotebookActions = require('../../actions/notebook_actions'),
     NotebookIndex = require('../notebooks/notebook_index'),
@@ -37,12 +38,13 @@ var NavBar = React.createClass({
     var newNote = this._buildDummyNote();
 
     NotesApi.createNote(newNote, function(noteId) {
+      this._closeModal();
       this.context.router.push("/home/notes/" + noteId);
     }.bind(this));
   },
 
   _handleSearchClick: function() {
-    this.context.router.push("/home/search");
+    this.setState({showModal: SEARCHNOTES});
   },
 
   _closeModal: function() {
@@ -84,9 +86,9 @@ var NavBar = React.createClass({
           style = ModalStyleDrawer;
           break;
 
-        case NEWNOTE:
-          component = <NoteForm newNote={true}
-                        closeModal={this._closeModal} />;
+        case SEARCHNOTES:
+          component = <Search
+                              closeModal={this._closeModal} />;
           style = ModalStyleForm;
           break;
       }

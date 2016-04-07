@@ -21,8 +21,8 @@ var routes = (
         <Route path="/" component={Welcome} />
         <Route path="login" component={LoginForm} />
         <Route path="home" component={App} onEnter={_requireLoggedIn} >
-            <Route path='notes/:noteId' component={ NoteForm } />
             <Route path="search" component={ Search } />
+            <Route path='notes/:noteId' component={ NoteForm } />
         </Route>
     </Router>
 );

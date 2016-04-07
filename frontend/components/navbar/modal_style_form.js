@@ -10,7 +10,7 @@ module.exports = {
   content : {
     position                   : 'absolute',
     top                        : 0,
-    left                       : '68px',
+    left                       : '89px',
     right                      : 0,
     bottom                     : 0,
     border                     : '1px solid #ccc',
@@ -19,6 +19,6 @@ module.exports = {
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : 0,
     outline                    : 'none',
-    padding                    : '5px'
+    padding                    : '20px'
   }
 };
