@@ -33,8 +33,8 @@ var NavBar = React.createClass({
   },
 
   _handleAddNoteClick: function() {
-    this.setState({showModal: NEWNOTE});
-    // this.context.router.push('/home/note/new');
+    // this.setState({showModal: NEWNOTE});
+    this.context.router.push('/home/notes/new');
   },
 
   _closeModal: function() {

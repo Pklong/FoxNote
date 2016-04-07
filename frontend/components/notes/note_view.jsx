@@ -6,7 +6,6 @@ var React = require('react'),
     Quill = require('react-quill').Quill,
     NoteToolbar = require('./note_toolbar'),
     cursor;
-    // _editor;
 
 var NoteView = React.createClass({
   contextTypes: {
@@ -14,17 +13,17 @@ var NoteView = React.createClass({
   },
 
   getInitialState: function() {
-    if (this.props.note) {
+    // if (this.props.note) {
       return {note: this.props.note};
-    } else {
-      return  {
-        note:{
-          title: "",
-          body: "",
-          body_delta: '{"ops":[{"insert":""}]}'
-          }
-        };
-    }
+    // } else {
+    //   return  {
+    //     note:{
+    //       title: "",
+    //       body: "",
+    //       body_delta: '{"ops":[{"insert":""}]}'
+    //       }
+    //     };
+    // }
   },
 
   componentDidMount: function() {
@@ -127,18 +126,6 @@ var NoteView = React.createClass({
   getDropdownNotebookId: function() {
     return document.getElementById('notebook-select').value;
   },
-
-  // _noteChange: function () {
-  //   this.setFetched();
-  //   if (this.props.noteId !== 'new') {
-      // cursor = _editor.getSelection();
-  //     var note = NoteStore.find(parseInt(this.props.noteId));
-  //     this.setState({ title: note.title, note: note });
-      // if (cursor) {
-      //   _editor.setSelection(cursor.start, cursor.end);
-  //     }
-  //   }
-  // },
 
   notebookDropdown: function () {
 

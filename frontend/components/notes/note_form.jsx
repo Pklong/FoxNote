@@ -17,7 +17,12 @@ var NoteForm = React.createClass({
     },
 
     componentWillReceiveProps: function (newProps) {
-        this.setState({note: NoteStore.find(newProps.params.noteId)});
+        // Check if new note
+        if (newProps.params.noteId) {
+            this.setState({note: NoteStore.find(newProps.params.noteId)});
+        } else {
+            this.setState({note: {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'}});
+        }
     },
 
     componentWillUnmount: function() {
@@ -26,17 +31,23 @@ var NoteForm = React.createClass({
     },
 
     _noteChange: function() {
-        this.setState({note: NoteStore.find(this.props.params.noteId)});
+        debugger;
+        var note = NoteStore.find(this.props.params.noteId);
+        this.setState({note: note});
     },
 
     _notebookChange: function() {
         this.setState({notebooks: NotebookStore.all()});
     },
 
+    _handleCancel: function() {
+        this.context.router.push('/home');
+    },
+
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         this.notebookListener = NotebookStore.addListener(this._notebookChange);
-        if (this.props.params) {
+        if (this.props.params.noteId) {
             // NoteForm is a Route component for editing note
             NotesApi.fetchSingleNote(this.props.params.noteId);
         }
@@ -44,11 +55,12 @@ var NoteForm = React.createClass({
     },
 
     setHeader: function() {
-        if (this.props.newNote) {
+        if (!this.props.params.noteId) {
             return (
                 <div className='new-note-form-header'>
                     <div className='note-form-submit'>Create Note</div>
-                    <div className='note-form-cancel'>Cancel</div>
+                    <div className='note-form-cancel'
+                         onClick={this._handleCancel}>Cancel</div>
                 </div>
             );
         } else {
@@ -59,6 +71,7 @@ var NoteForm = React.createClass({
     },
 
     render: function () {
+        debugger;
         if (this.state.notebooks.length < 1) {
             return <p>Loading...</p>;
         }
@@ -67,7 +80,7 @@ var NoteForm = React.createClass({
         return (
             <div className='note-form-container'>
                 {header}
-                <NoteView newNote={this.props.newNote}
+                <NoteView newNote={!this.props.params.noteId}
                           notebooks={this.state.notebooks}
                           note={this.state.note} />
             </div>

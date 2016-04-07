@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
     user.notebooks.create!(title: "Welcome to Foxnote")
     user.notebooks.first.notes.create!(title: "Welcome",
                                        body: "have fun!",
+                                       body_delta: '{"ops":[{"insert": "have fun!"}]}',
                                        author_id: user.id)
   end
 end
