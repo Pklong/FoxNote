@@ -117,7 +117,9 @@ var Search = React.createClass({
 
     return (
       <article>
-        <input type='text' onChange={this.handleInputChange} />
+        <input type='text'
+               placeholder='Search text of notes and notebooks'
+               onChange={this.handleInputChange} />
         <nav>
           {metaMsg}
           <button

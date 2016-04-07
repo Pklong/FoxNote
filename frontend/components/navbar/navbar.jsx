@@ -52,6 +52,7 @@ var NavBar = React.createClass({
   },
 
   _clearCurrentNotebook: function() {
+    this._closeModal();
     NotebookActions.receiveCurrentNotebook(null);
     this.context.router.push("/home");
   },
@@ -87,8 +88,7 @@ var NavBar = React.createClass({
           break;
 
         case SEARCHNOTES:
-          component = <Search
-                              closeModal={this._closeModal} />;
+          component = <Search closeModal={this._closeModal} />;
           style = ModalStyleForm;
           break;
       }
