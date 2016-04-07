@@ -2,6 +2,7 @@ var Store = require('flux/utils').Store,
     AppDispatcher = require('../dispatcher/dispatcher'),
     NoteConstants = require('../constants/note_constants'),
     _notes = {},
+    _currentNote = {id: null},
     NoteStore = new Store(AppDispatcher);
 
 var resetNotes = function(notes) {
@@ -19,6 +20,14 @@ var deleteNote = function(noteId) {
     delete _notes[noteId];
 };
 
+var setCurrentNote = function(note) {
+    if (note) {
+        _currentNote = note;
+    } else {
+        _currentNote = {id: null};
+    }
+};
+
 NoteStore.__onDispatch = function (payload) {
     switch(payload.actionType) {
         case NoteConstants.RECEIVE_ALL_NOTES:
@@ -27,6 +36,10 @@ NoteStore.__onDispatch = function (payload) {
             break;
         case NoteConstants.RECEIVE_SINGLE_NOTE:
             resetNote(payload.note);
+            NoteStore.__emitChange();
+            break;
+        case NoteConstants.RECEIVE_CURRENT_NOTE:
+            setCurrentNote(payload.note);
             NoteStore.__emitChange();
             break;
         case NoteConstants.CREATE_NOTE:
@@ -68,6 +81,10 @@ NoteStore.currentNotebookNotes = function(notebookId) {
 
 NoteStore.find = function(noteId) {
     return _notes[noteId];
+};
+
+NoteStore.currentNote = function() {
+    return _currentNote;
 };
 
 
