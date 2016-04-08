@@ -75,11 +75,11 @@ var Search = React.createClass({
       if (result._type === 'Note') {
         type = "note";
         return (
-          <div className='search-index-item'>
+          <div key={ result.id + result.title + i } className='search-index-item'>
             <SearchIndexItem
               searchClick={this._handleNoteClick}
               note={result}
-              key={ result.id + " note " + i } />
+               />
             <span className='search-index-item-spec'>
               {type + " updated " + result.updated_at + " ago"}
             </span>
@@ -88,11 +88,11 @@ var Search = React.createClass({
       } else {
         type = "notebook";
         return (
-          <div className='search-index-item'>
+          <div key={ result.id + result.title + i } className='search-index-item'>
             <SearchIndexItem
               searchClick={this._handleNotebookClick}
               notebook={result}
-              key={ result.id + " notebook " + i } />
+               />
             <span className='search-index-item-spec'>
               {type + " contains " + result.note_count + " notes"}
             </span>
