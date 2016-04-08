@@ -82,6 +82,8 @@
 }
 
 .note-scroll-window {
+  overflow-y: scroll;
+  background: #fff;
 
 }
 
@@ -121,11 +123,33 @@
 .note-index-item-title {
   font-weight: 400;
   color: #4a4a4a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 20px 20px 5px 20px;
+  margin: 0 35px 0 0;
+  font-size: 21px;
+  overflow-wrap: break-word;
+  line-height: 20px;
 }
 .note-last-update {
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #878787;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 14px;
+  padding-left: 20px;
+}
+
+
+.note-index-item-snippet:hover .note-last-update {
+  color: #fff;
+}
+
+
+.note-index-item-snippet:hover .note-index-item-title {
+  color: #fff;
 }
 
 .note-index {
@@ -150,7 +174,7 @@
   display: block;
   border-radius: 50%;
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 10px;
 }
 .note-index-item-delete:hover {
