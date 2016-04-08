@@ -81,7 +81,7 @@ var NotebookIndex = React.createClass({
     return (
       <div className='notebook-view'>
         <NotebookViewHeader closeFirstModal={this.props.closeInitialModal} />
-        <ul>
+        <ul className='notebook-index-item-scoll-window'>
           {notebooks}
         </ul>
       </div>

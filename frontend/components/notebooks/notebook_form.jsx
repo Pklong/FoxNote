@@ -28,9 +28,13 @@ var NotebookForm = React.createClass({
         this.setState({title:e.target.value});
     },
     render: function () {
+        var btnDisabled = (this.state.title.length < 1) ? true : false;
+
         return (
-            <div>
+            <div className='notebook-form-container'>
+                <div className='notebook-form-icon'></div>
                 <h3 className='notebook-form-header'>Create Notebook</h3>
+                <hr className='notebook-form-divider' />
                 <form className='notebook-form'>
                     <input
                         htmlFor="title"
@@ -42,6 +46,7 @@ var NotebookForm = React.createClass({
                         className='notebook-form-cancel'
                         onClick={this.handleCancel}>Cancel</button>
                     <button
+                        disabled={btnDisabled}
                         className='notebook-form-submit'
                         onClick={this.handleSubmit}>Create notebook</button>
                 </form>

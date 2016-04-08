@@ -20,7 +20,7 @@ var NotebookIndexItem = React.createClass({
         <p className='notebook-index-item-notecount'>
           {this.props.notebook.note_count}
         </p>
-        <span className='note-index-item-delete'
+        <span className='notebook-index-item-delete'
               onClick={this.deleteClick}>Delete</span>
       </li>
     );
