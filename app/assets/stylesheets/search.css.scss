@@ -1,6 +1,64 @@
-.search-item-result {
-  width: 200px;
-  height: 40px;
-  background: pink;
+.search-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.search-input {
+  color: #606060;
+  height: 52px;
+  width: 90%;
+  position: relative;
+  top: 40px;
+  left: 80px;
+  font-size: 52px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  opacity: .6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.results-container {
+  position: absolute;
+  top: 120px;
+  left: 125px;
+  width: 80%;
+}
+
+.search-index-item {
+  font-size: 21px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  padding: 30px;
+  cursor: pointer;
+  color: #4a4a4a;
   display: block;
+  text-transform: uppercase;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+
+
+}
+
+.search-index-item:hover {
+  background: rgba(43,181,92, .9);
+  color: #fff;
+}
+
+.search-index-item-spec {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ababab;
+  text-transform: uppercase;
+}
+
+.search-index-item:hover .search-index-item-spec {
+  color: #fff;
 }

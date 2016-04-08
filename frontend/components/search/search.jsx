@@ -70,64 +70,76 @@ var Search = React.createClass({
   },
 
   results: function() {
+    var type;
     return SearchStore.all().map(function (result, i) {
       if (result._type === 'Note') {
+        type = "note";
         return (
-          <SearchIndexItem
-              className='note-index-item'
+          <div className='search-index-item'>
+            <SearchIndexItem
               searchClick={this._handleNoteClick}
               note={result}
               key={ result.id + " note " + i } />
+            <span className='search-index-item-spec'>
+              {type + " updated " + result.updated_at + " ago"}
+            </span>
+          </div>
         );
       } else {
+        type = "notebook";
         return (
-          <SearchIndexItem
-            className='note-index-item'
-            searchClick={this._handleNotebookClick}
-            notebook={result}
-            key={ result.id + " notebook " + i } />
+          <div className='search-index-item'>
+            <SearchIndexItem
+              searchClick={this._handleNotebookClick}
+              notebook={result}
+              key={ result.id + " notebook " + i } />
+            <span className='search-index-item-spec'>
+              {type + " contains " + result.note_count + " notes"}
+            </span>
+          </div>
         );
       }
     }.bind(this));
   },
 
   render: function() {
-    var meta = SearchStore.meta(),
-        metaMsg,
-        nextPageDisabled,
-        buttonMsg;
+    // var meta = SearchStore.meta(),
+    //     metaMsg;
+    //     nextPageDisabled,
+    //     buttonMsg;
 
-    if (!meta.page) {
-      metaMsg = "Search Notes and Notebooks!";
-      nextPageDisabled = true;
-      buttonMsg = "";
-    } else if (meta.total_pages < meta.page) {
-      metaMsg = "No results found...";
-      nextPageDisabled = true;
-      buttonMsg = "";
-    } else if (meta.total_pages > meta.page) {
-      metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
-      nextPageDisabled = false;
-      buttonMsg = "More Results!";
-    } else {
-      metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
-      nextPageDisabled = true;
-      buttonMsg = "That's all!";
-    }
+    // if (!meta.page) {
+    //   metaMsg = "Search Notes and Notebooks!";
+    //   nextPageDisabled = true;
+    //   buttonMsg = "";
+    // } else if (meta.total_pages < meta.page) {
+    //   metaMsg = "No results found...";
+    //   nextPageDisabled = true;
+    //   buttonMsg = "";
+    // } else if (meta.total_pages > meta.page) {
+    //   metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
+    //   nextPageDisabled = false;
+    //   buttonMsg = "More Results!";
+    // } else {
+    //   metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
+    //   nextPageDisabled = true;
+    //   buttonMsg = "That's all!";
+    // }
+    // {metaMsg}
+    // <button
+    //   disabled={nextPageDisabled}
+    //   onClick={ this.nextPage }>{buttonMsg}</button>
+    // <nav>
+    // </nav>
 
     return (
-      <article>
-        <input type='text'
+      <article className='search-container'>
+        <input className='search-input'
+               type='text'
                placeholder='Search text of notes and notebooks'
                onChange={this.handleInputChange} />
-        <nav>
-          {metaMsg}
-          <button
-            disabled={nextPageDisabled}
-            onClick={ this.nextPage }>{buttonMsg}</button>
-        </nav>
 
-        <ul>
+             <ul className='results-container'>
           { this.results() }
         </ul>
       </article>
