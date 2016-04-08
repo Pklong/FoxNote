@@ -1,7 +1,7 @@
 body {
   height: 100%;
   width: 100%;
-  background: #A0BBB6;
+  background: #f3f3f3;
   font-size: 16px;
   color: #4a4a4a;
   font-family: sans-serif;
@@ -17,4 +17,10 @@ body {
   top: 30px;
   bottom: 0px;
   left: 40px;
+}
+
+.welcome {
+  background-image: url(image-path('EvernoteBackground.jpg'));
+  background-repeat: no-repeat;
+  background-size: contain;
 }

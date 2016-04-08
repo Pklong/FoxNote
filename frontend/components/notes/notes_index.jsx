@@ -80,7 +80,7 @@ var NotesIndex = React.createClass({
                     <span className='notes-count'>{noteCount} notes</span>
                 </div>
                 <div className='note-scroll-window'>
-                    <ul className='note-index-item'>
+                    <ul className='note-index-item-container'>
                         {noteIndexItems}
                     </ul>
                 </div>

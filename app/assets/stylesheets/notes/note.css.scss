@@ -52,6 +52,20 @@
   border-right: 1px solid #ECECEC;
 }
 
+.notes-header-title {
+  text-align: left;
+  font-size: 21px;
+  color: #878787;
+  text-transform: uppercase;
+  padding: 24px 20px 0 24px;
+  letter-spacing: 0.5px;
+  vertical-align: top;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 26px;
+}
 .notes-header {
   height: 24px;
   border-bottom: 1px solid #ECECEC;
@@ -67,19 +81,50 @@
   color: #ababab;
 }
 
-.notes-header-title {
-  text-align: left;
-  font-size: 21px;
-  color: #878787;
-  text-transform: uppercase;
-  padding: 24px 20px 0 24px;
-  letter-spacing: 0.5px;
-  vertical-align: top;
-  display: block;
+.note-scroll-window {
+
+}
+
+.note-index-item-container {
+
+}
+
+/* NOTE INDEX ITEMS */
+
+.note-index-item {
+
+}
+
+.note-index-item-snippet {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #ECECEC;
   position: relative;
-  margin: 0 auto;
-  font-weight: 300;
-  line-height: 26px;
+}
+.note-index-item-snippet:hover {
+  background: rgba(43,181,92, .9);
+}
+
+.active-note .note-index-item-delete {
+  right: 8px;
+}
+.active-note .note-index-item-delete:hover {
+  right: 8px;
+}
+
+.active-note {
+  border: 3px solid #d9d9d9;
+}
+.note-index-item-title {
+  font-weight: 400;
+  color: #4a4a4a;
+}
+.note-last-update {
+  text-transform: uppercase;
+  color: #878787;
+  font-size: 11px;
 }
 
 .note-index {
@@ -94,38 +139,25 @@
   color: #4a4a4a;
 }
 
-.note-index-item {
-}
-.active-note {
-  background: orange;
-}
 .note-index-item-delete {
-  opacity: 0;
+  background-image: url(image-path('FoxNoteIcons/UnSelectedTrashIcon.png'));
+  background-position: center;
+  background-size: cover;
+  height: 25px;
+  width: 25px;
+  padding: 3px;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
 .note-index-item-delete:hover {
-  opacity: 1;
-  background: #000;
+  background-image: url(image-path('FoxNoteIcons/TrashCanSelected.png'));
 }
 
-.note-index-item-snippet {
-  overflow: hidden;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  border-bottom: 1px solid #ECECEC;
 
-}
 
-.note-index-item-title {
-  font-weight: 400;
-  color: #4a4a4a;
-}
-
-.note-last-update {
-  text-transform: uppercase;
-  color: #878787;
-  font-size: 11px;
-}
 
 /* FORM */
 

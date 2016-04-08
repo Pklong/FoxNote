@@ -47,7 +47,7 @@ var NoteIndexItem = React.createClass({
         <h4 className='note-index-item-title'>{this.props.note.title}</h4>
         <p className='note-last-update'>{this.props.note.updated_at} ago</p>
         <span className='note-index-item-delete'
-              onClick={this._handleDeleteClick}>Delete</span>
+              onClick={this._handleDeleteClick}></span>
       </li>
     );
   }
