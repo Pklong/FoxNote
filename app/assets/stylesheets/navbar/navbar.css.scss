@@ -14,12 +14,7 @@
 }
 
 .navbar-link {
-  margin: 3px auto;
-  background: #fff;
-  // border: 1px solid #2DBE60;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  margin: 50px auto;
 }
 .navbar-link > a {
   padding: 1px 6px;
@@ -29,38 +24,40 @@
 /* NAV ICONS */
 
 [class*="icon-"] {
-  display: inline-block;
-  background-image: url(image-path("Icons.png"));
-  background-size: 70px 400px;
   background-repeat: no-repeat;
-  vertical-align: bottom;
-  overflow: hidden;
-  height: 49px;
-  width: 50px;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  transition: all .2s ease-in-out;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
 }
+
 .icon-navbar-add-note {
-  background-position: -17px -203px;
+  background-image: url(image-path('NavBarFoxNoteIcons/AddNote.png'));
 }
 .icon-navbar-add-note:hover {
-  background-position: -13px -5px;
+  background-image: url(image-path('NavBarFoxNoteIcons/AddNoteHover.png'));
 }
 .icon-navbar-search-notes {
-  background-position: -17px -345px;
+  background-image: url(image-path('NavBarFoxNoteIcons/Search.png'));
 }
 .icon-navbar-search-notes:hover {
-  background-position: -15px -151px;
+  background-image: url(image-path('NavBarFoxNoteIcons/SearchHover.png'));
 }
 .icon-navbar-all-notes {
-  background-position: -17px -250px;
+  background-image: url(image-path('NavBarFoxNoteIcons/Notes.png'));
 }
 .icon-navbar-all-notes:hover {
-  background-position: -14px -102px;
+  background-image: url(image-path('NavBarFoxNoteIcons/NotesHover.png'));
 }
 .icon-navbar-all-notebooks {
-  background-position: -18px -310px;
+  background-image: url(image-path('NavBarFoxNoteIcons/Notebooks.png'));
 }
 .icon-navbar-all-notebooks:hover {
-  background-position: -16px -54px;
+  background-image: url(image-path('NavBarFoxNoteIcons/NotebooksHover.png'));
 }
 
 .navbar-account-box {
