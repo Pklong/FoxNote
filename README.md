@@ -14,8 +14,8 @@ and React.js. FoxNote allows users to:
 - [X] Create, read, edit, and delete Notes
 - [X] Organize Notes within Notebooks
 - [X] Create, edit, and delete Notebooks
-- [ ] Apply complex styling to Notes while editing
-- [ ] Search Notes for text
+- [X] Apply complex styling to Notes while editing
+- [X] Search Notes for text
 
 
 ## Design Docs
@@ -103,23 +103,23 @@ which has its own `Index` view.
 **objective:** Enable complex styling of notes.
 
 - [X] Integrate `React-Quill` Rich Text Editor component.
-- [ ] Style the new Quill elements.
+- [X] Style the new Quill elements.
 
 ### Phase 7: Add Searching for Notes and Notebooks (1 day)
 
 **objective:** Enable search for text within notes and notebooks
 
-- [ ] Create `SearchIndex` Component, API, Flux loop
-- [ ] Create Search Icon for Navbar component
-- [ ] Allow User to search Notes for text
+- [X] Create `SearchIndex` Component, API, Flux loop
+- [X] Create Search Icon for Navbar component
+- [X] Allow User to search Notes for text
 
 ### Phase 8: Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more cohesive and awesome.
 
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add transitions and modals ( Velocity-React? )
+- [X] Get feedback on my UI from others
+- [X] Refactor HTML classes & CSS rules
+- [X] Add transitions and modals
 
 ### Bonus Features (TBD)
 - [ ] Implement Responsive Web Design ( Flexbox or Media Queries)

@@ -1,4 +1,36 @@
 
+// .ReactModal__Overlay {
+//   -webkit-perspective: 600;
+//   perspective: 600;
+//   opacity: 0;
+// }
+//
+// .ReactModal__Overlay--after-open {
+//   opacity: 1;
+//   transition: opacity 150ms ease-out;
+// }
+//
+// .ReactModal__Content {
+//   -webkit-transform: scale(0.5) rotateX(-30deg);
+//   transform: scale(0.5) rotateX(-30deg);
+// }
+//
+// .ReactModal__Content--after-open {
+//   -webkit-transform: scale(1) rotateX(0deg);
+//   transform: scale(1) rotateX(0deg);
+//   transition: all 150ms ease-in;
+// }
+//
+// .ReactModal__Overlay--before-close {
+//   opacity: 0;
+// }
+//
+// .ReactModal__Content--before-close {
+//   -webkit-transform: scale(0.5) rotateX(30deg);
+//   transform: scale(0.5) rotateX(30deg);
+//   transition: all 150ms ease-in;
+// }
+
 .ReactModal__Overlay {
   -webkit-perspective: 600;
   perspective: 600;
@@ -7,26 +39,26 @@
 
 .ReactModal__Overlay--after-open {
   opacity: 1;
-  transition: opacity 150ms ease-out;
+  transition: opacity 250ms ease-out;
 }
 
 .ReactModal__Content {
-  -webkit-transform: scale(0.5) rotateX(-30deg);
-  transform: scale(0.5) rotateX(-30deg);
+  -webkit-transform: scale(0.5) translateX(-100%);
+  transform: scale(0.5) translateX(-100%);
 }
 
 .ReactModal__Content--after-open {
-  -webkit-transform: scale(1) rotateX(0deg);
-  transform: scale(1) rotateX(0deg);
-  transition: all 150ms ease-in;
+  -webkit-transform: scale(1) translateX(0%);
+  transform: scale(1) translateX(0%);
+  transition: all 250ms ease-in;
 }
 
 .ReactModal__Overlay--before-close {
-  opacity: 0;
+  opacity: 1;
 }
 
 .ReactModal__Content--before-close {
-  -webkit-transform: scale(0.5) rotateX(30deg);
-  transform: scale(0.5) rotateX(30deg);
-  transition: all 150ms ease-in;
+  -webkit-transform: scale(0.5) translateX(-100%);
+  transform: scale(0.5) translateX(-100%);
+  transition: all 250ms ease-out;
 }

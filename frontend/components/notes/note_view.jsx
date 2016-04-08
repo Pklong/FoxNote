@@ -84,7 +84,7 @@ var NoteView = React.createClass({
         notebook_id: this.getDropdownNotebookId()
       };
       NotesApi.updateNote(note);
-    }.bind(this), 2000);
+    }.bind(this), 1000);
   },
 
   getDropdownNotebookId: function() {

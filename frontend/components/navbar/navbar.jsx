@@ -101,6 +101,7 @@ var NavBar = React.createClass({
         <Modal className='modal-drawer'
           isOpen={Boolean(this.state.showModal)}
           onRequestClose={this._closeModal}
+          closeTimeoutMS={250}
           style={style}>
           {component}
         </Modal>
