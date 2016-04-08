@@ -10,7 +10,20 @@ var NotebookIndexItem = React.createClass({
     e.stopPropagation();
     this.props.delete(this.props.notebook.id);
   },
+  makeDeleteIcon: function() {
+    return (
+      <span className='notebook-index-item-delete'
+            onClick={this.deleteClick}></span>
+        );
+  },
   render: function() {
+    var deleteIcon = null;
+    var disableDelete = (this.props.noDelete) ? true : false;
+
+    if (!disableDelete) {
+      deleteIcon = this.makeDeleteIcon();
+    }
+
     return (
       <li className='notebook-index-item'
           onClick={this.selectClick}>
@@ -18,10 +31,9 @@ var NotebookIndexItem = React.createClass({
           {this.props.notebook.title}
         </h3>
         <p className='notebook-index-item-notecount'>
-          {this.props.notebook.note_count}
+          {this.props.notebook.note_count} notes
         </p>
-        <span className='notebook-index-item-delete'
-              onClick={this.deleteClick}>Delete</span>
+        {deleteIcon}
       </li>
     );
   }

@@ -69,9 +69,11 @@ var NotebookIndex = React.createClass({
   },
 
   render: function() {
+    var noDelete = (this.state.notebooks.length === 1) ? true : false;
 
     var notebooks = this.state.notebooks.map(function(notebook, i) {
-      return <NotebookIndexItem selectNotebook={this._handleSelection}
+      return <NotebookIndexItem noDelete={noDelete}
+                                selectNotebook={this._handleSelection}
                                 delete={this._handleDelete}
                                 closeModal={this.props.closeInitialModal}
                                 key={notebook.id}

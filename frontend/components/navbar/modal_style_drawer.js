@@ -15,10 +15,11 @@ module.exports = {
     bottom                     : 0,
     border                     : 'none',
     background                 : '#fff',
-    overflow                   : 'auto',
+    overflow                   : 'hidden',
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : 0,
     outline                    : 'none',
     padding                    : '20px'
+
   }
 };

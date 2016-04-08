@@ -1,9 +1,22 @@
-
+/* MODAL DRAWER */
+.modal-drawer {
+  overflow-x: hidden;
+}
 
 
 /* NOTEBOOK VIEW HEADER */
 
 .notebook-view-header-container {
+  width: 100%;
+  width: 100%;
+  color: #878787;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  font-size: 26px;
+  font-weight: 300;
+  display: block;
+  padding: 21px 24px 32px;
+  vertical-align: baseline;
 
 }
 
@@ -12,7 +25,18 @@
 }
 
 .notebook-view-add-notebook {
-
+  background-image: url(image-path('FoxNoteIcons/UnselectedNotebookIcon.png'));
+  background-position: center;
+  background-size: cover;
+  height: 36px;
+  width: 40px;
+  position: absolute;
+  top: 17px;
+  right: 11px;
+  border-radius: 50%;
+}
+.notebook-view-add-notebook:hover {
+  background-color: #DA7529
 }
 
 /* NOTEBOOK INDEX */
@@ -22,29 +46,65 @@
   top: 0;
   bottom: 0;
   left: 0;
-  width: 450px;
+  width: 428px;
+  border-right: 3px solid #888;
+
 }
 
 .notebook-index-item-scoll-window {
-
+  border-bottom: 1px solid #888;
+  border-top: 1px solid #888;
 }
 
 /* NOTEBOOK INDEX ITEM  */
 
 .notebook-index-item {
   height: 40px;
-  width: 400px;
+  width: 100%;
   padding: 20px;
-  border: 2.5px solid #000;
+  border-bottom: 1px solid #888;
   cursor: pointer;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  position: relative;
+}
+.notebook-index-item:hover {
+  background-color: #3FBC6C;
+}
+.notebook-index-item:hover .notebook-index-item-title {
+  color: #fff;
+}
+.notebook-index-item:hover .notebook-index-item-notecount {
+  color: #fff;
 }
 
 .notebook-index-item-title {
   color: #4a4a4a;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 1.5px
 
+}
+
+.notebook-index-item-notecount {
+  color: #878787;
+  padding-top: 5px;
+}
+
+.notebook-index-item-delete {
+  background-image: url(image-path('FoxNoteIcons/UnSelectedTrashIcon.png'));
+  background-position: center;
+  background-size: cover;
+  height: 25px;
+  width: 25px;
+  padding: 3px;
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 26px;
+  right: 66px;
+}
+.notebook-index-item-delete:hover {
+  background-image: url(image-path('FoxNoteIcons/TrashCanSelected.png'));
 }
