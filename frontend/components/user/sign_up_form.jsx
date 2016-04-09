@@ -30,7 +30,10 @@ var SignUpForm = React.createClass({
 
     SessionAPI.createUser(this.state, function() {
       router.push("/home");
-    });
+    }, function() {
+      this.setState({emailError: "This email has already been registered."});
+    }.bind(this)
+  );
   },
 
   updateEmail: function(e) {

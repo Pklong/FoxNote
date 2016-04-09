@@ -53,7 +53,7 @@ var SessionAPI = {
     });
   },
 
-  createUser: function(newUser, completionCallback) {
+  createUser: function(newUser, successCallback, errorCallback) {
     $.ajax({
       type: 'POST',
       url: '/api/users',
@@ -61,10 +61,10 @@ var SessionAPI = {
       data: {user: newUser},
       success: function(user) {
         SessionActions.currentUserReceived(user);
-        if (completionCallback) {completionCallback();}
+        if (successCallback) {successCallback();}
       },
       error: function() {
-        console.error("Failed createUser...");
+        if (errorCallback) {errorCallback();}
       }
     });
   }
