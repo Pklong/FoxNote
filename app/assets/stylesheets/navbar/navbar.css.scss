@@ -23,7 +23,7 @@
 }
 /* NAV ICONS */
 
-[class*="icon-"] {
+[class*="icon-navbar-"] {
   background-repeat: no-repeat;
   background-size: cover;
   width: 40px;
@@ -33,6 +33,7 @@
   background-color: #fff;
   border-radius: 50%;
   cursor: pointer;
+  position: relative;
 }
 
 .icon-navbar-add-note {
@@ -41,11 +42,27 @@
 .icon-navbar-add-note:hover {
   background-image: url(image-path('NavBarFoxNoteIcons/AddNoteHover.png'));
 }
+.icon-navbar-add-note:hover .navbar-text-add-note {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
+}
+.icon-navbar-add-note:hover .navbar-arrow-left {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
+}
 .icon-navbar-search-notes {
   background-image: url(image-path('NavBarFoxNoteIcons/Search.png'));
 }
 .icon-navbar-search-notes:hover {
   background-image: url(image-path('NavBarFoxNoteIcons/SearchHover.png'));
+}
+.icon-navbar-search-notes:hover .navbar-text-search {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
+}
+.icon-navbar-search-notes:hover .navbar-arrow-left {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
 }
 .icon-navbar-all-notes {
   background-image: url(image-path('NavBarFoxNoteIcons/Notes.png'));
@@ -53,35 +70,31 @@
 .icon-navbar-all-notes:hover {
   background-image: url(image-path('NavBarFoxNoteIcons/NotesHover.png'));
 }
+.icon-navbar-all-notes:hover .navbar-text-notes {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
+}
+.icon-navbar-all-notes:hover .navbar-arrow-left {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
+}
 .icon-navbar-all-notebooks {
   background-image: url(image-path('NavBarFoxNoteIcons/Notebooks.png'));
 }
 .icon-navbar-all-notebooks:hover {
   background-image: url(image-path('NavBarFoxNoteIcons/NotebooksHover.png'));
 }
-
-.navbar-account-box {
-  border-top: 1px solid #e1e1e1;
-  position: absolute;
-  padding: 4px 4px 5px 5px;
-  bottom: 18px;
-  left: 0px;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  font-size: 14px;
+.icon-navbar-all-notebooks:hover .navbar-text-notebook {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
 }
-.navbar-account-box > img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: 16px;
-  left: 13px;
+.icon-navbar-all-notebooks:hover .navbar-arrow-left {
+  visibility: visible;
+  transition: visibility 0.2s 0.8s ease;
 }
 
-
-.navbar-account-logout {
+[class*="navbar-text-"] {
+  transition: visibility .2s 0 ease;
   white-space: nowrap;
   padding: 6px 7px;
   background: #606060;
@@ -96,13 +109,52 @@
   text-transform: uppercase;
   position: absolute;
   display: block;
-  top: 35px;
-  left: 75px;
   visibility: hidden;
+  left: 46px;
+  top: 8px;
 }
 
-.navbar-account-box:hover .navbar-account-logout {
+.navbar-arrow-left {
+  transition: visibility .2s 0 ease;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid #606060;
+  visibility: hidden;
+  position: absolute;
+  top: 15px;
+  left: 41px;
+}
+
+.navbar-text-logout {
+  top: 35px;
+  left: 75px;
+}
+
+.navbar-account-box {
+  border-top: 1px solid #e1e1e1;
+  position: absolute;
+  padding: 4px 4px 5px 5px;
+  bottom: 18px;
+  left: 0px;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.navbar-account-box:hover .navbar-text-logout {
   visibility: visible;
+}
+
+.navbar-account-box > img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 16px;
+  left: 13px;
 }
 
 .small-logo {

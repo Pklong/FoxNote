@@ -14,7 +14,7 @@ var AccountBadge = React.createClass({
       <div className='navbar-account-box'
            onClick={this.handleClick}>
            <img src={this.props.user.image} />
-           <span className='navbar-account-logout'>Logout</span>
+           <span className='navbar-text-logout'>Logout</span>
       </div>
     );
   },

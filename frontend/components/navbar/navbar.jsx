@@ -118,22 +118,42 @@ var NavBar = React.createClass({
             <li className='navbar-link'>
               <div
                 className='icon-navbar-add-note'
-                onClick={this._handleAddNoteClick} ></div>
+                onClick={this._handleAddNoteClick} >
+                <div className='navbar-arrow-left'></div>
+                <span className='navbar-text-add-note'>
+                  New Note
+                </span>
+              </div>
             </li>
             <li className='navbar-link'>
               <div
                 className='icon-navbar-search-notes'
-                onClick={this._handleSearchClick} ></div>
+                onClick={this._handleSearchClick} >
+                <div className='navbar-arrow-left'></div>
+                <span className='navbar-text-search'>
+                  Search
+                </span>
+              </div>
             </li>
             <li className='navbar-link nav-icon'>
               <div
                 className='icon-navbar-all-notes'
-                onClick={this._clearCurrentNotebook}></div>
+                onClick={this._clearCurrentNotebook}>
+                <div className='navbar-arrow-left'></div>
+                <span className='navbar-text-notes'>
+                  Notes
+                </span>
+              </div>
             </li>
             <li className='navbar-link nav-icon'>
               <div
                 className='icon-navbar-all-notebooks'
-                onClick={this._handleNotebookIndexClick}></div>
+                onClick={this._handleNotebookIndexClick}>
+                <div className='navbar-arrow-left'></div>
+                <span className='navbar-text-notebook'>
+                  Notebooks
+                </span>
+              </div>
             </li>
           </ul>
           <AccountBadge user={SessionStore.currentUser()} />
