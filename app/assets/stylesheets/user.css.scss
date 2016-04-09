@@ -1,4 +1,5 @@
 /* SIGN UP HEADER */
+
 .sign-up-header {
   height: 45px;
   padding: 20px 35px;
@@ -105,10 +106,26 @@
 
 .user-form-submit:hover {
   background: #28a956;
+}
 
+.user-form-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.user-form-error-message {
+  background: #d91717;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  display: block;
+  width: 382px;
+  padding: 6px 10px;
 }
 
 /* LOGIN FORM */
+
+
 .login-form-container {
   height: 100%;
   border-top: 4px solid #2dbe60;

@@ -48,7 +48,6 @@ var LoginForm = React.createClass({
     e.preventDefault();
 
     var router = this.context.router;
-
     SessionAPI.login(this.state, function() {
       router.push("/home");
     });
