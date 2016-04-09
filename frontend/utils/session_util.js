@@ -1,7 +1,7 @@
 var SessionActions = require('../actions/session_actions');
 
 var SessionAPI = {
-  login: function(credentials, callback) {
+  login: function(credentials, successCallback, errorCallback) {
     $.ajax({
       type: 'POST',
       url: '/api/session',
@@ -9,10 +9,10 @@ var SessionAPI = {
       data: credentials,
       success: function(currentUser) {
         SessionActions.currentUserReceived(currentUser);
-        callback && callback();
+        if (successCallback) {successCallback();}
       },
       error: function() {
-        console.error("Failed login...");
+        if (errorCallback) {errorCallback();}
       },
     });
   },
@@ -36,7 +36,7 @@ var SessionAPI = {
     });
   },
 
-  fetchCurrentUser: function(completion) {
+  fetchCurrentUser: function(completionCallback) {
     $.ajax({
       type: 'GET',
       url: '/api/session',
@@ -48,12 +48,12 @@ var SessionAPI = {
         console.error("Failed fetchCurrentUser...");
       },
       complete: function () {
-        completion && completion();
+        if (completionCallback) {completionCallback();}
       }
     });
   },
 
-  createUser: function(newUser, completion) {
+  createUser: function(newUser, completionCallback) {
     $.ajax({
       type: 'POST',
       url: '/api/users',
@@ -61,7 +61,7 @@ var SessionAPI = {
       data: {user: newUser},
       success: function(user) {
         SessionActions.currentUserReceived(user);
-        completion && completion();
+        if (completionCallback) {completionCallback();}
       },
       error: function() {
         console.error("Failed createUser...");

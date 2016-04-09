@@ -7,7 +7,7 @@ var SignUpHeader = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   handleClick: function() {
-    this.context.router.push('/Login');
+    this.context.router.push('/login');
   },
   render: function() {
 

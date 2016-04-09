@@ -18,6 +18,7 @@ var SignUpForm = React.createClass({
 
   _guestLogin: function(e) {
     e.preventDefault();
+
     SessionAPI.guestLogin(function() {
       this.context.router.push("/home");
     }.bind(this));
@@ -25,13 +26,11 @@ var SignUpForm = React.createClass({
 
   handleSubmit: function(e) {
     e.preventDefault();
-
     var router = this.context.router;
+
     SessionAPI.createUser(this.state, function() {
       router.push("/home");
     });
-
-
   },
 
   updateEmail: function(e) {
@@ -129,8 +128,8 @@ var SignUpForm = React.createClass({
         the app to manage it all.</h3>
 
         <form onSubmit={this.handleSubmit} className='user-form'>
-          <label htmlFor="email"
-                 className='sign-up-label'>
+
+          <label htmlFor="email" className='sign-up-label'>
             <input className='user-form-input'
               onChange={this.updateEmail}
               type="text"
@@ -138,11 +137,11 @@ var SignUpForm = React.createClass({
               onBlur={this.showEmailError}
               onFocus={this.clearEmailError}
               value={this.state.email}/>
+
             {emailError}
           </label>
 
-          <label htmlFor="password"
-                 className='sign-up-label'>
+          <label htmlFor="password" className='sign-up-label'>
             <input className='user-form-input'
               onChange={this.updatePassword}
               type="password"
@@ -150,18 +149,22 @@ var SignUpForm = React.createClass({
               onFocus={this.clearPasswordError}
               placeholder='Password'
               value={this.state.password}/>
+
             {passwordError}
           </label>
-          <button className='user-form-submit'
-                  disabled={submissionDisabled}>Sign up for free</button>
-          <button className='user-form-submit'
-                  onClick={this._guestLogin}>Explore as Guest</button>
+
+          <button className='user-form-submit' disabled={submissionDisabled}>
+                  Sign up for free
+          </button>
+
+          <button className='user-form-submit' onClick={this._guestLogin}>
+            Explore as Guest
+          </button>
+
         </form>
       </div>
     );
   }
-
-
 });
 
 module.exports = SignUpForm;

@@ -187,6 +187,25 @@
   box-shadow: 0 0 0 1px #7aa7cf, 0 0 4px 0 #3d96e3;
 }
 
+.login-form-error {
+  color: #b92219;
+  border: 1px solid #e4a197;
+  background-color: #ffd1d1;
+  font-weight: 400;
+  display: block;
+  width: 90%;
+  padding: 10px 14px 6px 14px;
+  font-size: 12px;
+  line-height: 19px;
+  margin: auto;
+  letter-spacing: .7px;
+}
+
+.login-form-error-focus {
+  border-color: #e4a197;
+  box-shadow: 0 0 3px 0 rgba(0,0,0, .2);
+}
+
 .login-form-submit {
   margin: 40px auto 0 auto;
   display: block;
