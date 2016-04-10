@@ -56,5 +56,5 @@ and the delay prevents regular users from seeing instructions they won't need.
 
 [Original Design Docs](./docs/README.md)
 
-[welcome]: ./docs/images/HomeView.png
-[NoteShow]: ./docs/images/Welcome.png
+[NoteShow]: ./docs/images/HomeView.png
+[welcome]: ./docs/images/Welcome.png
