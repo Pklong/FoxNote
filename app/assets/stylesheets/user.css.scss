@@ -35,7 +35,7 @@
   letter-spacing: 2px;
   color: #848484;
   display: block;
-  padding: 10px 20px;
+  padding: 10px 30px;
   float: right;
 }
 .sign-in-header-link:after {
@@ -49,6 +49,23 @@
 .sign-in-header-link:hover:after {
   color: #7B868A;
   transform: scaleX(1);
+}
+
+/* OAUTH SIGN IN */
+
+.sign-up-google {
+  width: 95px;
+  height: 26px;
+  background-image: url(image-path('oauth_icons/google/btn_google_signin_light_normal_web.png'));
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: right;
+  display: block;
+  padding: 3px 37px 3px 0;
+  margin-top: 5px;
+}
+.sign-up-google:hover {
+  background-image: url(image-path('oauth_icons/google/btn_google_signin_light_focus_web.png'));
 }
 
 /* SIGN UP FORM */

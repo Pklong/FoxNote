@@ -17,6 +17,7 @@ var SignUpHeader = React.createClass({
           <div className='sign-up-header-brand'></div>
           <h1 className='sign-up-header-title'>FoxNote</h1>
         </Link>
+        <a href='/auth/google' className='sign-up-google'></a>
         <button className='sign-in-header-link'
                 onClick={this.handleClick}>Sign In</button>
       </header>
