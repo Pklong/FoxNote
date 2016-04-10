@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, uniqueness: true, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password_digest, :session_token, presence: true
+  validates :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   # Paperclip
@@ -18,6 +18,33 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
 
     user && user.is_password?(password) ? user : nil
+  end
+
+  def self.find_or_create_by_auth_hash(auth_hash)
+    user = User.find_by(
+      provider: auth_hash[:provider],
+      uid: auth_hash[:uid]
+    )
+
+    return user if user
+
+    newUser = User.create!(
+      email: auth_hash[:info][:email],
+      provider: auth_hash[:provider],
+      uid: auth_hash[:uid]
+    )
+
+    User.set_up_new_user(newUser)
+    newUser
+
+  end
+
+  def self.set_up_new_user(user)
+    user.notebooks.create!(title: "Welcome to Foxnote")
+    user.notebooks.first.notes.create!(title: "Welcome",
+    body: "have fun!",
+    body_delta: '{"ops":[{"insert": "have fun!"}]}',
+    author_id: user.id)
   end
 
   def is_password?(password)
@@ -39,11 +66,4 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
-  def self.set_up_new_user(user)
-    user.notebooks.create!(title: "Welcome to Foxnote")
-    user.notebooks.first.notes.create!(title: "Welcome",
-                                       body: "have fun!",
-                                       body_delta: '{"ops":[{"insert": "have fun!"}]}',
-                                       author_id: user.id)
-  end
 end

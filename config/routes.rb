@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
 
   end
+  # for google oauth2
+  get "/auth/google/callback", to: "omniauth#google"
   # for browserHistory
   get '*unmatched_route', to: 'static_pages#root'
+  # , constraints: { url: /^((?!\/auth\/).)*$/ }
 end
