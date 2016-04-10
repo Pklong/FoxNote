@@ -40,16 +40,11 @@ var Search = React.createClass({
 
   _handleNotebookClick: function(searchItem) {
     var notebook = searchItem.notebook;
-    var notebookNoteIds = notebook.noteIds;
     var router = this.context.router;
 
     NotebookActions.receiveCurrentNotebook(notebook);
 
-    if (notebookNoteIds.length > 0) {
-      router.push("/home/notes/" + notebookNoteIds[0]);
-    } else {
-      router.push("/home");
-    }
+    router.push("/home");
 
     this.props.closeModal();
   },

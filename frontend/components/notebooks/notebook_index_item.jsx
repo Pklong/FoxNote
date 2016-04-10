@@ -3,6 +3,7 @@ var React = require('react');
 var NotebookIndexItem = React.createClass({
   selectClick: function(e) {
     e.stopPropagation();
+
     this.props.selectNotebook(this.props.notebook);
     this.props.closeModal();
   },

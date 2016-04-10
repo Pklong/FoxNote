@@ -14,7 +14,6 @@ var NoteForm = React.createClass({
 
     getInitialState: function() {
         var note = NoteStore.find(this.props.params.noteId);
-        // var note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
         return {note: note, notebooks: NotebookStore.all()};
     },
 

@@ -54,14 +54,7 @@ var NotebookIndex = React.createClass({
 
   _handleSelection: function(notebook) {
     NotebookActions.receiveCurrentNotebook(notebook);
-    var router = this.context.router;
-    var notebookId = notebook.id;
-    if (notebook.noteIds.length > 0) {
-      var firstNote = notebook.noteIds[0];
-      router.push("/home/notes/" + firstNote);
-    } else {
-      router.push("/home");
-    }
+    this.context.router.push("/home");
   },
 
   _notebookChange: function() {

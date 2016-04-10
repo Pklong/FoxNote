@@ -1,5 +1,7 @@
 var React = require('react'),
     NotebookApi = require('../../utils/notebooks_util'),
+    NoteActions = require('../../actions/note_actions'),
+    NotebookStore = require('../../stores/notebook'),
     NotebookActions = require('../../actions/notebook_actions');
 
 var NotebookForm = React.createClass({
@@ -11,12 +13,8 @@ var NotebookForm = React.createClass({
     },
     handleSubmit: function(e) {
         e.preventDefault();
-        var newNotebook = {
-            title: this.state.title,
-            author_id: this.props.authorId
-        };
-        NotebookApi.createNotebook(newNotebook, function () {
-            NotebookActions.receiveCurrentNotebook(newNotebook);
+        NotebookApi.createNotebook(this.state, function () {
+            this.context.router.push("/home");
             this.props.closeModal();
         }.bind(this));
     },

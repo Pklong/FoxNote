@@ -11,7 +11,8 @@ var NotesIndex = React.createClass({
     },
 
     getInitialState: function() {
-        return this.getNotes();
+        return {
+            notes: this.getNotes()};
     },
 
     componentWillMount: function() {
@@ -25,19 +26,19 @@ var NotesIndex = React.createClass({
     },
 
     _noteChange: function() {
-        this.setState(this.getNotes());
+        this.setState({notes: this.getNotes()});
     },
 
     componentWillReceiveProps: function (newProps) {
-        this.setState(this.getNotes());
+        this.setState({notes: this.getNotes()});
     },
 
     getNotes: function() {
         var currentNotebookId = NotebookStore.currentNotebook().id;
         if (currentNotebookId) {
-            return {notes: NoteStore.currentNotebookNotes(currentNotebookId)};
+            return NoteStore.currentNotebookNotes(currentNotebookId);
         } else {
-            return {notes: NoteStore.all()};
+            return NoteStore.all();
         }
     },
 
@@ -48,27 +49,25 @@ var NotesIndex = React.createClass({
         NotesApi.removeNote(deletedNoteId);
     },
 
-    _swapActive: function(selectedNoteId) {
-        debugger;
-    },
-
     render: function () {
-        console.log(NoteStore.currentNote().id);
-        var currentNotebook = NotebookStore.currentNotebook();
-        var title = (currentNotebook.id) ? currentNotebook.title : "notes";
-        var active;
-        var noteIndexItems = this.state.notes.map(function(note, i) {
+        var currentNotebook = NotebookStore.currentNotebook(),
+            title = (currentNotebook.id) ? currentNotebook.title : "notes",
+            shownNoteId = parseInt(this.props.params.noteId),
+            selected;
 
-            active = (i === 0);
+        var noteIndexItems = this.state.notes.map(function(note, i) {
+            if (shownNoteId === note.id) {
+                selected = true;
+            } else {
+                selected = false;
+            }
 
             return  (
                 <NoteIndexItem
-                    className='note-index-item'
                     key={note.id}
                     note={note}
-                    isSelectedNote={active}
-                    deleteNote={this._handleDelete}
-                    changeActive={this._swapActive} />
+                    isSelectedNote={selected}
+                    deleteNote={this._handleDelete} />
             );
         }.bind(this));
 

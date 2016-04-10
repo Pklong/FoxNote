@@ -44,6 +44,7 @@ NotebookStore.__onDispatch = function (payload) {
         //     break;
         case NotebookConstants.CREATE_NOTEBOOK:
             resetNotebook(payload.notebook);
+            setCurrentNotebook(payload.notebook);
             NotebookStore.__emitChange();
             break;
         case NotebookConstants.UPDATE_NOTEBOOK:

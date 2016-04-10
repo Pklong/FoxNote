@@ -27,7 +27,7 @@ var NotebooksAPI = {
       }
     });
   },
-  createNotebook: function(notebook, cb) {
+  createNotebook: function(notebook, completionCallback) {
     $.ajax({
       type:'POST',
       url: '/api/notebooks',
@@ -35,21 +35,21 @@ var NotebooksAPI = {
       data: {notebook: notebook},
       success: function (newNotebook) {
         NotebookActions.createNotebook(newNotebook);
-        cb && cb(newNotebook.id);
+        if (completionCallback) {completionCallback();}
       },
       error: function () {
         console.error("Failed createNotebook...");
       }
     });
   },
-  updateNotebook: function(notebook, cb) {
+  updateNotebook: function(notebook, completionCallback) {
     $.ajax({
       type: 'PATCH',
       url: '/api/notebooks/' + notebook.id,
       dataType: 'json',
       success: function(updatedNotebook) {
         NotebookActions.updateNotebook(updatedNotebook);
-        cb && cb(updatedNotebook.id);
+        if (completionCallback) {completionCallback();}
       },
       error: function () {
         console.error("Failed updateNotebook...");
