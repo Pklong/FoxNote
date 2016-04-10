@@ -16,8 +16,8 @@ var NotesIndex = React.createClass({
 
     componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
-        NotesApi.fetchAllNotes();
-        NotebooksApi.fetchAllNotebooks();
+        // NotesApi.fetchAllNotes();
+        // NotebooksApi.fetchAllNotebooks();
     },
 
     componentWillUnmount: function() {
@@ -53,6 +53,7 @@ var NotesIndex = React.createClass({
     },
 
     render: function () {
+        console.log(NoteStore.currentNote().id);
         var currentNotebook = NotebookStore.currentNotebook();
         var title = (currentNotebook.id) ? currentNotebook.title : "notes";
         var active;

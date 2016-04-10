@@ -1,5 +1,6 @@
 var React = require('react'),
     NotesApi = require('../../utils/notes_util'),
+    NoteActions = require('../../actions/note_actions'),
     NoteStore = require('../../stores/note');
 
 var NoteIndexItem = React.createClass({

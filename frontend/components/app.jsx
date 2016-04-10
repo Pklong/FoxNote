@@ -1,9 +1,16 @@
 var React = require('react'),
     NavBar = require('./navbar/navbar'),
-    NotesIndex = require('./notes/notes_index');
+    NotesIndex = require('./notes/notes_index'),
+    NotebookApi = require('../utils/notebooks_util'),
+    NotesApi = require('../utils/notes_util');
 
 
  var App = React.createClass({
+
+    componentWillMount: function() {
+      NotesApi.fetchAllNotes();
+      NotebookApi.fetchAllNotebooks();
+   },
 
    render: function () {
      return (

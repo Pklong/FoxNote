@@ -30,7 +30,7 @@ var Search = React.createClass({
   _handleNoteClick: function (searchItem) {
     var note = searchItem.note;
     NotebookActions.receiveCurrentNotebook(null);
-    NoteApi.fetchSingleNote(note.id);
+    NoteApi.fetchCurrentNote(note.id);
 
     this.context.router.push("/home/notes/" + note.id);
 

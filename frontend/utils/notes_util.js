@@ -15,21 +15,21 @@ var NotesAPI = {
     });
   },
 
-  fetchSingleNote: function(noteId) {
+  fetchCurrentNote: function(noteId) {
     $.ajax({
       type: 'GET',
       url: '/api/notes/' + noteId,
       dataType: 'json',
       success: function (note) {
-        NoteActions.receiveSingleNote(note);
+        NoteActions.receiveCurrentNote(note);
       },
       error: function () {
-        console.error("Failed fetchSingleNote...");
+        console.error("Failed fetchCurrentNote...");
       }
     });
   },
 
-  createNote: function(note, cb) {
+  createNote: function(note, completionCallback) {
     $.ajax({
       type: 'POST',
       url: '/api/notes',
@@ -37,7 +37,7 @@ var NotesAPI = {
       data: {note: note},
       success: function (newNote) {
         NoteActions.createNote(newNote);
-        cb && cb(newNote.id);
+        if (completionCallback) {completionCallback(newNote.id);}
       },
       error: function () {
         console.error("Failed createNote...");
@@ -45,7 +45,7 @@ var NotesAPI = {
     });
   },
 
-  updateNote: function(note, cb) {
+  updateNote: function(note, completionCallback) {
     $.ajax({
       type: 'PATCH',
       url: '/api/notes/' + note.id,
@@ -53,7 +53,7 @@ var NotesAPI = {
       data: {note: note},
       success: function (updatedNote) {
         NoteActions.updateNote(updatedNote);
-        cb && cb(updatedNote.id);
+        if (completionCallback) {completionCallback();}
       },
       error: function () {
         console.error("Failed updateNote...");
@@ -61,14 +61,14 @@ var NotesAPI = {
     });
   },
 
-  removeNote: function(noteId, cb) {
+  removeNote: function(noteId, completionCallback) {
     $.ajax({
       type: 'DELETE',
       url: '/api/notes/' + noteId,
       dataType: 'json',
       success: function () {
         NoteActions.removeNote(noteId);
-        cb && cb();
+        if (completionCallback) {completionCallback();}
       },
       error: function () {
         console.error("Failed removeNote...");

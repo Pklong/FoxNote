@@ -4,6 +4,7 @@ var React = require('react'),
     NotebookStore = require('../../stores/notebook'),
     NoteActions = require('../../actions/note_actions'),
     NotebookApi = require('../../utils/notebooks_util'),
+    NotebookActions = require('../../actions/notebook_actions'),
     NoteView = require('./note_view');
 
 var NoteForm = React.createClass({
@@ -12,12 +13,17 @@ var NoteForm = React.createClass({
     },
 
     getInitialState: function() {
-        var note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
-        return {note: note, notebooks: []};
+        var note = NoteStore.find(this.props.params.noteId);
+        // var note = {title: "", body: "", body_delta: '{"ops":[{"insert":""}]}'};
+        return {note: note, notebooks: NotebookStore.all()};
     },
 
     componentWillReceiveProps: function (newProps) {
-        this.setState({note: NoteStore.find(newProps.params.noteId)});
+        this.setState(
+            {
+                note: NoteStore.find(newProps.params.noteId),
+                notebooks: NotebookStore.all()
+            });
     },
 
     componentWillUnmount: function() {
@@ -37,13 +43,12 @@ var NoteForm = React.createClass({
     componentDidMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
         this.notebookListener = NotebookStore.addListener(this._notebookChange);
-        NotesApi.fetchSingleNote(this.props.params.noteId);
-        NotebookApi.fetchAllNotebooks();
+        NotesApi.fetchCurrentNote(this.props.params.noteId);
     },
 
 
     render: function () {
-        if (this.state.notebooks.length < 1) {
+        if (this.state.notebooks.length < 1 || !this.state.note) {
             return <p>Loading...</p>;
         }
         return (

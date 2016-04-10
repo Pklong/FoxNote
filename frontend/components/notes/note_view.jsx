@@ -92,7 +92,6 @@ var NoteView = React.createClass({
   },
 
   notebookDropdown: function () {
-
     var notebooks = this.props.notebooks.map(function (notebook, key) {
       return (
         <option key={key} value={notebook.id}>{notebook.title}</option>

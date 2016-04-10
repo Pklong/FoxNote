@@ -8,12 +8,12 @@ var NoteActions = {
             notes: notes
         });
     },
-    receiveSingleNote: function(note) {
-        AppDispatcher.dispatch({
-            actionType: NoteConstants.RECEIVE_SINGLE_NOTE,
-            note: note
-        });
-    },
+    // receiveSingleNote: function(note) {
+    //     AppDispatcher.dispatch({
+    //         actionType: NoteConstants.RECEIVE_SINGLE_NOTE,
+    //         note: note
+    //     });
+    // },
     receiveCurrentNote: function(note) {
         AppDispatcher.dispatch({
             actionType: NoteConstants.RECEIVE_CURRENT_NOTE,
