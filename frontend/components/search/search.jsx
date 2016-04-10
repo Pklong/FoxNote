@@ -21,6 +21,7 @@ var Search = React.createClass({
 
   componentWillUnmount: function() {
     this.searchListener.remove();
+    SearchStore.clear();
   },
 
   _onChange: function() {
@@ -75,7 +76,7 @@ var Search = React.createClass({
       if (result._type === 'Note') {
         type = "note";
         return (
-          <div key={ result.id + result.title + i } className='search-index-item'>
+          <div key={ result.title + i } className='search-index-item'>
             <SearchIndexItem
               searchClick={this._handleNoteClick}
               note={result}
@@ -88,7 +89,7 @@ var Search = React.createClass({
       } else {
         type = "notebook";
         return (
-          <div key={ result.id + result.title + i } className='search-index-item'>
+          <div key={ result.title + i } className='search-index-item'>
             <SearchIndexItem
               searchClick={this._handleNotebookClick}
               notebook={result}

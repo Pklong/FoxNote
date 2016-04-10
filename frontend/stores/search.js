@@ -13,6 +13,10 @@ SearchResultsStore.meta = function () {
   return $.extend(true, {}, _meta);
 };
 
+SearchResultsStore.clear = function () {
+  _searchResults = [];
+};
+
 SearchResultsStore.__onDispatch = function (payload) {
 
   switch (payload.actionType) {
