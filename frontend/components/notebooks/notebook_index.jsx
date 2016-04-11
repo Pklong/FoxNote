@@ -28,23 +28,18 @@ var NotebookIndex = React.createClass({
   },
 
   _handleDelete: function(notebookId) {
-    if (this.state.notebooks.length === 1) {
-      //TO DO FLASH WARNING!
-      console.log("can't delete last notebook");
-    } else {
-      NotebooksApi.removeNotebook(notebookId);
-      if (NotebookStore.currentNotebook().id === notebookId) {
-        NotebookActions.receiveCurrentNotebook(null);
-      }
+    NotebooksApi.removeNotebook(notebookId);
+    if (NotebookStore.currentNotebook().id === notebookId) {
+      NotebookActions.receiveCurrentNotebook(null);
+    }
 
-      //Check to see if deleted notebook contains a currently shown note
-      if (this.props.params.noteId) {
-        var shownNoteId = parseInt(this.props.params.noteId);
-        for (var i = 0, n = this.state.notebooks.length; i < n; i++) {
-          var noteIds = this.state.notebooks[i].noteIds;
-          if (noteIds.includes(shownNoteId)) {
-            this.context.router.push("/home");
-          }
+    //Check to see if deleted notebook contains a currently shown note
+    if (this.props.params.noteId) {
+      var shownNoteId = parseInt(this.props.params.noteId);
+      for (var i = 0, n = this.state.notebooks.length; i < n; i++) {
+        var noteIds = this.state.notebooks[i].noteIds;
+        if (noteIds.includes(shownNoteId)) {
+          this.context.router.push("/home");
         }
       }
     }
