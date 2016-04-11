@@ -27,12 +27,6 @@ var NotebookViewHeader = React.createClass({
         </Modal>
       );
     }
-
-    // isOpen={bool}
-    // onRequestClose={fn}
-    // closeTimeoutMS={n}
-    // style={customStyle}>
-    //
     return (
       <div className='notebook-view-header-container'>
         <h2 className='notebook-view-title'>Notebooks</h2>

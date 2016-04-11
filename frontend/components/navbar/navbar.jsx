@@ -17,7 +17,6 @@ var React = require('react'),
     SessionStore = require('../../stores/session'),
     NotesApi = require('../../utils/notes_util'),
     NoteActions = require('../../actions/note_actions'),
-    NavbarLinkIcon = require('./navbar_link_icon'),
     AccountBadge = require('./account_badge');
 
 var NavBar = React.createClass({
@@ -28,10 +27,6 @@ var NavBar = React.createClass({
   getInitialState: function() {
     return ({showModal: null, notebooks: NotebookStore.all()});
   },
-
-  // getNotebooks: function () {
-  //   return NotebookApi.fetchAllNotebooks();
-  // },
 
   _handleNotebookIndexClick: function() {
     this.setState({showModal: ALLNOTEBOOK});

@@ -11,14 +11,11 @@ var NotesIndex = React.createClass({
     },
 
     getInitialState: function() {
-        return {
-            notes: this.getNotes()};
+        return {notes: this.getNotes()};
     },
 
     componentWillMount: function() {
         this.noteListener = NoteStore.addListener(this._noteChange);
-        // NotesApi.fetchAllNotes();
-        // NotebooksApi.fetchAllNotebooks();
     },
 
     componentWillUnmount: function() {
