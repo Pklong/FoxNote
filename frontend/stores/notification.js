@@ -11,10 +11,6 @@ var setNotebookDeletedMsg = function() {};
 
 var setNoteCreatedMsg = function(noteTitle) {
     _notification = "Note '" + noteTitle + "' created";
-    window.setTimeout(function() {
-        _notification = "";
-        NotificationStore.__emitChange();
-    }, 2000);
 };
 var setNoteUpdatedMsg = function() {};
 
@@ -44,10 +40,10 @@ NotificationStore.__onDispatch = function (payload) {
             _notification = "Note '" + payload.note.title + "' deleted";
             NotificationStore.__emitChange();
             break;
-        // case NotificationConstants.CLEAR_NOTIFICATION_MESSAGE:
-        //     _notification = "";
-        //     NotificationStore.__emitChange();
-        //     break;
+        case NotificationConstants.CLEAR_NOTIFICATION_MESSAGE:
+            _notification = "";
+            NotificationStore.__emitChange();
+            break;
     }
 };
 

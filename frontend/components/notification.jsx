@@ -12,7 +12,10 @@ var Notification = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({notification: NotificationStore.getMessage()});
+    this.setState({notification: NotificationStore.getMessage()}, function() {
+      if (this.state.notification.length > 0) {NotificationActions.clearMessage();}
+    }.bind(this));
+
   },
 
   _buildMsg: function() {
