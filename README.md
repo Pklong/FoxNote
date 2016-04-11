@@ -27,7 +27,7 @@ the formatting onto the plain-text. Here's a simple look at a Delta:
     { insert: ' the ' },
     { insert: 'Grey', attributes: { color: '#ccc' } }
   ]
-)
+}
 ```
 
 * FoxNote avoids using any text not created by the user, which made UX a primary
