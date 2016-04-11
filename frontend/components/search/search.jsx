@@ -17,6 +17,9 @@ var Search = React.createClass({
 
   componentDidMount: function() {
     this.searchListener = SearchStore.addListener(this._onChange);
+    window.setTimeout(function() {
+      this.refs.searchInput.focus();
+    }.bind(this), 500);
   },
 
   componentWillUnmount: function() {
@@ -99,39 +102,11 @@ var Search = React.createClass({
   },
 
   render: function() {
-    // var meta = SearchStore.meta(),
-    //     metaMsg;
-    //     nextPageDisabled,
-    //     buttonMsg;
-
-    // if (!meta.page) {
-    //   metaMsg = "Search Notes and Notebooks!";
-    //   nextPageDisabled = true;
-    //   buttonMsg = "";
-    // } else if (meta.total_pages < meta.page) {
-    //   metaMsg = "No results found...";
-    //   nextPageDisabled = true;
-    //   buttonMsg = "";
-    // } else if (meta.total_pages > meta.page) {
-    //   metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
-    //   nextPageDisabled = false;
-    //   buttonMsg = "More Results!";
-    // } else {
-    //   metaMsg = "Displaying page " + meta.page + " of " + meta.total_pages;
-    //   nextPageDisabled = true;
-    //   buttonMsg = "That's all!";
-    // }
-    // {metaMsg}
-    // <button
-    //   disabled={nextPageDisabled}
-    //   onClick={ this.nextPage }>{buttonMsg}</button>
-    // <nav>
-    // </nav>
-
     return (
       <article className='search-container'>
         <input className='search-input'
                type='text'
+               ref='searchInput'
                placeholder='Search text of notes and notebooks'
                onChange={this.handleInputChange} />
 
