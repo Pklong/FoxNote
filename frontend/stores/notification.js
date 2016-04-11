@@ -9,7 +9,13 @@ var Store = require('flux/utils').Store,
 var setNotebookCreatedMsg = function() {};
 var setNotebookDeletedMsg = function() {};
 
-var setNoteCreatedMsg = function() {};
+var setNoteCreatedMsg = function(noteTitle) {
+    _notification = "Note '" + noteTitle + "' created";
+    window.setTimeout(function() {
+        _notification = "";
+        NotificationStore.__emitChange();
+    }, 2000);
+};
 var setNoteUpdatedMsg = function() {};
 
 var setNoteDeletedMsg = function() {};
@@ -27,7 +33,7 @@ NotificationStore.__onDispatch = function (payload) {
             NotificationStore.__emitChange();
             break;
         case NoteConstants.CREATE_NOTE:
-            _notification = "Note '" + payload.note.title + "' created";
+            setNoteCreatedMsg(payload.note.title);
             NotificationStore.__emitChange();
             break;
         case NoteConstants.UPDATE_NOTE:
@@ -38,10 +44,10 @@ NotificationStore.__onDispatch = function (payload) {
             _notification = "Note '" + payload.note.title + "' deleted";
             NotificationStore.__emitChange();
             break;
-        case NotificationConstants.CLEAR_NOTIFICATION_MESSAGE:
-            _notification = "";
-            NotificationStore.__emitChange();
-            break;
+        // case NotificationConstants.CLEAR_NOTIFICATION_MESSAGE:
+        //     _notification = "";
+        //     NotificationStore.__emitChange();
+        //     break;
     }
 };
 
