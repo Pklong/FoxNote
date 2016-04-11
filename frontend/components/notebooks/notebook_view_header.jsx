@@ -32,6 +32,10 @@ var NotebookViewHeader = React.createClass({
         <h2 className='notebook-view-title'>Notebooks</h2>
         <div className='notebook-view-add-notebook'
           onClick={this._handleNewNotebookClick}>
+          <div className='notebook-arrow-up'></div>
+          <span className='notebook-view-add-notebook-text'>
+            Create a notebook
+          </span>
         </div>
         {modal}
       </div>
