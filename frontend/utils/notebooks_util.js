@@ -61,8 +61,8 @@ var NotebooksAPI = {
       type: 'DELETE',
       url: '/api/notebooks/' + notebookId,
       dataType: 'json',
-      success: function () {
-        NotebookActions.removeNotebook(notebookId);
+      success: function (notebook) {
+        NotebookActions.removeNotebook(notebook);
       },
       error: function () {
         console.error("Failed removeNotebook...");

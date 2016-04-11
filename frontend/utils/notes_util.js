@@ -66,8 +66,8 @@ var NotesAPI = {
       type: 'DELETE',
       url: '/api/notes/' + noteId,
       dataType: 'json',
-      success: function () {
-        NoteActions.removeNote(noteId);
+      success: function (note) {
+        NoteActions.removeNote(note);
         if (completionCallback) {completionCallback();}
       },
       error: function () {

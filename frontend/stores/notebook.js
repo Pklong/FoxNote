@@ -16,8 +16,8 @@ var resetNotebook = function(notebook) {
     _notebooks[notebook.id] = notebook;
 };
 
-var deleteNotebook = function(notebookId) {
-    delete _notebooks[notebookId];
+var deleteNotebook = function(notebook) {
+    delete _notebooks[notebook.id];
 };
 
 var setCurrentNotebook = function(notebook) {

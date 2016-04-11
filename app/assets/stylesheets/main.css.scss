@@ -24,3 +24,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.notification {
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  background: #2DBE60;
+  color: #DA7529;
+  text-transform: uppercase;
+  display: block;
+}
