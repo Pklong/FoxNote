@@ -11,7 +11,7 @@ module.exports = {
     position                   : 'absolute',
     top                        : 0,
     left                       : '89px',
-    right                      : '760px',
+    right                      : '1%',
     bottom                     : 0,
     border                     : 'none',
     background                 : 'transparent',
