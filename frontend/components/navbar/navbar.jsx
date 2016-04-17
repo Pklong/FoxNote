@@ -101,7 +101,8 @@ var NavBar = React.createClass({
           style = ModalStyleForm;
           break;
         case EDITUSER:
-          component = <AccountBadge user={SessionStore.currentUser()} />;
+          component = <AccountBadge user={SessionStore.currentUser()}
+                                    closeModal={this._closeModal} />;
           style = ModalStyleBox;
           break;
       }

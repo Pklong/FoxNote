@@ -70,7 +70,6 @@ var SessionAPI = {
   },
 
   editUser: function(formData, id, successCallback) {
-    console.log(formData);
     $.ajax({
       type: 'PATCH',
       url: '/api/users/' + id,
@@ -79,8 +78,6 @@ var SessionAPI = {
       dataType: 'json',
       data: formData,
       success: function(currentUser) {
-        debugger;
-        console.log("edited user: " + currentUser);
         SessionActions.currentUserReceived(currentUser);
         if (successCallback) {successCallback();}
       }

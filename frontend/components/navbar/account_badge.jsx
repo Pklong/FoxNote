@@ -31,14 +31,15 @@ var AccountBadge = React.createClass({
   },
 
   handleSubmit: function (e) {
-    debugger;
     e.preventDefault();
     var formData = new FormData();
     formData.append("user[email]", this.state.email);
-    formData.append("user[image_file]", this.state.imageFile);
+    if (this.state.imageFile) {
+      formData.append("user[image]", this.state.imageFile);
+    }
     SessionAPI.editUser(formData, this.props.user.id, function() {
-      console.log("updated user");
-    });
+      this.props.closeModal();
+    }.bind(this));
 
   },
 
