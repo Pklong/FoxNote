@@ -67,6 +67,25 @@ var SessionAPI = {
         if (errorCallback) {errorCallback();}
       }
     });
+  },
+
+  editUser: function(formData, id, successCallback) {
+    console.log(formData);
+    $.ajax({
+      type: 'PATCH',
+      url: '/api/users/' + id,
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      data: formData,
+      success: function(currentUser) {
+        debugger;
+        console.log("edited user: " + currentUser);
+        SessionActions.currentUserReceived(currentUser);
+        if (successCallback) {successCallback();}
+      }
+
+    });
   }
 };
 

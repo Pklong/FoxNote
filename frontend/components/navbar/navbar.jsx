@@ -4,8 +4,11 @@ var React = require('react'),
     Modal = require('react-modal'),
     ModalStyleDrawer = require('./modal_style_drawer'),
     ModalStyleForm = require('./modal_style_form'),
+    ModalStyleBox = require('./modal_style_box'),
+
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
     SEARCHNOTES = 'SEARCH_NOTES',
+    EDITUSER = 'EDIT_USER',
 
     Search = require('../search/search'),
     NotebookApi = require('../../utils/notebooks_util'),
@@ -43,6 +46,10 @@ var NavBar = React.createClass({
 
   _handleSearchClick: function() {
     this.setState({showModal: SEARCHNOTES});
+  },
+
+  _handleAccountClick: function() {
+    this.setState({showModal: EDITUSER});
   },
 
   _closeModal: function() {
@@ -92,6 +99,10 @@ var NavBar = React.createClass({
         case SEARCHNOTES:
           component = <Search closeModal={this._closeModal} />;
           style = ModalStyleForm;
+          break;
+        case EDITUSER:
+          component = <AccountBadge user={SessionStore.currentUser()} />;
+          style = ModalStyleBox;
           break;
       }
 
@@ -154,7 +165,11 @@ var NavBar = React.createClass({
               </div>
             </li>
           </ul>
-          <AccountBadge user={SessionStore.currentUser()} />
+          <div className='navbar-account-box'
+               onClick={this._handleAccountClick}>
+            <img src={SessionStore.currentUser().image} />
+            <span className='navbar-text-logout'>Logout</span>
+          </div>
         </div>
         {modal}
       </div>
