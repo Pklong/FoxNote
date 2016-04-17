@@ -127,6 +127,19 @@
   left: 41px;
 }
 
+.navbar-account-box > .navbar-arrow-left {
+  transition: visibility .2s 0 ease;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #606060;
+  visibility: hidden;
+  position: absolute;
+  top: 42px;
+  left: 70px;
+}
+
 .navbar-text-logout {
   top: 35px;
   left: 75px;
@@ -145,6 +158,9 @@
 }
 
 .navbar-account-box:hover .navbar-text-logout {
+  visibility: visible;
+}
+.navbar-account-box:hover .navbar-arrow-left {
   visibility: visible;
 }
 

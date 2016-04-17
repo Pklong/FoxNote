@@ -169,7 +169,8 @@ var NavBar = React.createClass({
           <div className='navbar-account-box'
                onClick={this._handleAccountClick}>
             <img src={SessionStore.currentUser().image} />
-            <span className='navbar-text-logout'>Logout</span>
+            <div className='navbar-arrow-left'></div>
+            <span className='navbar-text-logout'>Account</span>
           </div>
         </div>
         {modal}

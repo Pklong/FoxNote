@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
 
   # Paperclip
-  has_attached_file :image, default_url: "fox_avatar.jpg"
+  has_attached_file :image, default_url: "fox_avatar.jpg",
+                    styles: { thumb: "100x100#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token

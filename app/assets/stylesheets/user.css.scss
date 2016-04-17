@@ -261,3 +261,140 @@
 .login-footer-redirect:hover {
   color: #28a956
 }
+
+/* USER EDIT FORM */
+
+.user-edit-form-container {
+  width: 450px;
+  height: 380px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 3;
+  top: -16px;
+  left: 19px;
+
+}
+
+.user-edit-form {
+  width: 100%;
+}
+
+.user-edit-form > label:first-child {
+  margin: 0 0 20px 30px;
+  display: inline-block;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.user-email {
+  color: #4a4a4a;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  word-wrap: break-word;
+  padding: 20px 20px 10px 20px;
+}
+
+.user-edit-label {
+  color: #4a4a4a;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 9px 15px 10px 5px;
+}
+
+.user-edit-input-text {
+  margin: auto;
+  display: block;
+  width: 320px;
+  color: #3b3b3b;
+  border: 1px solid #cacaca;
+  border-radius: 2px;
+  height: 20px;
+  font-size: 16px;
+  padding: 9.5px;
+}
+.user-edit-input-text:focus {
+  border-color: #7aa7cf;
+  box-shadow: 0 0 0 1px #7aa7cf, 0 0 4px 0 #3d96e3;
+}
+
+.user-edit-input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.user-upload > a {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  line-height: 1.7;
+  border: 1px solid #1fae52;
+  color: #1fae52;
+  padding: 10px;
+  border-radius: 5px;
+  height: 28px;
+  text-align: center;
+  width: 44%;
+}
+
+.user-upload:hover > a {
+  background: #28a956;
+  color: #fff;
+}
+
+.user-edit-submit {
+  display: inline-block;
+  cursor: pointer;
+  width: 48%;
+  height: 47px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 2.75;
+  text-align: center;
+  background: #2dbe60;
+  border: 1px solid #1fae52;
+  margin-left: 10px;
+}
+
+.user-edit-submit:hover {
+  background: #28a956;
+}
+
+
+.user-avatar {
+  margin: auto;
+  max-height: 100px;
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.user-logout {
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  height: 47px;
+  border-radius: 3px;
+  color: #000;
+  font-weight: 500;
+  line-height: 2.75;
+  text-align: center;
+  background: #cacaca;
+  border: 1px solid #807F83;
+  margin-top: 20px;
+}
+
+.user-logout:hover {
+  background: #807F83;
+  color: #fff;
+}

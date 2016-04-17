@@ -43,37 +43,50 @@ var AccountBadge = React.createClass({
 
   },
 
-  handleClick: function(e) {
+  logOut: function(e) {
     e.preventDefault();
     SessionAPI.logout();
     this.context.router.push("/");
   },
 
   render: function () {
+    var currentEmail = this.props.user.email;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit} >
+      <div className='user-edit-form-container'>
+        <div className='user-avatar'>
+          <img src={this.state.image} />
+        </div>
+        <p className='user-email'>{currentEmail}</p>
+        <form className='user-edit-form'
+              onSubmit={this.handleSubmit} >
           <label>Email
             <input
+              className='user-edit-input-text'
               type='text'
-              placeholder='Enter your e-mail'
+              placeholder='Change your e-mail'
               onChange={this.handleEmailChange}
               value={this.state.email}
               />
           </label>
-          <br />
-          <label>User Avatar
+          <label
+            htmlFor='user-avatar'
+            className='user-upload'>
+            <a>Change User Avatar</a>
+          </label>
             <input
+              name='user-avatar'
+              id='user-avatar'
+              className='user-edit-input-file'
               type='file'
               onChange={this.handleFileChange}
               />
-          </label>
-          <br />
-          <input type="submit" value="Edit Account"/>
+          <input
+            className='user-edit-submit'
+            type="submit"
+            value="Save Changes"/>
         </form>
-        <p>Current Avatar:</p>
-        <img src={this.state.image} />
-        <button onClick={this.handleClick}>Log Out</button>
+        <button className='user-logout'
+                onClick={this.logOut}>Log out</button>
       </div>
     );
   }
