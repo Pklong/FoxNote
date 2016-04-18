@@ -111,7 +111,7 @@ var Search = React.createClass({
                placeholder='Search text of notes and notebooks'
                onChange={this.handleInputChange} />
 
-             <ul className='results-container'>
+        <ul className='results-container'>
           { this.results() }
         </ul>
       </article>

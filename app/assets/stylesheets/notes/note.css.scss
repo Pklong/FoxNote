@@ -4,7 +4,7 @@
   width: 700px;
   max-height: 600px;
   padding: 20px;
-  overflow: scroll;
+  overflow-y: auto;
   background: #fff
 }
 
@@ -49,6 +49,7 @@
   top: 0;
   bottom: 0;
   border-right: 1px solid #ECECEC;
+  overflow-y: auto;
 }
 
 .notes-header-title {
@@ -81,7 +82,6 @@
 }
 
 .note-scroll-window {
-  overflow-y: scroll;
   background: #fff;
 
 }
