@@ -7,11 +7,11 @@ Write your thoughts at [FoxNote.tech](http://www.foxnote.tech/)
 
 ###Welcome View:
 
-![welcome]
+[![welcome](./docs/images/Welcome.png)](http://www.foxnote.tech/)
 
 ###Home View:
 
-![NoteShow]
+[![NoteShow](./docs/images/HomeView.png)](http://www.foxnote.tech/)
 
 ###Technical Details:
 * FoxNote allows for rich-text editing using the Quill.js library. Formatting
@@ -43,6 +43,32 @@ and the delay prevents regular users from seeing instructions they won't need.
 * Rich-text formatting allows fonts, bold, italic, colors and more
 * Organize notes within notebooks
 * Search all note and notebook text from one page
+* Upload custom User Avatars to AWS S3
+
+###Languages
+* Javascript
+* Ruby
+* SQL
+* HTML
+* CSS
+
+###Frameworks
+
+* React.js
+* Rails
+
+###Libraries and Technologies
+
+* Quill.js
+* BCrypt
+* Flux
+* jQuery
+* Paperclip
+* PgSearch
+* PostgreSQL
+* Google-OmniAuth
+* React Router
+* Webpack
 
 ###To-Do:
 * [ ] Implement Responsive Web Design ( Flexbox )
