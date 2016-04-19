@@ -102,7 +102,6 @@ var Search = React.createClass({
   },
 
   render: function() {
-
     return (
       <article className='search-container'>
         <input className='search-input'

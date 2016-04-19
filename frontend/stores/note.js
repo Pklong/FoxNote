@@ -16,8 +16,8 @@ var resetNote = function(note) {
     _notes[note.id] = note;
 };
 
-var deleteNote = function(noteId) {
-    delete _notes[noteId];
+var deleteNote = function(note) {
+    delete _notes[note.id];
 };
 
 var setCurrentNote = function(note) {
@@ -34,10 +34,6 @@ NoteStore.__onDispatch = function (payload) {
             resetNotes(payload.notes);
             NoteStore.__emitChange();
             break;
-        // case NoteConstants.RECEIVE_SINGLE_NOTE:
-        //     resetNote(payload.note);
-        //     NoteStore.__emitChange();
-        //     break;
         case NoteConstants.RECEIVE_CURRENT_NOTE:
             setCurrentNote(payload.note);
             NoteStore.__emitChange();

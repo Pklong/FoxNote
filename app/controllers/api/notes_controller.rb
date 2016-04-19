@@ -16,7 +16,7 @@ class Api::NotesController < ApplicationController
 
     @note.destroy!
 
-    render json: @note
+    render :show
   end
 
   def index
