@@ -19,6 +19,7 @@ var AccountBadge = React.createClass({
   },
 
   handleFileChange: function(e) {
+    // TO DO: HANDLE BAD INPUT LIKE NON-IMAGE FILES
     var file = e.currentTarget.files[0];
     var reader = new FileReader();
 
