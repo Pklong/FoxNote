@@ -76,14 +76,14 @@ var NoteView = React.createClass({
     }
 
     this.timer = setTimeout(function() {
+      var noteId = this.state.note.id;
       var note = {
-        id: this.state.note.id,
         title: this.state.note.title,
         body: this._editor.getText(),
         body_delta: JSON.stringify(this._editor.getContents()),
         notebook_id: this.getDropdownNotebookId()
       };
-      NotesApi.updateNote(note);
+      NotesApi.updateNote(note, noteId);
     }.bind(this), 1000);
   },
 

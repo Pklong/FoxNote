@@ -77,8 +77,8 @@ var NavBar = React.createClass({
 
     return {
       title: "Title your note",
-      body: "just start typing...",
-      body_delta: '{"ops":[{"insert":"just start typing..."}]}',
+      body: "",
+      body_delta: '{"ops":[{"insert":""}]}',
       notebook_id: newNotebookId
     };
   },

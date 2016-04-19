@@ -45,10 +45,10 @@ var NotesAPI = {
     });
   },
 
-  updateNote: function(note, completionCallback) {
+  updateNote: function(note, noteId, completionCallback) {
     $.ajax({
       type: 'PATCH',
-      url: '/api/notes/' + note.id,
+      url: '/api/notes/' + noteId,
       dataType: 'json',
       data: {note: note},
       success: function (updatedNote) {
