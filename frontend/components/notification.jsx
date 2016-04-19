@@ -1,6 +1,5 @@
 var React = require('react'),
-    NotificationStore = require('../stores/notification'),
-    NotificationActions = require('../actions/notification_actions');
+    NotificationStore = require('../stores/notification');
 
 var Notification = React.createClass({
   getInitialState: function() {
@@ -8,19 +7,26 @@ var Notification = React.createClass({
   },
 
   componentWillMount: function() {
-    this.feedbackListener = NotificationStore.addListener(this._onChange);
+    this.msgListener = NotificationStore.addListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    this.msgListener.remove();
   },
 
   _onChange: function() {
-    this.setState({notification: NotificationStore.getMessage()}, function() {
-      if (this.state.notification.length > 0) {NotificationActions.clearMessage();}
-    }.bind(this));
+    this.setState({notification: NotificationStore.getMessage()});
+  },
 
+  _clearMsg: function() {
+    this.setState({notification: ""});
   },
 
   _buildMsg: function() {
     if (this.state.notification.length > 0) {
-      return <p className='notification'>{this.state.notification}</p>;
+      return (
+          <p className='notification'>{this.state.notification}</p>
+      );
     } else {
       return null;
     }
@@ -28,12 +34,13 @@ var Notification = React.createClass({
 
   render: function() {
     var msg = this._buildMsg();
+    if (this.state.notification.length > 0) {
+      window.setTimeout(function() {
+        this._clearMsg();
+      }.bind(this), 2000);
+    }
 
-    return (
-      <div>
-        {msg}
-      </div>
-    );
+    return (<span>{msg}</span>);
   },
 });
 
