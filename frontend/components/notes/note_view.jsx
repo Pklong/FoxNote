@@ -25,12 +25,21 @@ var NoteView = React.createClass({
     this.noteListener.remove();
   },
 
-  _onChange: function(noteArg) {
+  _onChange: function(noteArg, newNote) {
     var note = noteArg || NoteStore.find(this.props.note.id);
     cursor = this._editor.getSelection();
     this._editor.setContents(JSON.parse(note.body_delta));
-    if (cursor) {
+
+    if (newNote) {
+      // editor is working on a new note, move cursor to end
+      var endOfNote = this._editor.getLength();
+      this._editor.setSelection(endOfNote, endOfNote);
+    } else if (cursor) {
+      // editor preserves cursor location through edit
       this._editor.setSelection(cursor.start, cursor.end);
+    } else {
+      // endOfNote = this._editor.getLength();
+      // this._editor.setSelection(endOfNote, endOfNote);
     }
   },
 
@@ -76,14 +85,14 @@ var NoteView = React.createClass({
     }
 
     this.timer = setTimeout(function() {
+      var noteId = this.state.note.id;
       var note = {
-        id: this.state.note.id,
         title: this.state.note.title,
         body: this._editor.getText(),
         body_delta: JSON.stringify(this._editor.getContents()),
         notebook_id: this.getDropdownNotebookId()
       };
-      NotesApi.updateNote(note);
+      NotesApi.updateNote(note, noteId);
     }.bind(this), 1000);
   },
 
@@ -111,8 +120,16 @@ var NoteView = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
-    this._onChange(newProps.note);
-    this.setState({note: newProps.note});
+    // prevents an update if user switched before timeout expired
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    // Note to edit has changed, will need to reset cursor to end
+    var newNote = newProps.note.id !== this.state.note.id;
+
+    this.setState({note: newProps.note}, function() {
+      this._onChange(newProps.note, newNote);
+    }.bind(this));
   },
 
   render: function() {
