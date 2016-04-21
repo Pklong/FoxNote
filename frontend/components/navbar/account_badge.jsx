@@ -8,18 +8,10 @@ var AccountBadge = React.createClass({
 
 
   getInitialState: function() {
-    return {
-      email: this.props.user.email,
-      image: this.props.user.image
-    };
-  },
-
-  handleEmailChange: function(e) {
-    this.setState({ email: e.currentTarget.value });
+    return {image: this.props.user.image};
   },
 
   handleFileChange: function(e) {
-    // TO DO: HANDLE BAD INPUT LIKE NON-IMAGE FILES
     var file = e.currentTarget.files[0];
     var reader = new FileReader();
 
@@ -33,14 +25,14 @@ var AccountBadge = React.createClass({
 
   handleSubmit: function (e) {
     e.preventDefault();
-    var formData = new FormData();
-    formData.append("user[email]", this.state.email);
     if (this.state.imageFile) {
+      var formData = new FormData();
       formData.append("user[image]", this.state.imageFile);
+      
+      SessionAPI.editUser(formData, this.props.user.id, function() {
+        this.props.closeModal();
+      }.bind(this));
     }
-    SessionAPI.editUser(formData, this.props.user.id, function() {
-      this.props.closeModal();
-    }.bind(this));
 
   },
 

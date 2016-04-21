@@ -106,13 +106,17 @@ var NoteView = React.createClass({
     var value = this.state.note.notebook_id;
 
     return (
-      <select
-        id='notebook-select'
-        onChange={this._notebookChange}
-        defaultValue={this.props.notebooks[0].id}
-        value={value}>
-        {notebooks}
-      </select>
+      <span>
+        <span className='note-editor-notebooks-label'>
+        </span>
+        <select
+          id='notebook-select'
+          onChange={this._notebookChange}
+          defaultValue={this.props.notebooks[0].id}
+          value={value}>
+          {notebooks}
+        </select>
+      </span>
     );
   },
 

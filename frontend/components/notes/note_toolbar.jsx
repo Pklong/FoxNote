@@ -20,6 +20,7 @@ var NoteToolbar = React.createClass({
     return (
       <div id="toolbar" className="ql-toolbar-container toolbar">
         {this.props.dropdown}
+        <span className="ql-format-separator"></span>
         <select
           className="ql-font"
           data-reactid='2'>
@@ -29,6 +30,7 @@ var NoteToolbar = React.createClass({
         </select>
         <span className="ql-format-separator"></span>
         <select
+          defaultValue='13px'
           className="ql-size"
           data-reactid='3'>
           <option value="10px">Small</option>
@@ -60,6 +62,15 @@ var NoteToolbar = React.createClass({
         <span className="ql-format-separator"></span>
         <span className="ql-bullet ql-format-button"/>
         <span className="ql-list ql-format-button"/>
+        <span className="ql-format-separator"></span>
+          <select
+            className="ql-align ql-format-button"
+            data-reactid='f'>
+            <option value='left'></option>
+            <option value='center'></option>
+            <option value='right'></option>
+            <option value='justify'></option>
+          </select>
       </div>
     );
   },

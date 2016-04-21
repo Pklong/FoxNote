@@ -26,8 +26,8 @@
 [class*="icon-navbar-"] {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   margin: auto;
   transition: all .2s ease-in-out;
   background-color: #fff;
@@ -37,10 +37,10 @@
 }
 
 .icon-navbar-add-note {
-  background-image: url(image-path('NavBarFoxNoteIcons/AddNote.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/addNote.png'));
 }
 .icon-navbar-add-note:hover {
-  background-image: url(image-path('NavBarFoxNoteIcons/AddNoteHover.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/hoverAdd.png'));
 }
 .icon-navbar-add-note:hover .navbar-text-add-note {
   visibility: visible;
@@ -51,10 +51,10 @@
   transition: visibility 0.2s 0.8s ease;
 }
 .icon-navbar-search-notes {
-  background-image: url(image-path('NavBarFoxNoteIcons/Search.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/search.png'));
 }
 .icon-navbar-search-notes:hover {
-  background-image: url(image-path('NavBarFoxNoteIcons/SearchHover.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/hoverSearch.png'));
 }
 .icon-navbar-search-notes:hover .navbar-text-search {
   visibility: visible;
@@ -65,10 +65,10 @@
   transition: visibility 0.2s 0.8s ease;
 }
 .icon-navbar-all-notes {
-  background-image: url(image-path('NavBarFoxNoteIcons/Notes.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/notes.png'));
 }
 .icon-navbar-all-notes:hover {
-  background-image: url(image-path('NavBarFoxNoteIcons/NotesHover.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/hoverNote.png'));
 }
 .icon-navbar-all-notes:hover .navbar-text-notes {
   visibility: visible;
@@ -79,10 +79,10 @@
   transition: visibility 0.2s 0.8s ease;
 }
 .icon-navbar-all-notebooks {
-  background-image: url(image-path('NavBarFoxNoteIcons/Notebooks.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/notebook.png'));
 }
 .icon-navbar-all-notebooks:hover {
-  background-image: url(image-path('NavBarFoxNoteIcons/NotebooksHover.png'));
+  background-image: url(image-path('NavBarFoxNoteIcons/hoverNotebook.png'));
 }
 .icon-navbar-all-notebooks:hover .navbar-text-notebook {
   visibility: visible;

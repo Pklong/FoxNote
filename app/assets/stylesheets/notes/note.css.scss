@@ -31,6 +31,18 @@
   margin-top: 5px;
 }
 
+.note-editor-notebooks-label {
+  height: 16px;
+  width: 18px;
+  position: absolute;
+  top: 11px;
+  left: 46px;
+
+  background-image: url(image-path('FoxNoteIcons/tinyNotebook.png'));
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .toolbar {
   background: #fff;
   text-align: center;
