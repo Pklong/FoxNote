@@ -41,6 +41,6 @@ g_note5 = guest.notes.create!(title: "George Carlin",
                                 body_delta: '{"ops":[{"insert": "Think of how stupid the average person is, and realize half of them are stupider than that."}]}')
 
 g_note6 = guest.notes.create!(title: "Computers",
-                                body: "The meal isn't over when I'm full, the meal is over when I hate myself",
+                                body: "There are 10 kinds of people in the world: those that understand binary, and those that do not.",
                                 notebook_id: guest_nb2.id,
                                 body_delta: '{"ops":[{"insert":"There are 10 kinds of people in the world: those that understand binary, and those that do not."}]}')
