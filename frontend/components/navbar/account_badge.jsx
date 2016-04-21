@@ -19,6 +19,7 @@ var AccountBadge = React.createClass({
   },
 
   handleFileChange: function(e) {
+    // TO DO: HANDLE BAD INPUT LIKE NON-IMAGE FILES
     var file = e.currentTarget.files[0];
     var reader = new FileReader();
 
@@ -51,6 +52,7 @@ var AccountBadge = React.createClass({
 
   render: function () {
     var currentEmail = this.props.user.email;
+
     return (
       <div className='user-edit-form-container'>
         <div className='user-avatar'>
@@ -59,15 +61,6 @@ var AccountBadge = React.createClass({
         <p className='user-email'>{currentEmail}</p>
         <form className='user-edit-form'
               onSubmit={this.handleSubmit} >
-          <label>Email
-            <input
-              className='user-edit-input-text'
-              type='text'
-              placeholder='Change your e-mail'
-              onChange={this.handleEmailChange}
-              value={this.state.email}
-              />
-          </label>
           <label
             htmlFor='user-avatar'
             className='user-upload'>

@@ -266,7 +266,7 @@
 
 .user-edit-form-container {
   width: 450px;
-  height: 380px;
+  height: 275px;
   padding: 20px;
   background: #fff;
   border: 1px solid #ececec;
@@ -284,11 +284,12 @@
 }
 
 .user-edit-form > label:first-child {
-  margin: 0 0 20px 30px;
-  display: inline-block;
+  margin-bottom: 20px;
+  display: inline;
   padding: 5px;
   font-size: 12px;
   line-height: 17px;
+  width: 100%
 }
 
 .user-email {
@@ -364,7 +365,6 @@
   text-align: center;
   background: #2dbe60;
   border: 1px solid #1fae52;
-  margin-left: 10px;
 }
 
 .user-edit-submit:hover {

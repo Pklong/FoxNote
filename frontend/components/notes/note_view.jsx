@@ -25,12 +25,12 @@ var NoteView = React.createClass({
     this.noteListener.remove();
   },
 
-  _onChange: function(noteArg, newNote) {
+  _onChange: function(noteArg, noteChange) {
     var note = noteArg || NoteStore.find(this.props.note.id);
     cursor = this._editor.getSelection();
     this._editor.setContents(JSON.parse(note.body_delta));
 
-    if (newNote || !cursor) {
+    if (noteChange || !cursor) {
       // editor is working on a new note or mounting, move cursor to end
       var endOfNote = this._editor.getLength();
       this._editor.setSelection(endOfNote, endOfNote);
@@ -121,11 +121,11 @@ var NoteView = React.createClass({
     if (this.timer) {
       clearTimeout(this.timer);
     }
-    // Note to edit has changed, will need to reset cursor to end
-    var newNote = newProps.note.id !== this.state.note.id;
+
+    var noteChange = newProps.note.id !== this.state.note.id;
 
     this.setState({note: newProps.note}, function() {
-      this._onChange(newProps.note, newNote);
+      this._onChange(newProps.note, noteChange);
     }.bind(this));
   },
 
