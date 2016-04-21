@@ -18,7 +18,7 @@ var SessionAPI = {
   },
 
   guestLogin: function(loginCallback) {
-    this.login({email: "student@aa.io", password: "sennacy"},
+    this.login({email: "FantasticMrFox@gmail.com", password: "RoaldDahl"},
                 loginCallback);
   },
 

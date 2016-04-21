@@ -1,7 +1,7 @@
 
 User.destroy_all
 
-guest = User.create!(email: "student@aa.io", password: "sennacy")
+guest = User.create!(email: "FantasticMrFox@gmail.com", password: "RoaldDahl")
 
 Notebook.destroy_all
 
