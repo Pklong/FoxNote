@@ -46,7 +46,7 @@ and the delay prevents regular users from seeing instructions they won't need.
 * Upload custom User Avatars to AWS S3
 
 ###Languages
-* Javascript
+* JavaScript
 * Ruby
 * SQL
 * HTML
@@ -81,6 +81,3 @@ and the delay prevents regular users from seeing instructions they won't need.
 * [ ] Chat with other Users
 
 [Original Design Docs](./docs/README.md)
-
-[NoteShow]: ./docs/images/HomeView.png
-[welcome]: ./docs/images/Welcome.png
