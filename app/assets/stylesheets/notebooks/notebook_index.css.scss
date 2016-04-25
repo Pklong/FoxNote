@@ -83,7 +83,8 @@
   left: 0;
   width: 428px;
   border-right: 3px solid #888;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #fff;
 
 }
