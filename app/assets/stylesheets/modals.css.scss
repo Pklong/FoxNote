@@ -62,3 +62,16 @@
   transform: scale(0.5) translateX(-100%);
   transition: all 250ms ease-out;
 }
+
+.modal-account-box-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-account-box {
+  background: red;
+}

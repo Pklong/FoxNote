@@ -100,7 +100,7 @@ var NavBar = React.createClass({
           component = <Search closeModal={this._closeModal} />;
           style = ModalStyleForm;
           break;
-          
+
         case EDITUSER:
           component = <AccountBadge user={SessionStore.currentUser()}
                                     closeModal={this._closeModal} />;
