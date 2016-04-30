@@ -61,10 +61,6 @@ var NavBar = React.createClass({
     NotebookActions.receiveCurrentNotebook(null);
     this.context.router.push("/home");
   },
-  _handleLogoClick: function() {
-    this._closeModal();
-    this.context.router.push("/home");
-  },
 
   _buildDummyNote: function() {
     var newNotebookId;
@@ -123,9 +119,7 @@ var NavBar = React.createClass({
       <div className='navbar-container group'>
         <div className='navbar-main'>
           <ul>
-            <li className='small-logo'
-                onClick={this._handleLogoClick}>
-            </li>
+            <li className='small-logo'></li>
             <li className='navbar-link'>
               <div
                 className='icon-navbar-add-note'
