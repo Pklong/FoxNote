@@ -3,7 +3,7 @@ var React = require('react'),
 
     Modal = require('react-modal'),
     ModalStyleDrawer = require('./modal_style_drawer'),
-    ModalStyleForm = require('./modal_style_form'),
+    ModalStyleCover = require('./modal_style_cover'),
     ModalStyleBox = require('./modal_style_box'),
 
     ALLNOTEBOOK = 'ALL_NOTEBOOK',
@@ -98,7 +98,7 @@ var NavBar = React.createClass({
 
         case SEARCHNOTES:
           component = <Search closeModal={this._closeModal} />;
-          style = ModalStyleForm;
+          style = ModalStyleCover;
           break;
 
         case EDITUSER:

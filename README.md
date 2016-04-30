@@ -15,7 +15,7 @@ Write your thoughts at [FoxNote.tech](http://www.foxnote.tech/)
 
 ###Technical Details:
 * FoxNote allows for rich-text editing using the Quill.js library. Formatting
-is achieved with json objects called Deltas, which hold the format-type and result.
+is achieved with JSON called Deltas, which hold the format-type and result.
 The plain-text contents of the editor are retrieved along with the formatting and stored
 in separate columns of the database. When a note component is mounted, the editor applies
 the formatting onto the plain-text. Here's a simple look at a Delta:
