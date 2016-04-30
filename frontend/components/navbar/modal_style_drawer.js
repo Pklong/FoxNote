@@ -11,7 +11,7 @@ module.exports = {
     position                   : 'absolute',
     top                        : 0,
     left                       : '89px',
-    right                      : '1%',
+    right                      : 'auto',
     bottom                     : 0,
     border                     : 'none',
     background                 : 'transparent',
@@ -19,7 +19,8 @@ module.exports = {
     WebkitOverflowScrolling    : 'touch',
     borderRadius               : 0,
     outline                    : 'none',
-    padding                    : '20px'
+    padding                    : '20px',
+    width                      : '395px'
 
   }
 };
