@@ -13,14 +13,17 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
+    if @note.author_id == current_user.id
+      @note.destroy!
+      render :show
+    else
+      render json: {}, status: 403
+    end
 
-    @note.destroy!
-
-    render :show
   end
 
   def index
-    @notes = current_user.notes.order(updated_at: :asc)
+    @notes = current_user.notes
   end
 
   def show
@@ -30,7 +33,7 @@ class Api::NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
 
-    if @note.update(note_params)
+    if @note.update(note_params) && @note.author_id == current_user.id
       render :show
     else
       render json: @note.errors.full_messages, status: 422

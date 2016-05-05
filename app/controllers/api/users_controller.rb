@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(user_params)
+    if @user.update(user_params) && @user.id == current_user.id
       render :show
     else
       render json: { message: @user.errors.full_messages }, status: 400
@@ -25,10 +25,10 @@ class Api::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
 
-    if @user.destroy
+    if @user.destroy && @user.id == current_user.id
       render json: {}
     else
-      render json: { message: "No such user!" }, status: 404
+      render json: {}, status: 404
     end
 
   end

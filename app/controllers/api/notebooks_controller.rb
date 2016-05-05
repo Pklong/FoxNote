@@ -13,10 +13,12 @@ class Api::NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find(params[:id])
-
-    @notebook.destroy!
-
-    render :show
+    unless lastNotebook? || @notebook.author_id != current_user.id
+      @notebook.destroy!
+      render :show
+    else
+      render json: {}, status: 403
+    end
   end
 
   def index
@@ -30,7 +32,7 @@ class Api::NotebooksController < ApplicationController
   def update
     @notebook = Notebook.find(params[:id])
 
-    if @notebook.update(notebook_params)
+    if @notebook.update(notebook_params) && @notebook.author_id == current_user.id
       render :show
     else
       render json: @notebook.errors.full_messages, status: 422
@@ -38,6 +40,10 @@ class Api::NotebooksController < ApplicationController
   end
 
   private
+
+  def lastNotebook?
+    current_user.notebooks.length == 1
+  end
 
   def notebook_params
     params.require(:notebook).permit(:title)

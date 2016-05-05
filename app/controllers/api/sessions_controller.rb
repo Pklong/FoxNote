@@ -25,6 +25,6 @@ class Api::SessionsController < ApplicationController
   def destroy
     logout!
 
-    render json: {} # Json object for AJAX success callback
+    render json: {} #for AJAX success callback
   end
 end
