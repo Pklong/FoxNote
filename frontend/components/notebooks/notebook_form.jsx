@@ -40,13 +40,15 @@ var NotebookForm = React.createClass({
                         type='text'
                         placeholder='Title your notebook'
                         onChange={this.handleTitleChange} />
-                    <button
-                        className='notebook-form-cancel'
-                        onClick={this.handleCancel}>Cancel</button>
-                    <button
-                        disabled={btnDisabled}
-                        className='notebook-form-submit'
-                        onClick={this.handleSubmit}>Create notebook</button>
+                      <div className="notebook-form-buttons">
+                        <button
+                          className='notebook-form-cancel'
+                          onClick={this.handleCancel}>Cancel</button>
+                        <button
+                          disabled={btnDisabled}
+                          className='notebook-form-submit'
+                          onClick={this.handleSubmit}>Create notebook</button>
+                      </div>
                 </form>
             </div>
         );

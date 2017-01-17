@@ -1,6 +1,12 @@
+.notebook-form-buttons {
+  justify-content: center;
+  display: flex
+}
+
 .notebook-form-container {
   margin: auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .notebook-form-icon {
@@ -36,7 +42,6 @@
 }
 
 .notebook-form-title {
-  text-align: center;
   color: #c4c4c4;
   margin: auto;
   line-height: 44px;
@@ -45,6 +50,12 @@
   display: block;
   padding: 80px;
 
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
 }
 
 .notebook-form-cancel {
