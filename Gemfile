@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '4.2.5.1'
+gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -26,7 +26,6 @@ end
 group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'spring'
