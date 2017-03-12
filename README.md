@@ -70,6 +70,15 @@ and the delay prevents regular users from seeing instructions they won't need.
 * React Router
 * Webpack
 
+###Getting Started
+###Install Webpack
+The command below will install
+[Webpack](https://webpack.github.io/docs/installation.html) using the Node Package Manager.
+```$ npm install webpack -g```
+
+Run webpack.
+```$ webpack```
+
 ###To-Do:
 * [ ] Implement Responsive Web Design ( Flexbox )
 * [ ] Tag Notes with multiple Tags
