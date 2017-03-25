@@ -1,21 +1,19 @@
 # FoxNote
 
-FoxNote is a web application for writing and organizing notes. It was
+[FoxNote](http://foxnote.herokuapp.com/) is a web application for writing and organizing notes. It was
 inspired by Evernote and built using Ruby on Rails, React.js / Flux, and Quill.js
-
-Write your thoughts at [FoxNote.tech](http://www.foxnote.tech/)
 
 ### Welcome View:
 
-[![welcome](./docs/images/Welcome.png)](http://www.foxnote.tech/)
+[![welcome](./docs/images/Welcome.png)](http://foxnote.herokuapp.com/)
 
 ### Home View:
 
-[![NoteShow](./docs/images/HomeView.png)](http://www.foxnote.tech/)
+[![NoteShow](./docs/images/HomeView.png)](http://foxnote.herokuapp.com/)
 
 ### Technical Details:
 * FoxNote allows for rich-text editing using the Quill.js library. Formatting
-is achieved with JSON called Deltas, which hold the format-type and result.
+is achieved with JSON Deltas, which hold the format-type and result.
 The plain-text contents of the editor are retrieved along with the formatting and stored
 in separate columns of the database. When a note component is mounted, the editor applies
 the formatting onto the plain-text. Here's a simple look at a Delta:
