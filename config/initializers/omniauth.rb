@@ -9,4 +9,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     }
 end
 
-OmniAuth.config.full_host = Rails.env.production? ? 'http://www.foxnote.tech' : 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'http://foxnote.herokuapp.com' : 'http://localhost:3000'
